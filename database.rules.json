@@ -2,8 +2,8 @@
   "rules": {
     "rooms": {
       "$room": {
-        ".read": "auth != null && data.child('members').child(auth.uid).exists()",
-        ".write": "auth != null && ((!data.exists() && newData.child('hostUid').val() === auth.uid && newData.child('members').child(auth.uid).exists()) || (data.exists() && data.child('members').child(auth.uid).exists()))"
+        ".read": "auth != null && (!data.exists() || data.child('members').child(auth.uid).exists())",
+        ".write": "auth != null && ((!data.exists() && newData.child('hostUid').val() == auth.uid && newData.child('members').child(auth.uid).exists()) || (data.exists() && (data.child('members').child(auth.uid).exists() || newData.child('members').child(auth.uid).exists())))"
       }
     }
   }
