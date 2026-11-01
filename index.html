@@ -258,6 +258,7 @@ function showCases(){['home','tool','hd','nv','online-lobby'].forEach(x=>$(x).cl
 
 window.TDGame={
  getCaseIndex:()=>cn,
+ getCaseOptions:()=>CASES.map((item,index)=>({index,title:item.t})),
  getState:()=>JSON.parse(JSON.stringify(S)),
  openSharedCase:(index,state)=>{loadCase(index);S=Object.assign({c:[],l:[],f:[],r:{}},state||{});try{localStorage.setItem("td-state-"+cn,JSON.stringify(S))}catch(e){};cnt();goHome()},
  applyRemoteState:(index,state)=>{if(cn!==index)loadCase(index);S=Object.assign({c:[],l:[],f:[],r:{}},state||{});try{localStorage.setItem("td-state-"+cn,JSON.stringify(S))}catch(e){};cnt();if(window.__tdCurrentTool&&window.__tdCurrentTool!=="home")openTool(window.__tdCurrentTool,sel);else goHome()}
