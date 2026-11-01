@@ -23,7 +23,7 @@ const status = (message, error = false) => {
     el.style.color = error ? "#ffaaa0" : "#9be2c8";
   }
 };
-const cleanName = (value) => (value || "محقق").trim().replace(/[.#$\[\]/]/g, "").slice(0, 20) || "محقق";
+const cleanName = (value) => (value || "محقق").trim().replace(/[^\p{L}\p{N} _-]/gu, "").slice(0, 20) || "محقق";
 const makeCode = () => "ABCDEFGHJKLMNPQRSTUVWXYZ23456789".split("").sort(() => Math.random() - .5).slice(0, 6).join("");
 const roomRef = (code) => ref(db, "rooms/" + code);
 
