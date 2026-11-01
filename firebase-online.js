@@ -51,7 +51,8 @@ function renderRoom(room) {
       <div style="direction:ltr;text-align:center;font-size:32px;letter-spacing:7px;font-weight:900;color:#79d9c6;padding:12px">${currentRoom}</div>
       <button class="btn secondary" onclick="navigator.clipboard?.writeText('${currentRoom}').then(()=>alert('تم نسخ الكود')).catch(()=>alert('انسخ الكود يدويًا'))">نسخ الكود</button>
       <p class="lobby-note"><b>المحققون (${members.length}/10):</b><br>${names || "بانتظار اللاعبين"}</p>
-      <p class="lobby-note">القضية الحالية: ${Number(room.caseIndex || 0) + 1}</p>
+      <label for="room-case">اختار القضية</label>
+      <select id="room-case" ${isHost ? "" : "disabled"}>${(window.TDGame?.getCaseOptions?.() || []).map(item => `<option value="${item.index}" ${Number(room.caseIndex || 0) === item.index ? "selected" : ""}>القضية ${item.index + 1}: ${item.title}</option>`).join("")}</select>
       ${isHost ? '<button class="btn" onclick="TDOnline.startCase()">بدء التحقيق / فتح القضية</button>' : '<p class="lobby-note">المضيف هو اللي يبدأ القضية. استنى لحظة…</p>'}
       <div id="online-status" class="lobby-note" aria-live="polite">متصل بالغرفة</div>
     </div>`;
@@ -133,7 +134,7 @@ async function startCase() {
   const snapshot = await get(roomRef(currentRoom));
   const room = snapshot.val();
   if (!room || room.hostUid !== auth.currentUser.uid) throw new Error("بدء القضية متاح لمضيف الغرفة فقط.");
-  const index = window.TDGame?.getCaseIndex?.() ?? 0;
+  const index = Number($("room-case")?.value ?? window.TDGame?.getCaseIndex?.() ?? 0);
   const state = window.TDGame?.getState?.() ?? { c: [], l: [], f: [], r: {} };
   lastRemoteFingerprint = JSON.stringify([index, state]);
   await update(roomRef(currentRoom), { caseIndex: index, status: "playing", gameState: state, startedAt: Date.now() });
