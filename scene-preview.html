@@ -496,26 +496,24 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
 })();
 </script>
 
+
 <script>
-(()=>{
- const originalOpenTool=window.openTool;
+(function(){
+ const base=window.openTool;
  const layer=document.getElementById('cinematicIntro');
- const closeLayer=()=>{layer.classList.remove('show');layer.style.display='none'};
- window.openTool=function(key,index){
-   if(key!=='scene') return originalOpenTool(key,index);
-   const c=CASES[cn];
-   document.getElementById('ciIcon').textContent='🔎';
-   document.getElementById('ciTitle').textContent='وصلت مسرح الجريمة يا حضرة المحقق';
-   const story=(c.sc&&c.sc[1])?c.sc[1]:'المكان هادئ، لكن كل تفصيلة قد تخفي وراءها سرًا.';
-   document.getElementById('ciText').textContent=story+' قدامك كذا دليل في المكان. اختار اللي يفيد حضرتك وابدأ الفحص.';
-   const bg=document.getElementById('ciSceneBg');
-   if(bg){bg.innerHTML=c.art||'';const svg=bg.querySelector('svg');if(svg){svg.style.width='100%';svg.style.height='100%';svg.style.opacity='.85'}}
-   const go=()=>{closeLayer();originalOpenTool('scene',index)};
-   const start=document.getElementById('ciStart'),skip=document.getElementById('ciSkip');
-   start.textContent='اختيار الأدلة';skip.textContent='الدخول مباشرة';
-   start.onclick=go;skip.onclick=go;
-   layer.style.display='flex';layer.classList.add('show');
+ function close(){layer.classList.remove('show');layer.style.display='none'}
+ window.openTool=function(k,i){
+  if(k!=='scene'){base(k,i);return}
+  const c=CASES[cn],s=c.sc||[];
+  document.getElementById('ciIcon').textContent='🔎';
+  document.getElementById('ciTitle').textContent='وصلت مسرح الجريمة يا حضرة المحقق';
+  document.getElementById('ciText').textContent=(s[1]||'المكان هادئ، لكن كل تفصيلة قد تخفي سرًا.')+' قدامك كذا دليل. اختار اللي يفيد حضرتك.';
+  const bg=document.getElementById('ciSceneBg');
+  if(bg){bg.innerHTML=c.art||'';const svg=bg.querySelector('svg');if(svg){svg.style.width='100%';svg.style.height='100%'}}
+  const go=function(){close();base('scene',i)};
+  const a=document.getElementById('ciStart'),b=document.getElementById('ciSkip');
+  a.textContent='اختيار الأدلة';b.textContent='الدخول مباشرة';a.onclick=go;b.onclick=go;
+  layer.style.display='flex';layer.classList.add('show');
  };
 })();
-</script>
-</body></html>
+</script></body></html>
