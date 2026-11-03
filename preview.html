@@ -414,7 +414,7 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
  }
  function update(){
    if(activeCase===null)return;
-   if(window.S&&(S.won||S.lost)){timerBox.style.display='none';return}
+   if(typeof S!=='undefined'&&(S.won||S.lost)){timerBox.style.display='none';return}
    const left=Math.max(0,readDeadline(activeCase)-Date.now());
    const sec=Math.ceil(left/1000),mm=String(Math.floor(sec/60)).padStart(2,'0'),ss=String(sec%60).padStart(2,'0');
    timerValue.textContent=mm+':'+ss;
@@ -422,7 +422,7 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
    timerBox.style.display='block';
    if(left<=0&&!timeoutShown){
      timeoutShown=true;
-     if(window.S){S.late=1;S.timeout=1;try{save()}catch(e){}}
+     if(typeof S!=='undefined'){S.late=1;S.timeout=1;try{save()}catch(e){}}
      if(typeof window.cine==='function'){
        cine('⏰','انتهى وقت التحقيق','مرّت ساعة ونصف. انتهت مهلة التحقيق، ولازم تقدم ملف الاتهام بالأدلة اللي جمعتها.',()=>{
          if(typeof openTool==='function'&&!(S.won||S.lost))openTool('accuse');
@@ -430,7 +430,7 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
      }else if(typeof openTool==='function')openTool('accuse');
    }
  }
- window.loadCase=function(i){begin(i,false);return baseLoadCase(i)};
+ window.timeEvents=function(){};\n window.loadCase=function(i){begin(i,false);return baseLoadCase(i)};
  window.resetCase=function(){if(activeCase!==null)clearDeadline(activeCase);const result=baseResetCase();if(activeCase!==null)begin(activeCase,true);return result};
  const oldShowCases=window.showCases;
  window.showCases=function(){if(timerInterval)clearInterval(timerInterval);activeCase=null;timerBox.style.display='none';return oldShowCases()};
