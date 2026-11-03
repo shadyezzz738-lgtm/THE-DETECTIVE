@@ -388,161 +388,99 @@ function examine(id){let c=cl(id);if(!c)return;if(S.late&&!(S.ex||[]).includes(i
 function getS(i){try{return JSON.parse(localStorage.getItem('td-state-'+i)||(i==0&&localStorage.getItem('td-state'))||'{}')}catch(e){return{}}}
 function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>e.classList.add('hidden'),4000)}
 
-/* ===== Main game update: anonymous meeting + map ===== */
+
+/* Integrated anonymous meeting + map using the game's native phone/threat system */
 (function(){
- const oldPhone=window.showPhone;
- const oldThreat=window.chkThreat;
- const L=()=>{S.live=S.live||{branch:'',mapUnlocked:false,meetingDone:false,events:[],seen:{}};return S.live};
+ const baseShowPhone=showPhone,baseOpenThr=openThr;
+ const live=()=>{S.live=S.live||{mapUnlocked:false,meetingDone:false};return S.live};
  const addClue=(id,title,desc)=>{
-   if(!clues.some(c=>c.id===id))clues.push({id,area:'phone',title,desc});
+   if(!clues.some(x=>x.id===id))clues.push({id,area:'phone',title,desc});
    if(!S.c.includes(id))S.c.push(id);
-   save();try{cnt()}catch(e){}
+   save();cnt();
  };
- const modal=(title,body,buttons)=>{
-   let el=document.getElementById('mainLiveModal');
-   if(!el){el=document.createElement('div');el.id='mainLiveModal';document.body.appendChild(el)}
-   el.innerHTML='<div class="mlShade"><div class="mlCard"><div class="mlEyebrow">THE DETECTIVE · اتصال مشفّر</div><h2>'+title+'</h2>'+body+'<div class="mlBtns">'+buttons+'</div></div></div>';
-   el.querySelector('.mlShade').addEventListener('click',e=>{if(e.target.classList.contains('mlShade'))el.innerHTML=''});
- };
- const closeModal=()=>{let e=document.getElementById('mainLiveModal');if(e)e.innerHTML=''};
- const styles=document.createElement('style');
- styles.textContent=`
- #mainLiveModal .mlShade{position:fixed;inset:0;z-index:99999;background:#020811dc;display:grid;place-items:center;padding:18px;direction:rtl}
- #mainLiveModal .mlCard{width:min(540px,100%);max-height:90vh;overflow:auto;background:linear-gradient(145deg,#1d2c3e,#101925);border:1px solid #927346;border-radius:18px;padding:20px;color:#f1eee8;box-shadow:0 20px 80px #000b}
- #mainLiveModal .mlEyebrow{color:#d9b56f;font-size:11px;letter-spacing:2px;font-weight:bold}
- #mainLiveModal h2{font-size:23px;margin:10px 0;color:#f0d49c}
- #mainLiveModal p{line-height:1.9}
- #mainLiveModal .mlBtns{display:grid;gap:9px;margin-top:16px}
- #mainLiveModal button,.mlMap button{border:1px solid #8b7048;border-radius:12px;background:#223449;color:#f5f1e8;padding:13px;text-align:right;font:inherit;cursor:pointer;line-height:1.7}
- #mainLiveModal button b,.mlMap button b{display:block;color:#e7c47c}
- .mlMap{border:1px solid #806b48;border-radius:15px;overflow:hidden;background:#111d2b;margin:8px 0}
- .mlMapHead{padding:12px;background:#203247;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
- .mlMap svg{display:block;width:100%;height:auto}
- .mlMapInfo{padding:13px;line-height:1.9}
- .mlMapActions{display:grid;gap:9px;margin-top:12px}
- .mlInformant{border:1px solid #806b48;border-radius:14px;padding:15px;background:linear-gradient(145deg,#26364a,#111a28);text-align:center;margin:10px 0}
- .mlInformant .mlAvatar{font-size:46px}
- `;
- document.head.appendChild(styles);
+ const mapSvg='<svg viewBox="0 0 340 260" role="img" aria-label="خريطة موقع المقابلة"><rect width="340" height="260" fill="#1a2b3c"/><path d="M-10 48L350 18M-10 150L350 185M65 -10L112 275M255 -10L215 275" stroke="#52677a" stroke-width="18" fill="none"/><path d="M-10 48L350 18M-10 150L350 185M65 -10L112 275M255 -10L215 275" stroke="#b5a27e" stroke-width="1.5" stroke-dasharray="8 8" fill="none"/><path d="M0 220L340 65" stroke="#43596a" stroke-width="10" fill="none"/><g fill="#293e4c" stroke="#65798a"><rect x="10" y="8" width="45" height="27" rx="3"/><rect x="130" y="12" width="58" height="30" rx="3"/><rect x="270" y="40" width="55" height="34" rx="3"/><rect x="12" y="190" width="65" height="50" rx="3"/><rect x="260" y="210" width="66" height="40" rx="3"/></g><path d="M170 133Q210 116 244 96" stroke="#e4c27d" stroke-width="3" stroke-dasharray="5 5" fill="none"/><circle cx="244" cy="96" r="18" fill="#d94b42" opacity=".22"/><circle cx="244" cy="96" r="8" fill="#f05245" stroke="#fff" stroke-width="2"/><text x="244" y="70" text-anchor="middle" fill="#f4e4c2" font-size="11">نقطة المقابلة</text><text x="18" y="175" fill="#b7c3ce" font-size="10">شارع الورش</text><text x="125" y="247" fill="#b7c3ce" font-size="10">طريق المخازن</text></svg>';
+ const css=document.createElement('style');css.textContent='.tdMap{border:1px solid #806b48;border-radius:14px;overflow:hidden;background:#111d2b;margin:10px 0}.tdMap svg{display:block;width:100%;height:auto}.tdMapInfo{padding:13px;line-height:1.9}.tdMapActions{display:grid;gap:9px;margin-top:12px}.tdMapActions button{border:1px solid #806b48;border-radius:12px;background:#223449;color:#f5f1e8;padding:13px;text-align:right;font:inherit;line-height:1.7}.tdMapActions b{display:block;color:#e7c47c}.tdWitness{border:1px solid #806b48;border-radius:14px;padding:14px;background:#1b2b3d;text-align:center;margin:10px 0}';document.head.appendChild(css);
  window.showPhone=function(t){
-   oldPhone(t);
+   if(t===3){tdOpenMap();return}
+   baseShowPhone(t);
    if(t===undefined||t<0){
      const apps=document.querySelector('.apps');
-     if(apps&&!document.getElementById('mainMapApp')){
-       const b=document.createElement('button');b.className='app';b.id='mainMapApp';
-       b.innerHTML='<span class="ai">🗺️</span><small>الخريطة</small>'+(L().mapUnlocked?'<i class="nb">1</i>':'');
-       b.onclick=()=>window.mainOpenMap();apps.appendChild(b);
+     if(apps&&!document.getElementById('tdMapApp')){
+       const b=document.createElement('button');b.className='app';b.id='tdMapApp';
+       b.innerHTML='<span class="ai">🗺️</span><small>الخريطة</small>'+(live().mapUnlocked?'<i class="nb">1</i>':'');
+       b.onclick=()=>tdOpenMap();apps.appendChild(b);
      }
    }
  };
- window.chkThreat=function(){
-   oldThreat();
-   setTimeout(()=>{
-     const x=L();
-     if(!S||S.won||S.lost||!S.th||!S.th.length||x.seen.urgent||x.branch)return;
-     x.seen.urgent=1;save();
-     modal('رسالة تهديد عاجلة','<div class="mlInformant"><div class="mlAvatar">✉️</div><b>رقم مجهول · الآن</b><p>«ابعد عن الشاهد. دي آخر مرة هحذّرك. لو كملت، مش هتلاقي حد يشهد.»</p></div><p>وصلتك معلومة إن شاهدًا أساسيًا في خطر. قدامك قرار ممكن يغيّر مسار القضية.</p>',[
-       '<button onclick="mainThreatChoice(\'protect\')"><b>🚔 اطلب حماية الشاهد</b>تأمين الشاهد وفتح مسار شهادة جديد، مع احتمال تنبيه الشخص اللي بيراقبك.</button>',
-       '<button onclick="mainThreatChoice(\'reply\')"><b>📱 رد على الرقم المجهول</b>استدرج المرسل عشان يحدد مكان مقابلة.</button>',
-       '<button onclick="mainThreatChoice(\'ignore\')"><b>⏳ تجاهل الرسالة</b>كمل جمع الأدلة، لكن الشاهد ممكن يختفي.</button>'
-     ]);
-   },2500);
+ window.openThr=function(k){
+   baseOpenThr(k);
+   const h=S.th&&S.th[k];
+   if(!h||(!h.read&&!h.ans))return;
+   const body=document.querySelector('#toolContent .pscr');
+   if(!body||document.getElementById('tdThreatActions'))return;
+   const box=document.createElement('div');box.id='tdThreatActions';box.className='tdMapInfo';
+   box.innerHTML='<p><b>قدامك 3 اختيارات:</b></p><div class="tdMapActions"><button onclick="tdThreatDecision('+k+',\'protect\')"><b>🚔 اطلب حماية الشاهد</b>أمّن الشاهد وافتح مسار شهادة جديد.</button><button onclick="tdThreatDecision('+k+',\'reply\')"><b>📱 رد على الرقم المجهول</b>اطلب تحديد مكان المقابلة.</button><button onclick="tdThreatDecision('+k+',\'ignore\')"><b>⏳ تجاهل الرسالة</b>كمل التحقيق مع احتمال اختفاء الشاهد.</button></div>';
+   body.appendChild(box);
  };
- window.mainThreatChoice=function(kind){
-   const x=L();closeModal();x.branch=kind;
-   if(kind==='protect'){
-     x.witnessSafe=true;x.threatLevel=1;
-     addClue('main_witness_protected','محضر تأمين الشاهد','تم تأمين الشاهد ونقله لمكان آمن. وافق على الإدلاء بمعلوماته بعد مراجعة تفاصيل الواقعة.');
-     toast('🚔 تم تأمين الشاهد — راجع الأدلة الجديدة');
-     modal('تم تأمين الشاهد','<p>وصلت الدورية في الوقت المناسب. الشاهد أصبح في مكان آمن، لكنه طلب إنك تقابله في مقر الشرطة لاحقًا.</p>',[
-       '<button onclick="closeMainLiveModal();openTool(\'board\')"><b>🧩 مراجعة الأدلة</b>تم تسجيل محضر التأمين.</button>',
-       '<button onclick="closeMainLiveModal();goHome()">العودة لغرفة التحقيق</button>'
-     ]);
-   }
-   if(kind==='reply'){
-     x.mapUnlocked=true;x.meetingDone=false;
-     addClue('main_live_location','موقع المقابلة السرية','أرسل الرقم المجهول نقطة مقابلة عند مخزن السكة القديم، بجوار شارع الورش. الموقع خيط يحتاج إلى فحص.');
-     save();toast('📍 وصلك موقع المقابلة — افتح الخريطة في الموبايل');
-     modal('تم تحديد موقع المقابلة','<p>«لو عايز تعرف الحقيقة، تعالى مخزن السكة القديم. تعالى لوحدك.»</p><p>وصلتك نقطة على خريطة الموبايل. تقدر تعاين المكان أو تروح تقابل المجهول.</p>',[
-       '<button onclick="closeMainLiveModal();openTool(\'phone\');showPhone(-1)"><b>🗺️ افتح خريطة الموبايل</b>شوف موقع المقابلة.</button>',
-       '<button onclick="closeMainLiveModal();goHome()">مش دلوقتي — كمل التحقيق</button>'
-     ]);
-   }
-   if(kind==='ignore'){
-     x.witnessSafe=false;x.threatLevel=2;
-     addClue('main_witness_missing','أثر اختفاء الشاهد','تجاهلت التحذير، وعند وصول الدورية كان الشاهد قد غادر المكان. بقي هاتف مكسور وبطاقة مواصلات حديثة.');
-     save();toast('⚠️ الشاهد اختفى — ظهر دليل جديد');
-     modal('الشاهد اختفى','<p>لما وصلت الدورية، الشقة كانت فاضية. واضح إن حد سبَقك للشاهد، لكن المكان ساب أثر ممكن يفيد التحقيق.</p>',[
-       '<button onclick="closeMainLiveModal();openTool(\'board\')"><b>🧩 فحص الأثر الجديد</b>راجع الدليل اللي اتسجل.</button>',
-       '<button onclick="closeMainLiveModal();goHome()">العودة للتحقيق</button>'
-     ]);
-   }
-   save();
- };
- window.closeMainLiveModal=closeModal;
- function mapSVG(){
-   return '<svg viewBox="0 0 340 260" role="img" aria-label="خريطة توضيحية لموقع المقابلة"><rect width="340" height="260" fill="#1a2b3c"/>'+
-   '<path d="M-10 48 L350 18 M-10 150 L350 185 M65 -10 L112 275 M255 -10 L215 275" stroke="#52677a" stroke-width="18" fill="none"/>'+
-   '<path d="M-10 48 L350 18 M-10 150 L350 185 M65 -10 L112 275 M255 -10 L215 275" stroke="#b5a27e" stroke-width="1.5" stroke-dasharray="8 8" fill="none"/>'+
-   '<path d="M0 220 L340 65" stroke="#43596a" stroke-width="10" fill="none"/>'+
-   '<g fill="#293e4c" stroke="#65798a"><rect x="10" y="8" width="45" height="27" rx="3"/><rect x="130" y="12" width="58" height="30" rx="3"/><rect x="270" y="40" width="55" height="34" rx="3"/><rect x="12" y="190" width="65" height="50" rx="3"/><rect x="260" y="210" width="66" height="40" rx="3"/></g>'+
-   '<path d="M170 133 Q210 116 244 96" stroke="#e4c27d" stroke-width="3" stroke-dasharray="5 5" fill="none"/>'+
-   '<circle cx="244" cy="96" r="18" fill="#d94b42" opacity=".22"/><circle cx="244" cy="96" r="8" fill="#f05245" stroke="#fff" stroke-width="2"/>'+
-   '<text x="244" y="70" text-anchor="middle" fill="#f4e4c2" font-size="11">نقطة المقابلة</text><text x="18" y="175" fill="#b7c3ce" font-size="10">شارع الورش</text><text x="125" y="247" fill="#b7c3ce" font-size="10">طريق المخازن</text></svg>';
- }
- window.mainOpenMap=function(){
-   const x=L();
-   if(!x.mapUnlocked){
-     $('toolContent').innerHTML=PF('🗺️ خريطة المحقق','<div class="panel"><h3>لا توجد إحداثيات متاحة</h3><p>لازم ترد على رسالة الرقم المجهول وتطلب منه تحديد مكان المقابلة الأول.</p><button class="btn secondary" onclick="showPhone(2)">الرجوع للرسائل المجهولة</button></div>','showPhone(-1)');
-     return;
-   }
-   $('toolContent').innerHTML=PF('🗺️ خريطة المحقق','<div class="mlMap"><div class="mlMapHead"><b>📍 موقع المقابلة السرية</b><span>تم استلام الإحداثيات</span></div>'+mapSVG()+'<div class="mlMapInfo"><b>مخزن السكة القديم</b><br>منطقة المخازن — مدخل جانبي بجوار شارع الورش.<br><small>خريطة تخطيطية داخل اللعبة وليست خرائط ملاحة حقيقية.<div class="mlMapActions"><button onclick="mainScoutMap()"><b>🔎 افحص المكان من بعيد</b>عاين المدخل قبل ما تدخل.</button><button onclick="mainStartMeeting()"><b>🚶 الذهاب لمقابلة المجهول</b>ابدأ المواجهة.</button></div></small></div></div>','showPhone(-1)');
- };
- window.mainScoutMap=function(){
-   $('toolContent').innerHTML=PF('🔎 معاينة الموقع','<div class="mlMap">'+mapSVG()+'<div class="mlMapInfo"><b>ملاحظات من بعيد</b><p>باب المخزن الرئيسي مقفول. فيه نور خافت من مكتب جانبي، وآثار إطارات حديثة قرب المدخل الخلفي. مفيش حركة واضحة في الشارع.</p><button class="btn" onclick="mainStartMeeting()">دخول الموقع ومقابلة المجهول</button><button class="btn secondary" onclick="mainOpenMap()">العودة للخريطة</button></div></div>','mainOpenMap()');
- };
- window.mainStartMeeting=function(){
-   const x=L();
-   if(x.meetingDone){mainMeetingResult();return}
-   $('toolContent').innerHTML=PF('🤝 مقابلة الرقم المجهول','<div class="mlInformant"><div class="mlAvatar">🧥</div><b>شخص مجهول — وجهه غير واضح</b><p>«كويس إنك جيت. معنديش وقت كتير. أنا شوفت حاجة ليلة الحادث، بس مش ضامن إنك هتصدقني.»</p></div><p>الشخص بيبص حواليه باستمرار. طريقته مش مطمّنة، لكنه ممكن يكون شاهد مهم.</p><div class="mlMapActions"><button onclick="mainAskInformant()"><b>🗣️ اسأله: إيه اللي شوفته؟</b>خليه يحكي روايته الأول.</button><button onclick="mainPressureInformant()"><b>🕵️ اسأله عن هويته وسبب مساعدته</b>اختبر دوافعه قبل ما تسمع المعلومة.</button><button onclick="mainLeaveMeeting()"><b>🚪 انسحب من المقابلة</b>ارجع للتحقيق من غير ما تكشف أوراقك.</button></div>','mainOpenMap()');
- };
- window.mainAskInformant=function(){
-   const x=L();x.meetingAsked=true;save();
-   $('toolContent').innerHTML=PF('🗣️ رواية المجهول','<div class="mlInformant"><div class="mlAvatar">🧥</div><b>المجهول</b><p>«أنا شفت عربية غامقة خرجت من ناحية المخزن بعد وقت الحادث. السواق كان مستعجل، ونزل منه ظرف صغير قبل ما يمشي.»</p></div><p>هو بيقدم معلومة محددة، لكن لسه ماعندكش دليل يثبت إنه صادق.</p><div class="mlMapActions"><button onclick="mainTrustInformant()"><b>✅ أصدّق كلامه وأسجل المعلومة</b>اعتبرها خيط أولي.</button><button onclick="mainChallengeInformant()"><b>⚠️ أشكك في كلامه وأطلب إثبات</b>اختبر التفاصيل قبل ما تعتمد عليها.</button><button onclick="mainAskMore()"><b>❓ اسأله عن الظرف الصغير</b>اطلب تفاصيل إضافية.</button></div>','mainStartMeeting()');
- };
- window.mainPressureInformant=function(){
-   $('toolContent').innerHTML=PF('🕵️ اختبار المجهول','<div class="mlInformant"><div class="mlAvatar">🧥</div><b>المجهول يتردد</b><p>«اسمي مش مهم. أنا كنت شغال قريب من المكان، وعندي سبب إني ما أظهرش. لو عرفت اسمي، ناس تانية هتتأذي.»</p></div><div class="mlMapActions"><button onclick="mainAskInformant()">اسمع روايته الأول</button><button onclick="mainChallengeInformant()">اطلب دليل يثبت إنه كان موجود</button><button onclick="mainLeaveMeeting()">أنهي المقابلة</button></div>','mainStartMeeting()');
- };
- window.mainAskMore=function(){
-   $('toolContent').innerHTML=PF('❓ تفاصيل إضافية','<div class="msg">«الظرف كان لونه بني، وعليه علامة زرقا. أنا ماعرفش كان جواه إيه، بس شفت الشخص وهو بيخبيه قبل ما العربية تتحرك.»</div><p>التفاصيل دي ممكن تساعدك تراجع كلامه مع الأدلة اللي عندك.</p><div class="mlMapActions"><button onclick="mainChallengeInformant()">واجهه بالتناقضات</button><button onclick="mainTrustInformant()">سجل كلامه كخيط مبدئي</button></div>','mainAskInformant()');
- };
- function finishMeeting(mode){
-   const x=L();
-   if(!x.informantTruth)x.informantTruth=Math.random()>.45;
-   x.meetingDone=true;x.meetingResult=mode;
-   const truth=!!x.informantTruth;
-   if(mode==='trust'){
-     addClue(truth?'main_informant_true':'main_informant_false',
-       truth?'إفادة المجهول — خيط قابل للتحقق':'إفادة مشكوك فيها — رواية المجهول',
-       truth?'أفاد شاهد مجهول برؤية سيارة داكنة تغادر محيط المخزن، وذكر ظرفاً بنياً بعلامة زرقاء. الإفادة خيط أولي يحتاج إلى مطابقة.':'ادعى شاهد مجهول رؤية سيارة داكنة وظرف بني بعلامة زرقاء. ظهرت ثغرات في توقيت الرواية؛ لا تعتمد عليها وحدها.');
-     if(!truth)x.threatLevel=(x.threatLevel||0)+1;
+ window.tdThreatDecision=function(k,choice){
+   const x=live();x.threatDecision=choice;if(S.th&&S.th[k]){S.th[k].read=1;S.th[k].choice=choice}
+   if(choice==='reply'){
+     x.mapUnlocked=true;
+     addClue('td_meeting_location','إحداثيات مخزن السكة القديم','أرسل الرقم المجهول موقع مقابلة عند مخزن السكة القديم، بجوار شارع الورش. الموقع خيط يحتاج إلى فحص.');
+     toast('📍 وصلك موقع المقابلة — افتح الخريطة في الموبايل');
+     save();showPhone(-1);
+   }else if(choice==='protect'){
+     x.witnessSafe=true;
+     addClue('td_witness_protected','محضر تأمين الشاهد','تم تأمين الشاهد ونقله إلى مكان آمن. وافق على الإدلاء بشهادته بعد مراجعة تفاصيل الواقعة.');
+     toast('🚔 تم تأمين الشاهد — راجع الأدلة');
+     showPhone(-1);
    }else{
-     if(truth){
-       addClue('main_informant_checked','تفاصيل شهادة تم التحقق منها','بعد سؤاله عن التفاصيل، قدم المجهول وصفاً متسقاً للمدخل الجانبي والظرف ذي العلامة الزرقاء. تظل الإفادة بحاجة إلى مطابقة مستقلة.');
-     }else{
-       addClue('main_informant_lie','تناقض في رواية المجهول','غيّر المجهول وصف مكان وقوف السيارة وتوقيت خروجها. روايته غير موثوقة، ويبدو أنه يحاول توجيه التحقيق بعيداً عن الحقيقة.');
-       x.threatLevel=(x.threatLevel||0)+1;
-     }
+     x.witnessSafe=false;
+     addClue('td_witness_missing','أثر اختفاء الشاهد','بعد تجاهل التحذير، اختفى الشاهد قبل وصول الدورية. عُثر على هاتف مكسور وبطاقة مواصلات حديثة.');
+     toast('⚠️ الشاهد اختفى — ظهر دليل جديد');
+     showPhone(-1);
    }
-   save();mainMeetingResult();
- }
- window.mainTrustInformant=()=>finishMeeting('trust');
- window.mainChallengeInformant=()=>finishMeeting('challenge');
- window.mainMeetingResult=function(){
-   const x=L(),truth=!!x.informantTruth;
-   $('toolContent').innerHTML=PF('📁 نتيجة المقابلة','<div class="mlInformant"><div class="mlAvatar">'+(truth?'🗣️':'⚠️')+'</div><b>'+(truth?'إفادة قابلة للتحقق':'رواية مضللة')+'</b><p>'+(truth?'تفاصيله متماسكة حتى الآن. حصلت على خيط جديد، لكن لازم تطابقه مع الأدلة قبل ما تعتبره حقيقة.':'المجهول غيّر كلامه في نقطتين. واضح إنه بيخبي حاجة أو بيحاول يضللك. سجلت التناقض في ملف القضية.')+'</p></div><p>تم تسجيل نتيجة المقابلة في ملف القضية.</p><div class="mlMapActions"><button onclick="openTool(\'board\')"><b>🧩 مراجعة الأدلة</b>قارن الإفادة بباقي الخيوط.</button><button onclick="openTool(\'scene\')"><b>🔎 العودة للتحقيق</b>كمل فحص مسرح الجريمة.</button><button onclick="openTool(\'phone\');showPhone(-1)"><b>📱 الرجوع للموبايل</b>افتح الخريطة والرسائل.</button></div>','showPhone(-1)');
+   save();cnt();
  };
- window.mainLeaveMeeting=function(){L().meetingLeft=true;save();mainOpenMap()};
+ window.tdOpenMap=function(){
+   if(!live().mapUnlocked){
+     $('toolContent').innerHTML=PF('🗺️ خريطة المحقق','<div class="panel"><h3>لا توجد إحداثيات متاحة</h3><p>افتح رسالة الرقم المجهول واختار «رد على الرقم المجهول» عشان يحدد مكان المقابلة.</p></div>','showPhone(-1)');return;
+   }
+   $('toolContent').innerHTML=PF('🗺️ خريطة المحقق','<div class="tdMap"><div class="tdMapInfo"><b>📍 مخزن السكة القديم</b><br>منطقة المخازن — مدخل جانبي بجوار شارع الورش.</div>'+mapSvg+'<div class="tdMapInfo"><small class="muted">خريطة تخطيطية داخل اللعبة وليست خرائط ملاحة حقيقية.</small><div class="tdMapActions"><button onclick="tdScoutMap()"><b>🔎 افحص المكان من بعيد</b>عاين المدخل قبل الدخول.</button><button onclick="tdStartMeeting()"><b>🚶 الذهاب لمقابلة المجهول</b>ابدأ المواجهة.</button></div></div></div>','showPhone(-1)');
+ };
+ window.tdScoutMap=function(){
+   $('toolContent').innerHTML=PF('🔎 معاينة الموقع','<div class="panel"><p>باب المخزن الرئيسي مقفول. فيه نور خافت من مكتب جانبي، وآثار إطارات حديثة قرب المدخل الخلفي. مفيش حركة واضحة في الشارع.</p><button class="btn" onclick="tdStartMeeting()">دخول الموقع ومقابلة المجهول</button><button class="back" onclick="tdOpenMap()">العودة للخريطة</button></div>','tdOpenMap()');
+ };
+ window.tdStartMeeting=function(){
+   if(live().meetingDone){tdMeetingResult();return}
+   $('toolContent').innerHTML=PF('🤝 مقابلة الرقم المجهول','<div class="panel"><div class="tdWitness"><div style="font-size:44px">🧥</div><b>شخص مجهول — وجهه غير واضح</b><p>«كويس إنك جيت. معنديش وقت كتير. أنا شوفت حاجة ليلة الحادث، بس مش ضامن إنك هتصدقني.»</p></div><div class="tdMapActions"><button onclick="tdAskInformant()"><b>🗣️ اسأله: إيه اللي شوفته؟</b>خليه يحكي روايته الأول.</button><button onclick="tdPressureInformant()"><b>🕵️ اسأله عن هويته</b>اختبر دوافعه قبل ما تسمع المعلومة.</button><button onclick="tdLeaveMeeting()">🚪 انسحب من المقابلة</button></div></div>','tdOpenMap()');
+ };
+ window.tdAskInformant=function(){
+   $('toolContent').innerHTML=PF('🗣️ رواية المجهول','<div class="panel"><div class="tdWitness"><div style="font-size:42px">🧥</div><b>المجهول</b><p>«أنا شفت عربية غامقة خرجت من ناحية المخزن بعد وقت الحادث. السواق كان مستعجل، ونزل منه ظرف صغير قبل ما يمشي.»</p></div><p>المعلومة محددة، لكن لسه ماعندكش دليل يثبت إنه صادق.</p><div class="tdMapActions"><button onclick="tdFinishMeeting(\'trust\')"><b>✅ أصدّق كلامه وأسجل المعلومة</b>اعتبرها خيط أولي.</button><button onclick="tdFinishMeeting(\'challenge\')"><b>⚠️ أشكك في كلامه وأطلب إثبات</b>اختبر التفاصيل قبل ما تعتمد عليها.</button><button onclick="tdAskMore()">❓ اسأله عن الظرف الصغير</button></div></div>','tdStartMeeting()');
+ };
+ window.tdPressureInformant=function(){
+   $('toolContent').innerHTML=PF('🕵️ اختبار المجهول','<div class="panel"><p>«اسمي مش مهم. أنا كنت شغال قريب من المكان، وعندي سبب إني ما أظهرش. لو عرفت اسمي، ناس تانية هتتأذي.»</p><div class="tdMapActions"><button onclick="tdAskInformant()">اسمع روايته الأول</button><button onclick="tdFinishMeeting(\'challenge\')">اطلب دليل يثبت إنه كان موجود</button><button onclick="tdLeaveMeeting()">أنهي المقابلة</button></div></div>','tdStartMeeting()');
+ };
+ window.tdAskMore=function(){
+   $('toolContent').innerHTML=PF('❓ تفاصيل إضافية','<div class="panel"><p>«الظرف كان لونه بني، وعليه علامة زرقا. أنا ماعرفش كان جواه إيه، بس شفت الشخص وهو بيخبيه قبل ما العربية تتحرك.»</p><div class="tdMapActions"><button onclick="tdFinishMeeting(\'challenge\')">واجهه بالتناقضات</button><button onclick="tdFinishMeeting(\'trust\')">سجل كلامه كخيط مبدئي</button></div></div>','tdAskInformant()');
+ };
+ window.tdFinishMeeting=function(mode){
+   const x=live();if(x.meetingDone){tdMeetingResult();return}
+   if(typeof x.informantTruth!=='boolean')x.informantTruth=Math.random()>.5;
+   x.meetingDone=true;x.meetingMode=mode;
+   const truth=x.informantTruth;
+   if(mode==='trust'){
+     addClue(truth?'td_informant_true':'td_informant_false',truth?'إفادة المجهول — خيط قابل للتحقق':'إفادة مشكوك فيها — رواية المجهول',truth?'أفاد شاهد مجهول برؤية سيارة داكنة تغادر محيط المخزن، وذكر ظرفاً بنياً بعلامة زرقاء. الإفادة خيط أولي يحتاج إلى مطابقة.':'ادعى شاهد مجهول رؤية سيارة داكنة وظرف بني بعلامة زرقاء. ظهرت ثغرات في توقيت الرواية؛ لا تعتمد عليها وحدها.');
+   }else{
+     addClue(truth?'td_informant_checked':'td_informant_lie',truth?'تفاصيل شهادة تم التحقق منها':'تناقض في رواية المجهول',truth?'قدم المجهول وصفاً متسقاً للمدخل الجانبي والظرف ذي العلامة الزرقاء. تظل الإفادة بحاجة إلى مطابقة مستقلة.':'غيّر المجهول وصف مكان وقوف السيارة وتوقيت خروجها. روايته غير موثوقة، ويبدو أنه يحاول توجيه التحقيق بعيداً عن الحقيقة.');
+   }
+   save();tdMeetingResult();
+ };
+ window.tdMeetingResult=function(){
+   const truth=!!live().informantTruth;
+   $('toolContent').innerHTML=PF('📁 نتيجة المقابلة','<div class="panel"><div class="tdWitness"><div style="font-size:42px">'+(truth?'🗣️':'⚠️')+'</div><b>'+(truth?'إفادة قابلة للتحقق':'رواية مضللة')+'</b><p>'+(truth?'تفاصيله متماسكة حتى الآن. حصلت على خيط جديد، لكن لازم تطابقه مع الأدلة قبل ما تعتبره حقيقة.':'المجهول غيّر كلامه في نقطتين. واضح إنه بيخبي حاجة أو بيحاول يضللك. سجلت التناقض في ملف القضية.')+'</p></div><div class="tdMapActions"><button onclick="openTool(\'board\')"><b>🧩 مراجعة الأدلة</b>قارن الإفادة بباقي الخيوط.</button><button onclick="openTool(\'scene\')"><b>🔎 العودة للتحقيق</b>كمل فحص مسرح الجريمة.</button><button onclick="openTool(\'phone\')"><b>📱 الرجوع للموبايل</b>افتح الخريطة والرسائل.</button></div></div>','showPhone(-1)');
+ };
+ window.tdLeaveMeeting=function(){live().meetingLeft=true;save();tdOpenMap()};
 })();
 
 </script><div id="clk"></div><div id="toast" class="toast hidden"></div></body></html>
