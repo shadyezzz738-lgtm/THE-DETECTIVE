@@ -1,0 +1,23 @@
+{
+  "id": "./",
+  "name": "THE DETECTIVE",
+  "short_name": "DETECTIVE",
+  "description": "لعبة تحقيق جنائي تفاعلية — العب بدون إنترنت",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./?source=installed-app",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#101820",
+  "theme_color": "#101820",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
