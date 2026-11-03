@@ -156,7 +156,7 @@ function judge(who,sels){let V=$('verdict'),v=CASES[cn].v;
 function resetCase(){S=defS();save();goHome();intro()}
 let PH=[[0,0,'حضرتك… أنا مستعدة أجاوب عن أي حاجة. بس أرجوك بسرعة، أعصابي تعبانة.',[['هعدّي عليكي بكرة','تمام. هكون في انتظارك.'],['كنتي فين بعد الحداشر؟','في بيت أختي طبعاً. اتصل بيها.']]],[3,'draft','الأستاذ نبيل بعتلي رسالة صوتية الساعة 9:40: «لو حصلي حاجة، الملف الأخضر في الدرج التحتاني».',[['وليه ماقلتليش؟','كنت خايفة. افتكرت إنه بيهزر.'],['شكراً، هفتّش الدرج','ياريت. وأنا تحت أمرك.']]],[2,'tcam','يا بيه أنا طارق. اللي قلته عن الدور العلوي كان خوف مش كدب. أنا بريء والله.',[['قابلني في أوضة الأمن','حاضر يا بيه. هستناك.'],['هتأكد من كلامك','اتفضل. ماعنديش حاجة أخبّيها.']]],[1,'camreturn','كفاية تدوّر ورايا. تعالى نتكلم وجهاً لوجه وأنا أعوّضك عن تعبك.',[['مش هقابلك غير في المقر','عمرك ما هتفهم… ماشي.'],['هسجّل رسالتك كدليل','سجّل زي ما تحب.']]]];
 function setNav(k){document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.k===k))}
-function showSet(){$('toolContent').innerHTML=`<div class="panel"><h3>⚙️ الإعدادات</h3><p>تقدّمك بيتحفظ لوحده على الجهاز ده.</p><button class="btn secondary" onclick="resetCase()">ابدأ القضية من الأول</button></div>`}
+function showSet(){const v=Number(localStorage.getItem('td-music-level')??35);$('toolContent').innerHTML=`<div class="panel"><h3>⚙️ الإعدادات</h3><p>تقدّمك بيتحفظ لوحده على الجهاز ده.</p><div class="musicSetting" style="margin:18px 0;padding:14px;border:1px solid var(--line);border-radius:14px;background:#10172b"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><b>🎵 الموسيقى الهادئة</b><strong id="musicLevelLabel">${v===0?'إيقاف':v+'%'}</strong></div><input id="musicLevel" type="range" min="0" max="100" step="5" value="${v}" oninput="setDetectiveMusic(this.value)" style="width:100%;accent-color:#d6b477;margin-top:14px"><small class="muted">حرّك السلايدر للتحكم في مستوى الصوت، أو اسحبه للصفر لإيقاف الموسيقى.</small></div><button class="btn secondary" onclick="resetCase()">ابدأ القضية من الأول</button></div>`;}
 const ok=p=>!p[1]||S.c.includes(p[1]);
 const thread=i=>PH.map((p,n)=>[p,n]).filter(x=>x[0][0]===i&&ok(x[0]));
 function pickR(n,j){S.r[n]=j;save();cnt();let i=PH[n][0];openChat(i,n);setTimeout(()=>{if(document.querySelector('.chat'))openChat(i)},1100)}
@@ -464,11 +464,11 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
 @keyframes spotGlow{50%{filter:brightness(1.5);transform:scale(1.12)}}
 </style>
 <div id="cinematicIntro"><div id="ciSceneBg" style="position:absolute;inset:0;opacity:.34;filter:blur(1px) brightness(.5);pointer-events:none"></div><div class="ciContent"><div class="ciEyebrow">THE DETECTIVE · CASE FILE</div><div id="ciIcon" style="font-size:48px">🕵️</div><div class="ciTitle" id="ciTitle">ملف التحقيق</div><div class="ciLine"></div><div class="ciText" id="ciText"></div><button class="ciBtn" id="ciStart">ابدأ التحقيق</button><button class="ciSkip" id="ciSkip">تخطي المشهد</button></div></div>
-<button id="musicToggle" type="button">♫ تشغيل الموسيقى الهادئة</button>
+
 <script>
 (()=>{
  let audioCtx=null,master=null,musicOn=false,osc=[];
- const btn=document.getElementById('musicToggle');
+
  function startMusic(){
    const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
    if(!audioCtx){audioCtx=new AC();master=audioCtx.createGain();master.gain.value=0;master.connect(audioCtx.destination);
@@ -476,7 +476,7 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
      notes.forEach((hz,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain(),lp=audioCtx.createBiquadFilter();o.type=i===0?'sine':'triangle';o.frequency.value=hz;lp.type='lowpass';lp.frequency.value=520;g.gain.value=[.15,.055,.045,.025][i];o.connect(lp);lp.connect(g);g.connect(master);o.start();osc.push(o)});
      const lfo=audioCtx.createOscillator(),lg=audioCtx.createGain();lfo.frequency.value=.07;lg.gain.value=7;lfo.connect(lg);lg.connect(osc[1].frequency);lfo.start();osc.push(lfo);
    }
-   audioCtx.resume();master.gain.cancelScheduledValues(audioCtx.currentTime);master.gain.setTargetAtTime(.22,audioCtx.currentTime,.8);musicOn=true;btn.textContent='♫ إيقاف الموسيقى';
+   audioCtx.resume();musicOn=true;
  }
  function stopMusic(){if(master&&audioCtx){master.gain.setTargetAtTime(0,audioCtx.currentTime,.5)}musicOn=false;btn.textContent='♫ تشغيل الموسيقى الهادئة'}
  btn.addEventListener('click',()=>musicOn?stopMusic():startMusic());
@@ -488,7 +488,7 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
    document.getElementById('ciTitle').textContent='CASE '+String(cn+1).padStart(3,'0')+' — '+c.t;
    document.getElementById('ciText').textContent=c.cf+' قدامك 90 دقيقة تجمع الأدلة وتكشف الحقيقة. كل قرار ممكن يغيّر مصير التحقيق.';
    el.style.display='flex';el.classList.add('show');
-   document.getElementById('ciStart').onclick=()=>{closeIntro();if(!musicOn)startMusic();if(typeof openTool==='function')openTool('scene')};
+   document.getElementById('ciStart').onclick=()=>{closeIntro();if(!musicOn&&Number(localStorage.getItem('td-music-level')??35)>0)setLevel(Number(localStorage.getItem('td-music-level')??35));if(typeof openTool==='function')openTool('scene')};
    document.getElementById('ciSkip').onclick=closeIntro;
  }
  window.intro=showIntro;
