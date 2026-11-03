@@ -430,7 +430,8 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
      }else if(typeof openTool==='function')openTool('accuse');
    }
  }
- window.timeEvents=function(){};\n window.loadCase=function(i){begin(i,false);return baseLoadCase(i)};
+ window.timeEvents=function(){};
+ window.loadCase=function(i){begin(i,false);return baseLoadCase(i)};
  window.resetCase=function(){if(activeCase!==null)clearDeadline(activeCase);const result=baseResetCase();if(activeCase!==null)begin(activeCase,true);return result};
  const oldShowCases=window.showCases;
  window.showCases=function(){if(timerInterval)clearInterval(timerInterval);activeCase=null;timerBox.style.display='none';return oldShowCases()};
