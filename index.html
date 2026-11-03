@@ -46,16 +46,19 @@ body{background-color:#070a18;background-image:radial-gradient(ellipse at 15% 0,
 .stamp{position:absolute;left:12px;top:34px;transform:rotate(-12deg);border:2px solid #e0453a;color:#e0453a;padding:4px 9px;font-weight:900;font-size:14px;border-radius:6px;opacity:.9}
 .nav{left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom,0px));padding:8px 6px;background:#0b1022ee;border:1px solid #3a4270;border-radius:26px}.nav button{position:relative;flex:1;color:#aab4d0}.nav button.on{color:var(--gold);background:linear-gradient(#2a2412,#171a2c);border:1px solid var(--gold);border-radius:20px;box-shadow:0 0 14px #d6b47766}.nav .dot{top:2px;left:20px}
 .ccard{display:block;width:100%;text-align:right;position:relative;margin:0 0 14px;padding:20px 16px 16px;border-radius:24px;border:1px solid #d6b477aa;background:linear-gradient(135deg,#10162e,#1c1440);color:var(--text);box-shadow:0 0 22px -8px var(--gold)}.ccard.c1{border-color:#8b5cf6aa;background:linear-gradient(135deg,#0f1130,#2a1450);box-shadow:0 0 22px -8px #8b5cf6}.ccard h3{font-size:21px;margin:12px 0 4px;font-family:Georgia,serif;color:var(--gold)}.ccard p{margin:0 0 10px;font-size:13px;color:#cfd5ea}.art2{margin:10px 0 4px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}.art2 svg{display:block;width:100%}.scene-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}.scene-gallery{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:14px 0}.scene-photo{display:block;width:100%;height:clamp(220px,42vw,430px);object-fit:cover;border-radius:16px;border:1px solid #8ba0b8;box-shadow:0 12px 32px #0008}@media(min-width:600px){}.toast{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:50;background:#1c352e;border:1px solid #426b58;color:#c9ead8;padding:10px 12px;border-radius:12px;font-size:13px;text-align:center}.face{filter:drop-shadow(0 8px 6px #000a);transform-origin:50% 95%;animation:sway 5s ease-in-out infinite}@keyframes sway{50%{transform:perspective(260px) rotateY(10deg) rotateX(2deg)}}.face.nervous{animation:shk .3s infinite}@keyframes shk{25%{transform:translateX(-1.5px)}75%{transform:translateX(1.5px)}}.face.broken{animation:sway 2s ease-in-out infinite}.eye{transform-box:fill-box;transform-origin:center;animation:blink 4.5s infinite}@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}.tear{animation:tear 1.6s infinite}@keyframes tear{from{transform:translateY(0);opacity:.9}to{transform:translateY(18px);opacity:0}}.ptabs{display:flex;gap:6px;margin:8px 0 12px}.ptab{flex:1;background:#101b23;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 4px;font-size:12px}.ptab.on{border-color:var(--gold);color:var(--gold)}.cipher{font-family:monospace;color:#79d9c6;letter-spacing:1px;animation:glt .25s infinite}@keyframes glt{50%{transform:translateX(1px);opacity:.85}}.vrow{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}.msg.del{background:#3a1c24;border:1px dashed #e0453a}.empty-room svg{display:block;width:100%}@media(prefers-reduced-motion:reduce){.face,.eye,.tear,.cipher{animation:none}}
-.phone{max-width:340px;margin:8px auto;border:10px solid #0b0d12;border-radius:40px;background:#0f1722;box-shadow:0 0 0 2px #3a4452,0 18px 40px #000a;position:relative;overflow:hidden;display:flex;flex-direction:column}.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:110px;height:20px;background:#0b0d12;border-radius:0 0 14px 14px;z-index:3}.sbar{display:flex;justify-content:space-between;padding:6px 20px 4px;font-size:11px;direction:ltr;color:#e8edf3;background:#0b1118}.pscr{height:540px;overflow-y:auto;padding:8px 12px 12px}.pscr.home{background:linear-gradient(160deg,#1b3b5c,#2a1450 60%,#0f1722)}.abar{display:flex;align-items:center;gap:8px;margin:-8px -12px 8px;padding:8px 12px;background:#16212c;border-bottom:1px solid var(--line);position:sticky;top:-8px;z-index:2}.abar button{background:none;border:0;color:var(--gold);font-size:26px;padding:0 6px}.hbar{width:90px;height:4px;border-radius:4px;background:#ffffff66;margin:6px auto 8px}.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:26px 4px}.app{position:relative;background:none;border:0;color:var(--text);text-align:center}.app small{font-size:11px}.ai{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 6px;border-radius:17px;font-size:28px;background:linear-gradient(145deg,#3a6590,#1a2c44);box-shadow:0 4px 10px #0007}.nb{position:absolute;top:-5px;right:10px;min-width:19px;height:19px;border-radius:10px;background:#ff3b3b;font:700 11px/19px sans-serif;font-style:normal}#clk{position:fixed;top:calc(6px + env(safe-area-inset-top,0px));left:10px;z-index:60;direction:ltr;font:700 13px monospace;color:var(--gold);background:#0b1022ee;border:1px solid #d6b47766;padding:3px 10px;border-radius:12px}.phone .msg{background:#1f3a4d}.phone .msg.me{background:#1c4a3a}.phone .msg.del{background:#3a1c24}.ibar{margin-top:10px;padding:9px 14px;border-radius:20px;background:#1b2631;color:#6f7d8a;font-size:12px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.chip{background:#16212c;color:var(--text);border:1px solid var(--line);border-radius:16px;padding:6px 10px;font-size:12px}.cin{display:flex;gap:6px;margin-top:8px}.cin input{flex:1;min-width:0;background:#1b2631;color:var(--text);border:1px solid var(--line);border-radius:20px;padding:9px 14px;font-size:13px}.cin button{border:0;border-radius:50%;width:38px;background:var(--gold);color:#18232b}.phone select{margin:0}</style><style>button:disabled{opacity:.45;cursor:not-allowed}.stage{position:relative;direction:ltr;border-radius:14px;overflow:hidden;border:1px solid #66563d;background:#0a1118;aspect-ratio:2/1;margin:10px 0;touch-action:manipulation;--x:50%;--y:50%}.stage svg.room{position:absolute;inset:0;width:100%;height:100%}.stage .dark{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle 130px at var(--x) var(--y),rgba(0,0,0,0) 0,rgba(4,7,14,.8) 100%)}.stage .cap{position:absolute;right:8px;bottom:6px;font-size:10px;color:#d6b477;letter-spacing:1px;direction:rtl;z-index:3;text-shadow:0 0 6px #000;pointer-events:none}.spot{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;border:2px solid #d6b477;background:#d6b47722;color:#f4f0e8;font-size:17px;z-index:2;display:flex;align-items:center;justify-content:center;padding:0;animation:pulse 2s infinite}.spot.done{border-color:#4ad07a;background:#4ad07a22;animation:none;font-size:15px}@keyframes pulse{0%{box-shadow:0 0 0 0 #d6b47799}100%{box-shadow:0 0 0 14px #d6b47700}}.xc{background:#101b23;border:1px solid #66563d;border-radius:12px;padding:12px;margin-top:6px;animation:in .4s}.xc b{display:block;color:var(--gold);margin:4px 0}.xc p{min-height:48px}.ovl{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at center,#101a28 0,#05070d 75%);display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;animation:ovin .6s}.ovl.out{opacity:0;transition:opacity .45s}.ovlc{max-width:480px}.ovlc .ie{font-size:48px}.ovlc h2{font-family:Georgia,serif;color:var(--gold);font-size:25px;margin:10px 0;letter-spacing:1px}.ovlc p{color:#d7dce0;line-height:2;font-size:15px;min-height:70px}.ovlc small{color:var(--muted);font-size:11px;display:block;margin-top:16px}.flash{position:fixed;inset:0;background:#fff;z-index:99;pointer-events:none;animation:fl .35s forwards}@keyframes fl{from{opacity:.8}to{opacity:0}}@keyframes ovin{from{opacity:0}to{opacity:1}}@keyframes blink{50%{opacity:0}}.camera-frame{position:relative;overflow:hidden}.camera-frame:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 3px)}.camera-frame .tag:before{content:"● REC ";color:#e5484d;animation:blink 1s steps(2) infinite}@media(prefers-reduced-motion:reduce){.spot,.ovl,.camera-frame .tag:before{animation:none}.flash{display:none}}label.tag{display:block;margin-top:8px}</style>
+.phone{max-width:340px;margin:8px auto;border:10px solid #0b0d12;border-radius:40px;background:#0f1722;box-shadow:0 0 0 2px #3a4452,0 18px 40px #000a;position:relative;overflow:hidden;display:flex;flex-direction:column}.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:110px;height:20px;background:#0b0d12;border-radius:0 0 14px 14px;z-index:3}.sbar{display:flex;justify-content:space-between;padding:6px 20px 4px;font-size:11px;direction:ltr;color:#e8edf3;background:#0b1118}.pscr{height:540px;overflow-y:auto;padding:8px 12px 12px}.pscr.home{background:linear-gradient(160deg,#1b3b5c,#2a1450 60%,#0f1722)}.abar{display:flex;align-items:center;gap:8px;margin:-8px -12px 8px;padding:8px 12px;background:#16212c;border-bottom:1px solid var(--line);position:sticky;top:-8px;z-index:2}.abar button{background:none;border:0;color:var(--gold);font-size:26px;padding:0 6px}.hbar{width:90px;height:4px;border-radius:4px;background:#ffffff66;margin:6px auto 8px}.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:26px 4px}.app{position:relative;background:none;border:0;color:var(--text);text-align:center}.app small{font-size:11px}.ai{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 6px;border-radius:17px;font-size:28px;background:linear-gradient(145deg,#3a6590,#1a2c44);box-shadow:0 4px 10px #0007}.nb{position:absolute;top:-5px;right:10px;min-width:19px;height:19px;border-radius:10px;background:#ff3b3b;font:700 11px/19px sans-serif;font-style:normal}.phone .msg{background:#1f3a4d}.phone .msg.me{background:#1c4a3a}.phone .msg.del{background:#3a1c24}.ibar{margin-top:10px;padding:9px 14px;border-radius:20px;background:#1b2631;color:#6f7d8a;font-size:12px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.chip{background:#16212c;color:var(--text);border:1px solid var(--line);border-radius:16px;padding:6px 10px;font-size:12px}.cin{display:flex;gap:6px;margin-top:8px}.cin input{flex:1;min-width:0;background:#1b2631;color:var(--text);border:1px solid var(--line);border-radius:20px;padding:9px 14px;font-size:13px}.cin button{border:0;border-radius:50%;width:38px;background:var(--gold);color:#18232b}.phone select{margin:0}</style><style>button:disabled{opacity:.45;cursor:not-allowed}.stage{position:relative;direction:ltr;border-radius:14px;overflow:hidden;border:1px solid #66563d;background:#0a1118;aspect-ratio:2/1;margin:10px 0;touch-action:manipulation;--x:50%;--y:50%}.stage svg.room{position:absolute;inset:0;width:100%;height:100%}.stage .dark{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle 130px at var(--x) var(--y),rgba(0,0,0,0) 0,rgba(4,7,14,.8) 100%)}.stage .cap{position:absolute;right:8px;bottom:6px;font-size:10px;color:#d6b477;letter-spacing:1px;direction:rtl;z-index:3;text-shadow:0 0 6px #000;pointer-events:none}.spot{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;border:2px solid #d6b477;background:#d6b47722;color:#f4f0e8;font-size:17px;z-index:2;display:flex;align-items:center;justify-content:center;padding:0;animation:pulse 2s infinite}.spot.done{border-color:#4ad07a;background:#4ad07a22;animation:none;font-size:15px}@keyframes pulse{0%{box-shadow:0 0 0 0 #d6b47799}100%{box-shadow:0 0 0 14px #d6b47700}}.xc{background:#101b23;border:1px solid #66563d;border-radius:12px;padding:12px;margin-top:6px;animation:in .4s}.xc b{display:block;color:var(--gold);margin:4px 0}.xc p{min-height:48px}.ovl{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at center,#101a28 0,#05070d 75%);display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;animation:ovin .6s}.ovl.out{opacity:0;transition:opacity .45s}.ovlc{max-width:480px}.ovlc .ie{font-size:48px}.ovlc h2{font-family:Georgia,serif;color:var(--gold);font-size:25px;margin:10px 0;letter-spacing:1px}.ovlc p{color:#d7dce0;line-height:2;font-size:15px;min-height:70px}.ovlc small{color:var(--muted);font-size:11px;display:block;margin-top:16px}.flash{position:fixed;inset:0;background:#fff;z-index:99;pointer-events:none;animation:fl .35s forwards}@keyframes fl{from{opacity:.8}to{opacity:0}}@keyframes ovin{from{opacity:0}to{opacity:1}}@keyframes blink{50%{opacity:0}}.camera-frame{position:relative;overflow:hidden}.camera-frame:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 3px)}.camera-frame .tag:before{content:"● REC ";color:#e5484d;animation:blink 1s steps(2) infinite}@media(prefers-reduced-motion:reduce){.spot,.ovl,.camera-frame .tag:before{animation:none}.flash{display:none}}label.tag{display:block;margin-top:8px}</style>
+<style>
+.scenePanel{padding:14px}.sceneHead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.sceneBadge{white-space:nowrap;color:#e7c981;border:1px solid #806c45;border-radius:20px;padding:6px 9px;font-size:11px}.sceneHelp{font-size:13px;line-height:1.9;color:#d2d9e2;background:#111c29;border:1px solid #35465a;padding:11px 13px;border-radius:12px;margin:12px 0}.evidenceTitle{display:flex;justify-content:space-between;align-items:center;margin:16px 2px 9px;color:#e7c981}.evidenceTitle span{font-size:12px;color:#aab4bc}.evidencePicker{display:grid;grid-template-columns:1fr;gap:9px}.evidencePick{display:flex;align-items:center;gap:12px;width:100%;min-height:76px;padding:12px;text-align:right;background:linear-gradient(120deg,#1b2b39,#121d2a);border:1px solid #45566a;border-radius:15px;color:#f4f0e8;touch-action:manipulation}.evidencePick:active{transform:scale(.99);background:#26394a}.evidencePick.examined{border-color:#a88a52}.evidencePick.collected{border-color:#3c9b72;background:linear-gradient(120deg,#17372f,#142a28)}.epIcon{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:#d6b47720;border:1px solid #d6b47766;font-size:23px}.collected .epIcon{background:#3c9b7230;border-color:#3c9b72}.epText{flex:1;min-width:0}.epText b{display:block;font-size:14px;line-height:1.6}.epText small{display:block;color:#aab4bc;font-size:11px;margin-top:4px}.epArrow{flex:none;color:#e7c981;font-weight:800;font-size:12px}.spot{width:52px;height:52px;font-size:22px;border-width:3px;touch-action:manipulation;z-index:5}.stage{min-height:190px}@media(min-width:560px){.evidencePicker{grid-template-columns:repeat(2,minmax(0,1fr))}.spot{width:56px;height:56px}}
+</style>
 </head>
 <body>
-<header id="hd" class="hidden"><div class="top"><div class="brand">THE DETECTIVE</div><div class="case-no" id="hclk">🕒</div></div><h1 id="headTitle">غرفة التحقيق</h1><p id="headSub">كل دليل يقرّبك من الحقيقة</p></header>
+<header id="hd" class="hidden"><div class="top"><div class="brand">THE DETECTIVE</div></div><h1 id="headTitle">غرفة التحقيق</h1><p id="headSub">كل دليل يقرّبك من الحقيقة</p></header>
 <main>
 <section id="cases" class="hidden"></section>
 <section id="home" class="hidden">
  <div class="topbar"><div class="logo" onclick="showCases()" style="cursor:pointer"><svg viewBox="0 0 64 64" width="46" height="46" fill="none" stroke="#d6b477" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 8v44M18 54h28M10 18h44M10 18L3 38h14zM54 18l-7 20h14z"/><path d="M3 38q7 8 14 0M47 38q7 8 14 0"/></svg><div><div class="lt">THE <b>DETECTIVE</b></div><div class="ls">INVESTIGATE · SOLVE · DISCOVER</div><div class="by">by: shady ezz eldien</div></div></div><div class="act"><button class="circ" onclick="showCases()" aria-label="القضايا">🗂️</button><button class="circ" onclick="openTool('phone')" aria-label="الإشعارات">🔔<i class="dot hidden"></i></button><button class="circ" onclick="openTool('set')" aria-label="الإعدادات">⚙️</button></div></div>
  <div class="hero2"><svg class="art" viewBox="0 0 150 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><g fill="#151c3a"><rect x="0" y="70" width="18" height="130"/><rect x="14" y="38" width="22" height="162"/><rect x="118" y="58" width="16" height="142"/><rect x="130" y="28" width="20" height="172"/></g><g fill="#f1c35a" opacity=".55"><rect x="19" y="50" width="3" height="4"/><rect x="27" y="70" width="3" height="4"/><rect x="21" y="92" width="3" height="4"/><rect x="123" y="76" width="3" height="4"/><rect x="138" y="52" width="3" height="4"/><rect x="140" y="90" width="3" height="4"/></g><path d="M18 200L26 120Q40 98 75 96Q110 98 124 120L132 200Z" fill="#0b0f1d"/><path d="M52 100L75 132L98 100L88 96L75 110L62 96Z" fill="#1d2748"/><ellipse cx="75" cy="86" rx="15" ry="18" fill="#141a30"/><path d="M61 82Q75 72 89 82" stroke="#5a6fb0" fill="none" opacity=".7"/><ellipse cx="75" cy="68" rx="42" ry="8" fill="#0a0d18"/><path d="M52 66Q54 38 75 36Q96 38 98 66Z" fill="#0d1120"/><rect x="52" y="58" width="46" height="5" fill="#1d2748"/><path d="M34 68Q75 78 116 68" stroke="#5a6fb0" fill="none" opacity=".6"/><g transform="rotate(-18 75 150)"><rect x="-40" y="138" width="240" height="24" fill="#e0b020"/><text x="-30" y="155" font-size="14" font-weight="900" fill="#111" font-family="Impact,Arial Black,sans-serif" letter-spacing="1">CRIME SCENE · CRIME SCENE</text></g></svg>
-  <div class="hbody"><span class="badge">🎯 القضية الحالية</span><h2 id="hT">☕ آخر فنجان قهوة</h2><p id="hP">نبيل فاروق لاقوه ميت ورا مكتبه المقفول. فنجان مكسور، ساعة واقفة، وكاميرا نامت في أخطر وقت. أربع وشوش وحقيقة واحدة… هتكشفها؟</p><div class="stats"><span class="pill" id="hN">رقم القضية: 001</span><span class="pill" id="gclk2">🕒</span><span class="pill" id="countPill">الأدلة: 0 / 13</span></div></div></div>
+  <div class="hbody"><span class="badge">🎯 القضية الحالية</span><h2 id="hT">☕ آخر فنجان قهوة</h2><p id="hP">نبيل فاروق لاقوه ميت ورا مكتبه المقفول. فنجان مكسور، ساعة واقفة، وكاميرا نامت في أخطر وقت. أربع وشوش وحقيقة واحدة… هتكشفها؟</p><div class="stats"><span class="pill" id="hN">رقم القضية: 001</span><span class="pill" id="countPill">الأدلة: 0 / 13</span></div></div></div>
  <div class="grid">
   <button class="tile" onclick="openTool('scene')"><span class="ico">🔎</span><b>مسرح الجريمة</b><small>افحص المكان</small></button>
   <button class="tile" onclick="openTool('suspects')"><span class="ico">🕵️</span><b>المشتبه بهم</b><small>اعرف مين مين</small></button>
@@ -110,6 +113,7 @@ const $=id=>document.getElementById(id);
 let S=defS(),sel=0,notes="";
 try{S=Object.assign(S,JSON.parse(localStorage.getItem("td-state")||"{}"));notes=JSON.parse(localStorage.getItem("td-notes")||'""')}catch(e){S=defS();notes=""}
 const save=()=>{try{localStorage.setItem("td-state-"+cn,JSON.stringify(S))}catch(e){}};
+window.appendInvestigationNote=function(value){notes=(notes?notes+'\n\n':'')+String(value||'');try{localStorage.setItem('td-notes',JSON.stringify(notes))}catch(e){toast('تعذر حفظ الملاحظة على الجهاز')}var box=document.getElementById('notes');if(box)box.value=notes;return notes;};
 const cl=id=>clues.find(x=>x.id===id);
 function goHome(){curK='';setNav('home');$('hd').classList.add('hidden');$('cases').classList.add('hidden');$('nv').classList.remove('hidden');$('home').classList.remove('hidden');$('tool').classList.add('hidden');$('headTitle').textContent='غرفة التحقيق';$('headSub').textContent='كل دليل يقرّبك من الحقيقة';cnt();scrollTo(0,0)}
 function openTool(k,i){if(S.late&&!S.won&&!S.lost&&k!=='accuse'&&k!=='set')k='accuse';curK=k;setNav(k);$('hd').classList.remove('hidden');if(i!==undefined)sel=i;$('home').classList.add('hidden');$('tool').classList.remove('hidden');let t={scene:"مسرح الجريمة",suspects:"المشتبه بهم",interrogate:"غرفة الاستجواب",camera:"كاميرات المراقبة",lab:"المعمل الجنائي",medical:"الطب الشرعي",board:"ربط الأدلة",timeline:"الخط الزمني",notes:"مذكراتي",phone:"الموبايل",set:"الإعدادات",accuse:"الاتهام النهائي",chief:"رئيس القسم"};$('headTitle').textContent=t[k];$('headSub').textContent='القضية '+String(cn+1).padStart(3,'0')+' · '+CASES[cn].t;$('toolContent').innerHTML='';scrollTo(0,0);({scene:showScene,lab:()=>showClues('lab'),medical:()=>showClues('medical'),suspects:showSuspects,interrogate:showInterrogate,camera:showCamera,board:showBoard,timeline:showTimeline,notes:showNotes,phone:showPhone,set:showSet,accuse:showAccuse,chief:showChief})[k]()}
@@ -153,7 +157,7 @@ function judge(who,sels){let V=$('verdict'),v=CASES[cn].v;
 function resetCase(){S=defS();save();goHome();intro()}
 let PH=[[0,0,'حضرتك… أنا مستعدة أجاوب عن أي حاجة. بس أرجوك بسرعة، أعصابي تعبانة.',[['هعدّي عليكي بكرة','تمام. هكون في انتظارك.'],['كنتي فين بعد الحداشر؟','في بيت أختي طبعاً. اتصل بيها.']]],[3,'draft','الأستاذ نبيل بعتلي رسالة صوتية الساعة 9:40: «لو حصلي حاجة، الملف الأخضر في الدرج التحتاني».',[['وليه ماقلتليش؟','كنت خايفة. افتكرت إنه بيهزر.'],['شكراً، هفتّش الدرج','ياريت. وأنا تحت أمرك.']]],[2,'tcam','يا بيه أنا طارق. اللي قلته عن الدور العلوي كان خوف مش كدب. أنا بريء والله.',[['قابلني في أوضة الأمن','حاضر يا بيه. هستناك.'],['هتأكد من كلامك','اتفضل. ماعنديش حاجة أخبّيها.']]],[1,'camreturn','كفاية تدوّر ورايا. تعالى نتكلم وجهاً لوجه وأنا أعوّضك عن تعبك.',[['مش هقابلك غير في المقر','عمرك ما هتفهم… ماشي.'],['هسجّل رسالتك كدليل','سجّل زي ما تحب.']]]];
 function setNav(k){document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.k===k))}
-function showSet(){$('toolContent').innerHTML=`<div class="panel"><h3>⚙️ الإعدادات</h3><p>تقدّمك بيتحفظ لوحده على الجهاز ده.</p><button class="btn secondary" onclick="resetCase()">ابدأ القضية من الأول</button></div>`}
+function showSet(){const v=Number(localStorage.getItem('td-music-level')??35);$('toolContent').innerHTML=`<div class="panel"><h3>⚙️ الإعدادات</h3><p>تقدّمك بيتحفظ لوحده على الجهاز ده.</p><div class="musicSetting" style="margin:18px 0;padding:14px;border:1px solid var(--line);border-radius:14px;background:#10172b"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><b>🎵 الموسيقى الهادئة</b><strong id="musicLevelLabel">${v===0?'إيقاف':v+'%'}</strong></div><input id="musicLevel" type="range" min="0" max="100" step="5" value="${v}" oninput="setDetectiveMusic(this.value)" style="width:100%;accent-color:#d6b477;margin-top:14px"><small class="muted">حرّك السلايدر للتحكم في مستوى الصوت، أو اسحبه للصفر لإيقاف الموسيقى.</small></div><button class="btn secondary" onclick="resetCase()">ابدأ القضية من الأول</button></div>`;}
 const ok=p=>!p[1]||S.c.includes(p[1]);
 const thread=i=>PH.map((p,n)=>[p,n]).filter(x=>x[0][0]===i&&ok(x[0]));
 function pickR(n,j){S.r[n]=j;save();cnt();let i=PH[n][0];openChat(i,n);setTimeout(()=>{if(document.querySelector('.chat'))openChat(i)},1100)}
@@ -268,7 +272,9 @@ function callSuspect(i){if(S.room!==i)spend(20);S.room=i;sel=i;save();toast('�
 function questionList(){let s=suspects[sel];let m=S.c.filter(id=>cl(id));let t=S.t[sel]||0;$('questionList').innerHTML=`<div class="talker"><div id="av">${face(sel,t>=3&&isCul(sel)?'broken':'calm')}</div><div class="bubble" id="bub"><span class="muted">${s.name} · ${s.role} · ${AV[sel].age} عاماً<br>قاعد قدامك… مستنيك تسأل.</span></div></div><p class="muted" id="tens">مستوى التوتر: ${'🔴'.repeat(Math.min(t,5))||'⚪'}</p><p class="tag">أسئلة وجهاً لوجه</p>`+s.qs.map((q,i)=>`<button class="choice" onclick="answer(${i})">${q[0]}</button>`).join('')+`<p class="tag" style="margin-top:16px">مواجهة بدليل</p>`+(m.length?`<select id="confClue">${m.map(id=>`<option value="${id}">${cl(id).title}</option>`).join('')}</select><button class="btn secondary" onclick="confront()">واجهه بالدليل ده</button>`:`<p class="muted">اجمع أدلة الأول عشان تواجهه بيها.</p>`)+'<div id="answer"></div>'}
 function answer(i){spend(5);let k=isCul(sel)&&i>=2;if(k){S.t[sel]=(S.t[sel]||0)+1;save()}say(suspects[sel].qs[i][1],k?((S.t[sel]||0)>=3?'broken':'nervous'):'calm')}
 function confront(){spend(10);let s=suspects[sel],id=$('confClue').value,r=s.conf[id],k=sel+':'+id;if(r&&!S.f.includes(k)){S.f.push(k)}S.t[sel]=(S.t[sel]||0)+(r?1:0);save();let t=S.t[sel]||0,c=isCul(sel);say(r||'مش فاهم دي تخصني في إيه. اللي قلته قلته.',!r?'angry':c?(t>=3?'broken':'nervous'):(t>=3?'angry':'nervous'));let tl=$('tens');if(tl)tl.textContent='مستوى التوتر: '+('🔴'.repeat(Math.min(t,5))||'⚪')}
-function suspectDetail(i){let s=suspects[i];$('suspectDetail').innerHTML=`<div class="panel"><div style="text-align:center">${face(i,'calm')}</div><h3>${s.name} · ${AV[i].age} عاماً</h3><p><b>الدافع المحتمل:</b> ${s.motive}</p><p><b>حكايته:</b> ${s.alibi}</p><p><b>أقواله:</b> ${s.statement}</p><button class="btn secondary" onclick="openTool('phone');openChat(${i})">📞 استدعاء إلى المقر (من الموبايل)</button></div>`;$('suspectDetail').scrollIntoView({behavior:'smooth'})}
+function speakerGender(s){if(s&&s.gender)return s.gender;const role=String(s&&s.role||'');const name=String(s&&s.name||'');if(/زوجة|ابنة|بنت|أخت|سكرتيرة|مساعدة|مديرة|طبيبة|صحفية|خادمة|طالبة/.test(role)||/سلمى|مريم|ندى|ليلى|هالة|نهى|رانيا|منى|سارة|دينا|آية|فاطمة|ملك|نورهان|ياسمين|نجلاء|هند|ريم|بسمة|ميادة|عبير|سحر|شيماء|نورا|رنا|دعاء|إيمان|رحاب|أميرة|صفاء|علا|هبة|شهد|جنى|لارا|ماريا/.test(name))return 'female';return 'male'}
+function speakerText(t,s){if(typeof t!=='string'||speakerGender(s)!=='female')return t;return t.replace(/مستعد(?=\b|\s|[،.!؟])/g,'مستعدة').replace(/مستعدةة/g,'مستعدة').replace(/مستعده/g,'مستعدة').replace(/جاهز(?=\b|\s|[،.!؟])/g,'جاهزة').replace(/متأكد(?=\b|\s|[،.!؟])/g,'متأكدة').replace(/خايف(?=\b|\s|[،.!؟])/g,'خايفة').replace(/زعلان(?=\b|\s|[،.!؟])/g,'زعلانة').replace(/تعبان(?=\b|\s|[،.!؟])/g,'تعبانة').replace(/مضطر(?=\b|\s|[،.!؟])/g,'مضطرة').replace(/عارف(?=\b|\s|[،.!؟])/g,'عارفة').replace(/فاكر(?=\b|\s|[،.!؟])/g,'فاكرة').replace(/قادر(?=\b|\s|[،.!؟])/g,'قادرة').replace(/بريء(?=\b|\s|[،.!؟])/g,'بريئة').replace(/محتاج(?=\b|\s|[،.!؟])/g,'محتاجة').replace(/عايز(?=\b|\s|[،.!؟])/g,'عايزة').replace(/كنت مستني(?=\s|[،.!؟])/g,'كنت مستنية').replace(/أنا جاهز/g,'أنا جاهزة').replace(/أنا مستعد/g,'أنا مستعدة')}
+function suspectDetail(i){let s=suspects[i];$('suspectDetail').innerHTML=`<div class="panel"><div style="text-align:center">${face(i,'calm')}</div><h3>${s.name} · ${AV[i].age} عاماً</h3><p><b>الدافع المحتمل:</b> ${s.motive}</p><p><b>حكايته:</b> ${s.alibi}</p><p><b>أقواله:</b> ${speakerText(s.statement,s)}</p><button class="btn secondary" onclick="openTool('phone');openChat(${i})">📞 استدعاء إلى المقر (من الموبايل)</button></div>`;$('suspectDetail').scrollIntoView({behavior:'smooth'})}
 /* --- الموبايل --- */
 const VPD=[
 ['نبيل فاروق',['9:52 م','نبيل، مش هعدّي موضوع التحويلات. هرجعلك الليلة بعد ما الكل يمشي.'],['10:06 م','أنا عند الباب الجانبي. افتح، وماتبلّغش حد.']],
@@ -308,11 +314,10 @@ CASES.forEach((k,i)=>{let d=VPD[i],w=k.v.who;k.c.push({id:'vp_del',area:'phone',
 try{showCases()}catch(err){$('cases').classList.remove('hidden');$('cases').innerHTML='<div class="panel"><h3>حصلت مشكلة في تشغيل اللعبة</h3><p style="direction:ltr;font-size:11px">'+String(err&&err.message||err)+'</p></div>';console.error(err)}
 
 
-/* --- شكل الموبايل الحقيقي + الساعة --- */
+/* --- شكل الموبايل --- */
 function clkStr(sec){let d=new Date(),h=d.getHours();return(h%12||12)+':'+String(d.getMinutes()).padStart(2,'0')+(sec?':'+String(d.getSeconds()).padStart(2,'0'):'')+' '+(h<12?'ص':'م')}
-function tickClk(){let e=document.getElementById('clk');if(e)e.textContent='🕒 '+clkStr(1);document.querySelectorAll('.pclk').forEach(x=>x.textContent=clkStr())}
-setInterval(tickClk,1000);tickClk();
-function PF(t,inner,bk,cls){return `<div class="phone"><div class="notch"></div><div class="sbar"><span class="pclk">${clkStr()}</span><span>5G 📶 🔋</span></div><div class="pscr ${cls||''}">${t?`<div class="abar"><button onclick="${bk}">›</button><b>${t}</b></div>`:''}${inner}</div><div class="hbar"></div></div>`}
+function tickClk(){}
+function PF(t,inner,bk,cls){return `<div class="phone"><div class="notch"></div><div class="sbar"><span></span><span>5G 📶 🔋</span></div><div class="pscr ${cls||''}">${t?`<div class="abar"><button onclick="${bk}">›</button><b>${t}</b></div>`:''}${inner}</div><div class="hbar"></div></div>`}
 function showPhone(t){if(t===undefined||t<0){let up=PH.filter((p,n)=>(!p[1]||S.c.includes(p[1]))&&S.r[n]===undefined).length+Object.keys(S.un||{}).length,ut=(S.th||[]).filter(x=>!x.read).length,A=[['💬','الرسائل',up],['🕵️','هاتف الضحية',0],['🕶️','مجهول',ut]];$('toolContent').innerHTML=PF('',`<div class="apps">${A.map((a,i)=>`<button class="app" onclick="showPhone(${i})"><span class="ai">${a[0]}</span><small>${a[1]}</small>${a[2]?`<i class="nb">${a[2]}</i>`:''}</button>`).join('')}</div><p class="muted" style="text-align:center;margin-top:40px;font-size:11px">اسحب لأعلى… أو افتح تطبيق</p>`,'','home');return}
 let T=['الرسائل','هاتف الضحية','مجهول 🔒'];$('toolContent').innerHTML=PF(T[t],'<div id="pbody"></div>','showPhone(-1)');[phSusp,phVictim,phAnon][t]()}
 function openThr(k){let h=S.th[k],call=h.type==='call';if(!call){h.read=1;save();cnt()}$('toolContent').innerHTML=PF('رقم مجهول 🔒',`<div class="chat">${call?(h.ans?'<div class="msg cipher" id="thrTxt"></div>':'<p class="muted" style="text-align:center;margin-top:30px">📞 مكالمة واردة…<br>الرقم مخفي</p><button class="btn" onclick="ansThr('+k+')">📞 رد</button>'):`<div class="msg">${h.txt}</div>`}</div>`,'showPhone(2)');if(call&&h.ans)decodeTxt(h.txt)}
@@ -324,9 +329,9 @@ const PRO=[[2,1,'حضرتك، سمعت إنك بتسأل عني. أنا جاهز
 function proact(){S.pro=S.pro||[];let ci=suspects.findIndex(s=>s.name===CASES[cn].v.who);PRO.forEach((p,k)=>{if(S.c.length>=p[0]&&!S.pro.includes(k)){S.pro.push(k);let x=(ci+(k===1?0:p[1]))%suspects.length;setTimeout(()=>{if(!suspects[x])return;chatLog(x).push([0,p[2]]);(S.un=S.un||{})[x]=1;save();cnt();toast('💬 '+suspects[x].name+' بعتلك رسالة');if(curK==='phone'&&document.querySelector('.chatlog')===null&&document.getElementById('pbody'))phSusp()},2600)}})}
 function chatLog(i){S.chat=S.chat||{};return S.chat[i]=S.chat[i]||[]}
 function phSusp(){$('pbody').innerHTML=suspects.map((s,i)=>{let m=thread(i),u=m.filter(x=>S.r[x[1]]===undefined).length+((S.un||{})[i]?1:0),lg=chatLog(i),last=lg.length?lg[lg.length-1][1]:(m.length?m[m.length-1][0][2]:'اضغط للمحادثة والاستدعاء');return `<button class="choice" onclick="openChat(${i})">${s.name}${u?`<span class="bdg">${u}</span>`:''}${S.room===i?' <small>🚪 في الغرفة</small>':''}<br><small class="muted">${last.slice(0,38)}…</small></button>`}).join('')}
-function openChat(i,fresh,typing){let s=suspects[i];if(S.un)delete S.un[i];cnt();let b=thread(i).map(([p,n])=>{let r=S.r[n];return `<div class="msg">${p[2]}</div>`+(r===undefined?p[3].map((q,j)=>`<button class="choice" onclick="pickR(${n},${j})">${q[0]}</button>`).join(''):`<div class="msg me">${p[3][r][0]}</div><div class="msg">${fresh===n?'بيكتب…':p[3][r][1]}</div>`)}).join(''),lg=chatLog(i).map(m=>`<div class="msg${m[0]?' me':''}">${m[1]}</div>`).join(''),cc=S.c.filter(id=>cl(id));
+function openChat(i,fresh,typing){let s=suspects[i];if(S.un)delete S.un[i];cnt();let b=thread(i).map(([p,n])=>{let r=S.r[n];return `<div class="msg">${speakerText(p[2],s)}</div>`+(r===undefined?p[3].map((q,j)=>`<button class="choice" onclick="pickR(${n},${j})">${q[0]}</button>`).join(''):`<div class="msg me">${p[3][r][0]}</div><div class="msg">${fresh===n?'بيكتب…':p[3][r][1]}</div>`)}).join(''),lg=chatLog(i).map(m=>`<div class="msg${m[0]?' me':''}">${m[1]}</div>`).join(''),cc=S.c.filter(id=>cl(id));
 $('toolContent').innerHTML=PF('👤 '+s.name,`<p class="muted" style="margin:0 0 6px">${s.role} · <span style="color:#4ad07a">● متصل</span></p><div class="chat chatlog">${b}${lg}${typing?'<div class="msg">بيكتب…</div>':''}${!b&&!lg&&!typing?'<p class="muted">ابدأ المحادثة: اختار سؤال من تحت.</p>':''}</div><div class="chips">${s.pqs.map((q,k)=>`<button class="chip" onclick="chatQ(${i},${k})">${q[0]}</button>`).join('')}</div>${cc.length?`<select id="cclue" onchange="chatClue(${i})"><option value="">📎 واجهه بدليل…</option>${cc.map(id=>`<option value="${id}">${cl(id).title}</option>`).join('')}</select>`:''}<button class="btn" style="margin-top:10px" onclick="callSuspect(${i})">${S.room===i?'🚪 هو في الغرفة — ادخل':'📞 استدعاء إلى المقر'}</button>`,'showPhone(0)');let e=document.querySelector('.pscr');if(e)e.scrollTop=e.scrollHeight}
-function chatTalk(i,me,rep,tn){spend(3);chatLog(i).push([1,me]);save();openChat(i,0,1);setTimeout(()=>{chatLog(i).push([0,rep]);if(tn)S.t[i]=(S.t[i]||0)+1;save();if(document.querySelector('.chatlog'))openChat(i)},900+Math.min(rep.length*9,1300))}
+function chatTalk(i,me,rep,tn){rep=speakerText(rep,suspects[i]);spend(3);chatLog(i).push([1,me]);save();openChat(i,0,1);setTimeout(()=>{chatLog(i).push([0,rep]);if(tn)S.t[i]=(S.t[i]||0)+1;save();if(document.querySelector('.chatlog'))openChat(i)},900+Math.min(rep.length*9,1300))}
 function chatQ(i,k){let q=suspects[i].pqs[k];chatTalk(i,q[0],q[1],q[2])}
 function chatClue(i){let id=$('cclue').value;if(!id)return;let s=suspects[i],r=s.conf[id],c=isCul(i),t=S.t[i]||0;if(r&&!S.f.includes(i+':'+id))S.f.push(i+':'+id);chatTalk(i,'📎 '+cl(id).title+' — فسّر ده.',r||'مش فاهم دي تخصني في إيه. اللي قلته قلته.',!!r)}
 const SW=['انت','إنت','هو','هي','ده','دي','ايه','إيه','طيب','يعني','بس','عن','يا','حضرتك'];
@@ -363,7 +368,7 @@ function stp(i){let b=getBest()[i];return b?`<span class="pill">${'⭐'.repeat(b
 /* ===== v0.5: زمن + مسرح جريمة تفاعلي + مشاهد سينمائية ===== */
 function RM(){try{return matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){return false}}
 function gtime(){let m=(23*60+(S.tm||0))%1440,h=Math.floor(m/60);return (h%12||12)+':'+String(m%60).padStart(2,'0')+(h<12?' ص':' م')}
-function uclk(){let left=Math.max(0,540-(S.tm||0)),t='🕒 '+gtime()+' · ⏳ '+Math.floor(left/60)+'س '+left%60+'د';['hclk','gclk2'].forEach(id=>{let e=$(id);if(e){e.textContent=t;e.style.color=left<=90?'#f0b3a9':''}})}
+function uclk(){let left=Math.max(0,540-(S.tm||0)),t='🕒 '+gtime()+' · ⏳ '+Math.floor(left/60)+'س '+left%60+'د';['hclk','gclk2'].forEach(id=>{let e=$(id);if(e)e.textContent=''})}
 function spend(m){if(S.won||S.lost||S.late)return;S.tm=(S.tm||0)+m;save();uclk();timeEvents()}
 function timeEvents(){S.ev=S.ev||[];let T=[[60,'🕛','منتصف الليل','الصحافة اتجمّعت قدام المقر، ورئيس المباحث بيستعجلك. الأدلة بتبرد مع كل ساعة بتعدي.'],[240,'🕒','الثالثة فجراً','التعب بدأ يبان. فاضل أقل من خمس ساعات قبل ما النيابة تطلب الملف.'],[420,'🌅','قبل الفجر','فاضل ساعتين. اللي ماتلحقش تفتشه دلوقتي، يمكن ما تلحقوش أبداً.']];
  T.forEach((e,k)=>{if(S.tm>=e[0]&&!S.ev.includes(k)){S.ev.push(k);save();cine(e[1],e[2],e[3])}});
@@ -378,109 +383,380 @@ function camSpend(){let k=+$('camTime').value;S.cv=S.cv||[];if(!S.cv.includes(k)
 function spotIco(t){const M=[[/مفتاح/,'🗝️'],[/بصمة/,'🖐️'],[/ساعة|توقيت/,'🕰️'],[/فنجان|كوب|قهوة|ترمس/,'☕'],[/هاتف|موبايل|رقم|صوتية|مكالمة/,'📱'],[/رسالة|ورق|دفتر|ملف|سجل|مسودة|مستند|تقرير|بطاقة|صفحة/,'📄'],[/دم|بقعة/,'🩸'],[/سلاح|مسدس|سكين/,'🔪'],[/باب|قفل|نافذة/,'🚪'],[/صندوق|خزنة|حقيبة|شنطة/,'🧰']];for(const m of M)if(m[0].test(t))return m[1];return '🔎'}
 function sceneSpots(){let cam=new Set(camData.map(x=>x[2]).filter(Boolean));return clues.filter(x=>x.area==='scene'&&!cam.has(x.id))}
 function roomSVG(){return `<svg class="room" viewBox="0 0 600 300" preserveAspectRatio="none" style="filter:hue-rotate(${(cn%5-2)*12}deg)"><defs><linearGradient id="rw" x2="0" y2="1"><stop stop-color="#1f2d3d"/><stop offset="1" stop-color="#0e1620"/></linearGradient><linearGradient id="rm" x2="1"><stop stop-color="#9db4ff" stop-opacity=".25"/><stop offset="1" stop-color="#9db4ff" stop-opacity="0"/></linearGradient></defs><rect width="600" height="300" fill="url(#rw)"/><rect y="215" width="600" height="85" fill="#121b24"/><rect x="40" y="30" width="90" height="110" fill="#0b1626" stroke="#394956" stroke-width="4"/><path d="M85 30v110M40 85h90" stroke="#394956" stroke-width="3"/><path d="M40 140L260 262H110Z" fill="url(#rm)"/><rect x="440" y="40" width="130" height="8" fill="#2b3946"/><rect x="450" y="22" width="14" height="18" fill="#394956"/><rect x="470" y="14" width="10" height="26" fill="#2f4560"/><rect x="490" y="26" width="16" height="14" fill="#4a5865"/><ellipse cx="300" cy="258" rx="150" ry="22" fill="#1a2731" stroke="#394956"/><rect x="200" y="150" width="200" height="14" rx="3" fill="#3a4651"/><rect x="210" y="164" width="10" height="56" fill="#2b343d"/><rect x="380" y="164" width="10" height="56" fill="#2b343d"/><rect x="330" y="164" width="50" height="40" fill="#2f3a45" stroke="#4a5865"/><path d="M240 190v-26h30v26M240 170h30" stroke="#4a5865" stroke-width="4" fill="none"/><path d="M360 150v-26l14-14" stroke="#d6b477" stroke-width="3" fill="none"/><circle cx="378" cy="106" r="9" fill="#d6b477" opacity=".85"/><path d="M378 115L340 215H430Z" fill="#d6b477" opacity=".08"/><rect x="520" y="90" width="60" height="130" fill="#17202a" stroke="#394956" stroke-width="3"/><circle cx="566" cy="160" r="3" fill="#d6b477"/><path d="M120 250c14-10 30-8 44-2l10-10 6 8-10 10c8 6 12 14 8 20" stroke="#e8e0c8" stroke-width="2" fill="none" opacity=".4" stroke-dasharray="4 3"/><text x="30" y="285" font-size="34" opacity=".25">${CASES[cn].ico}</text></svg>`}
-function showScene(){let n=CASES[cn].sc;$('toolContent').innerHTML=`<div class="panel"><h3>${n[0]}</h3><p>${n[1]}</p><div class="stage" id="stage">${roomSVG()}<div id="spots"></div><div class="dark"></div><div class="cap">📍 ${n[0]}</div></div><p class="muted" id="shint"></p><div id="xcard"></div></div>`;
+function showScene(){let n=CASES[cn].sc;$('toolContent').innerHTML=`<div class="panel scenePanel"><div class="sceneHead"><div><h3>${n[0]}</h3><p>${n[1]}</p></div><span class="sceneBadge">🔎 تفتيش حر</span></div><div class="stage" id="stage">${roomSVG()}<div id="spots"></div><div class="dark"></div><div class="cap">📍 ${n[0]}</div></div><div class="sceneHelp">اختار الدليل من القائمة الكبيرة بالأسفل — ضغطة واحدة تكفي لفحصه وإضافته لملفك. العلامات داخل الصورة اختيارية.</div><div class="evidenceTitle"><b>الأدلة الموجودة في المكان</b><span id="sceneProgress"></span></div><div id="evidencePicker" class="evidencePicker"></div><div id="xcard"></div></div>`;
  let st=$('stage'),mv=e=>{let r=st.getBoundingClientRect(),p=e.touches?e.touches[0]:e;st.style.setProperty('--x',(p.clientX-r.left)+'px');st.style.setProperty('--y',(p.clientY-r.top)+'px')};st.addEventListener('pointermove',mv);st.addEventListener('pointerdown',mv);renderSpots()}
-function renderSpots(){let sp=sceneSpots(),ex=S.ex||[],nex=sp.filter(x=>ex.includes(x.id)).length,P=[[14,38],[50,52],[62,64],[64,34],[80,14],[90,56],[24,84],[48,84],[40,66],[72,82],[10,62],[34,20]],hid=0,e=$('spots');if(!e)return;
- e.innerHTML=sp.map((x,k)=>{if(k>=4&&nex<k-2){hid++;return ''}let p=P[k%P.length],d=ex.includes(x.id);return `<button class="spot ${d?'done':''}" style="left:${p[0]}%;top:${p[1]}%" onclick="examine('${x.id}')" title="${x.title.replace(/"/g,'&quot;')}">${d?'✓':spotIco(x.title)}</button>`}).join('');
- let h=$('shint');if(h)h.textContent=hid?'🔎 فيه تفاصيل لسه مستخبية… فتّش بدقة. كل فحص بياخد حوالي 15 دقيقة.':'🔎 دوس على أي علامة لفحصها. كل فحص بياخد حوالي 15 دقيقة.'}
-function examine(id){let c=cl(id);if(!c)return;if(S.late&&!(S.ex||[]).includes(id))return;let first=!(S.ex||[]).includes(id);if(first){(S.ex=S.ex||[]).push(id);save();spend(15)}flash();let x=$('xcard');if(!x)return;x.innerHTML=`<div class="xc"><div class="tag">🔦 فحص دقيق</div><b>${c.title}</b><p id="xdesc"></p>${clueBtn(id)}</div>`;typeInto('xdesc',c.desc);renderSpots();x.scrollIntoView({behavior:'smooth',block:'nearest'})}
+function renderSpots(){let sp=sceneSpots(),ex=S.ex||[],e=$('spots'),picker=$('evidencePicker');if(!e)return;let P=[[14,38],[50,52],[62,64],[64,34],[80,14],[90,56],[24,84],[48,84],[40,66],[72,82],[10,62],[34,20]];
+ e.innerHTML=sp.slice(0,Math.min(6,sp.length)).map((x,k)=>{let p=P[k%P.length],d=ex.includes(x.id);return `<button class="spot ${d?'done':''}" style="left:${p[0]}%;top:${p[1]}%" onclick="examine('${x.id}')" aria-label="فحص ${x.title}" title="${x.title.replace(/"/g,'&quot;')}">${d?'✓':spotIco(x.title)}</button>`}).join('');
+ if(picker)picker.innerHTML=sp.map((x,k)=>{let d=ex.includes(x.id),got=(S.c||[]).includes(x.id);return `<button class="evidencePick ${d?'examined':''} ${got?'collected':''}" onclick="examine('${x.id}')" aria-label="فحص الدليل: ${x.title}"><span class="epIcon">${got?'✓':spotIco(x.title)}</span><span class="epText"><b>${x.title}</b><small>${got?'تمت إضافته لملف الأدلة':d?'تم فحصه — اضغط لعرض التفاصيل':'اضغط مرة واحدة للفحص والإضافة'}</small></span><span class="epArrow">${got?'✓':'افحص'}</span></button>`}).join('');
+ let h=$('sceneProgress');if(h)h.textContent=`تم جمع ${sp.filter(x=>(S.c||[]).includes(x.id)).length} من ${sp.length}`}
+function examine(id){let c=cl(id);if(!c)return;if(S.late&&!(S.ex||[]).includes(id))return;let first=!(S.ex||[]).includes(id);if(first){(S.ex=S.ex||[]).push(id);save();spend(15);collect(id)}flash();let x=$('xcard');if(!x)return;x.innerHTML=`<div class="xc"><div class="tag">🔦 نتيجة الفحص</div><b>${c.title}</b><p id="xdesc"></p><div class="notice">✓ تم فحص الدليل وإضافته تلقائياً إلى ملف الأدلة.</div></div>`;typeInto('xdesc',c.desc);renderSpots();x.scrollIntoView({behavior:'smooth',block:'nearest'})}
 
 function getS(i){try{return JSON.parse(localStorage.getItem('td-state-'+i)||(i==0&&localStorage.getItem('td-state'))||'{}')}catch(e){return{}}}
 function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>e.classList.add('hidden'),4000)}
+</script><div id="toast" class="toast hidden"></div>
+<style>
+#caseTimer{display:none;position:fixed;top:calc(8px + env(safe-area-inset-top,0px));right:10px;z-index:70;direction:rtl;background:#171322ed;border:1px solid #d6b477;border-radius:12px;padding:7px 11px;color:#f4f0e8;font:800 13px system-ui;box-shadow:0 4px 18px #0008}
+#caseTimer strong{color:#e7c981;font-variant-numeric:tabular-nums;direction:ltr;display:inline-block;margin-right:5px}
+#caseTimer.urgent{border-color:#e45b55;color:#ffc2bc;animation:timerPulse 1s infinite}
+@keyframes timerPulse{50%{box-shadow:0 0 16px #e45b5580}}
+</style>
+<div id="caseTimer">⏳ الوقت المتبقي <strong id="caseTimerValue">90:00</strong></div>
+<script>
+(()=>{
+ const baseLoadCase=window.loadCase, baseResetCase=window.resetCase;
+ const DURATION=90*60*1000, timerBox=document.getElementById('caseTimer'), timerValue=document.getElementById('caseTimerValue');
+ let activeCase=null, timerInterval=null, timeoutShown=false;
+ const key=i=>'td-deadline-'+i;
+ const readDeadline=i=>{try{return Number(localStorage.getItem(key(i)))||0}catch(e){return 0}};
+ const writeDeadline=(i,v)=>{try{localStorage.setItem(key(i),String(v))}catch(e){}};
+ const clearDeadline=i=>{try{localStorage.removeItem(key(i))}catch(e){}};
+ function begin(i,reset){
+   activeCase=i; timeoutShown=false;
+   let deadline=reset?0:readDeadline(i);
+   if(!deadline){deadline=Date.now()+DURATION;writeDeadline(i,deadline)}
+   timerBox.style.display='block'; update();
+   if(timerInterval)clearInterval(timerInterval);
+   timerInterval=setInterval(update,1000);
+ }
+ function update(){
+   if(activeCase===null)return;
+   if(typeof S!=='undefined'&&(S.won||S.lost)){timerBox.style.display='none';return}
+   const left=Math.max(0,readDeadline(activeCase)-Date.now());
+   const sec=Math.ceil(left/1000),mm=String(Math.floor(sec/60)).padStart(2,'0'),ss=String(sec%60).padStart(2,'0');
+   timerValue.textContent=mm+':'+ss;
+   timerBox.classList.toggle('urgent',left<=10*60*1000);
+   timerBox.style.display='block';
+   if(left<=0&&!timeoutShown){
+     timeoutShown=true;
+     if(typeof S!=='undefined'){S.late=1;S.timeout=1;try{save()}catch(e){}}
+     if(typeof window.cine==='function'){
+       cine('⏰','انتهى وقت التحقيق','مرّت ساعة ونصف. انتهت مهلة التحقيق، ولازم تقدم ملف الاتهام بالأدلة اللي جمعتها.',()=>{
+         if(typeof openTool==='function'&&!(S.won||S.lost))openTool('accuse');
+       });
+     }else if(typeof openTool==='function')openTool('accuse');
+   }
+ }
+ window.timeEvents=function(){};
+ window.loadCase=function(i){begin(i,false);return baseLoadCase(i)};
+ window.resetCase=function(){if(activeCase!==null)clearDeadline(activeCase);const result=baseResetCase();if(activeCase!==null)begin(activeCase,true);return result};
+ const oldShowCases=window.showCases;
+ window.showCases=function(){if(timerInterval)clearInterval(timerInterval);activeCase=null;timerBox.style.display='none';return oldShowCases()};
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)update()});
+})();
+</script>
 
 
-/* Integrated anonymous meeting + map using the game's native phone/threat system */
+<style>
+#cinematicIntro{position:fixed;inset:0;z-index:12000;background:radial-gradient(ellipse at 50% 42%,#26313d 0%,#101720 42%,#05080d 100%);display:none;align-items:center;justify-content:center;overflow:hidden;color:#f5efe4;text-align:center;padding:28px;direction:rtl}
+#cinematicIntro.show{display:flex;animation:ciFade .9s ease both}
+#cinematicIntro:before{content:"";position:absolute;inset:-30%;background:repeating-linear-gradient(110deg,transparent 0 9px,#ffffff08 10px 11px);animation:rainMove 1.3s linear infinite}
+#cinematicIntro:after{content:"";position:absolute;width:70vw;height:70vw;border-radius:50%;background:radial-gradient(circle,#d7b97820 0%,transparent 68%);animation:spotPulse 4s ease-in-out infinite}
+.ciContent{position:relative;z-index:2;max-width:620px;width:100%;animation:ciRise 1.2s ease both}
+.ciEyebrow{letter-spacing:4px;color:#d6b477;font:700 11px system-ui}
+.ciTitle{font:900 clamp(28px,7vw,54px) system-ui;margin:18px 0 10px;text-shadow:0 8px 35px #000}
+.ciLine{height:1px;width:90px;background:#d6b477;margin:20px auto}
+.ciText{color:#d5d1ca;line-height:2;font-size:15px;max-width:480px;margin:0 auto 28px}
+.ciBtn{border:1px solid #d6b477;background:#d6b477;color:#151515;padding:13px 30px;border-radius:9px;font-weight:900;font-size:15px}
+.ciSkip{display:block;margin:15px auto 0;background:transparent;border:0;color:#aaa;padding:9px}
+@keyframes ciFade{from{opacity:0}to{opacity:1}}@keyframes ciRise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}@keyframes rainMove{to{transform:translateY(30px)}}@keyframes spotPulse{50%{transform:scale(1.15);opacity:.55}}
+
+.stage{overflow:hidden;position:relative}.stage:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 30%,#ffffff0b 48%,transparent 62%);transform:translateX(-100%);animation:stageSweep 8s ease-in-out infinite}
+@keyframes stageSweep{55%,100%{transform:translateX(100%)}}
+.spot{animation:spotGlow 2.2s ease-in-out infinite;z-index:3;box-shadow:0 0 0 4px #d6b47720,0 0 18px #d6b47788}
+@keyframes spotGlow{50%{filter:brightness(1.5);transform:scale(1.12)}}
+</style>
+<div id="cinematicIntro"><div id="ciSceneBg" style="position:absolute;inset:0;opacity:.34;filter:blur(1px) brightness(.5);pointer-events:none"></div><div class="ciContent"><div class="ciEyebrow">THE DETECTIVE · CASE FILE</div><div id="ciIcon" style="font-size:48px">🕵️</div><div class="ciTitle" id="ciTitle">ملف التحقيق</div><div class="ciLine"></div><div class="ciText" id="ciText"></div><button class="ciBtn" id="ciStart">ابدأ التحقيق</button><button class="ciSkip" id="ciSkip">تخطي المشهد</button></div></div>
+
+<script>
+(()=>{
+ let audioCtx=null,master=null,musicOn=false,osc=[];
+ function startMusic(){
+   const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+   if(!audioCtx){
+     audioCtx=new AC();master=audioCtx.createGain();master.gain.value=0;master.connect(audioCtx.destination);
+     const notes=[110,164.81,220,261.63];
+     notes.forEach((hz,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain(),lp=audioCtx.createBiquadFilter();o.type=i===0?'sine':'triangle';o.frequency.value=hz;lp.type='lowpass';lp.frequency.value=520;g.gain.value=[.15,.055,.045,.025][i];o.connect(lp);lp.connect(g);g.connect(master);o.start();osc.push(o)});
+     const lfo=audioCtx.createOscillator(),lg=audioCtx.createGain();lfo.frequency.value=.07;lg.gain.value=7;lfo.connect(lg);lg.connect(osc[1].frequency);lfo.start();osc.push(lfo);
+   }
+   audioCtx.resume();musicOn=true;
+ }
+ function setLevel(v){
+   v=Math.max(0,Math.min(100,Number(v)||0));
+   try{localStorage.setItem('td-music-level',String(v))}catch(e){}
+   if(v>0){startMusic();if(master&&audioCtx){master.gain.cancelScheduledValues(audioCtx.currentTime);master.gain.setTargetAtTime(.22*v/100,audioCtx.currentTime,.25)}}
+   else{if(master&&audioCtx)master.gain.setTargetAtTime(0,audioCtx.currentTime,.25);musicOn=false}
+   const label=document.getElementById('musicLevelLabel');if(label)label.textContent=v===0?'إيقاف':v+'%';
+ }
+ window.setDetectiveMusic=setLevel;
+ function closeIntro(){document.getElementById('cinematicIntro').classList.remove('show');document.getElementById('cinematicIntro').style.display='none'}
+ function showIntro(){
+   if(typeof S!=='undefined'){S.intro=1;try{save()}catch(e){}}
+   const c=CASES[cn],el=document.getElementById('cinematicIntro');
+   document.getElementById('ciIcon').textContent=c.ico||'🕵️';
+   document.getElementById('ciTitle').textContent='CASE '+String(cn+1).padStart(3,'0')+' — '+c.t;
+   document.getElementById('ciText').textContent=c.cf+' قدامك 90 دقيقة تجمع الأدلة وتكشف الحقيقة. كل قرار ممكن يغيّر مصير التحقيق.';
+   el.style.display='flex';el.classList.add('show');
+   document.getElementById('ciStart').onclick=()=>{closeIntro();const v=Number(localStorage.getItem('td-music-level')??35);if(v>0&&!musicOn)setLevel(v);if(typeof openTool==='function')openTool('scene')};
+   document.getElementById('ciSkip').onclick=closeIntro;
+ }
+ window.intro=showIntro;
+ window.playDetectiveMusic=()=>{const v=Number(localStorage.getItem('td-music-level')??35);setLevel(v>0?0:35)};
+})();
+</script>
+
+
+<script>
 (function(){
- const baseShowPhone=showPhone,baseOpenThr=openThr;
- const live=()=>{S.live=S.live||{mapUnlocked:false,meetingDone:false};return S.live};
- const addClue=(id,title,desc)=>{
-   if(!clues.some(x=>x.id===id))clues.push({id,area:'phone',title,desc});
-   if(!S.c.includes(id))S.c.push(id);
-   save();cnt();
+ const base=window.openTool;
+ const layer=document.getElementById('cinematicIntro');
+ function close(){layer.classList.remove('show');layer.style.display='none'}
+ window.openTool=function(k,i){
+  if(k!=='scene'){base(k,i);return}
+  const c=CASES[cn],s=c.sc||[];
+  document.getElementById('ciIcon').textContent='🔎';
+  document.getElementById('ciTitle').textContent='وصلت مسرح الجريمة يا حضرة المحقق';
+  document.getElementById('ciText').textContent=(s[1]||'المكان هادئ، لكن كل تفصيلة قد تخفي سرًا.')+' قدامك كذا دليل. اختار اللي يفيد حضرتك.';
+  const bg=document.getElementById('ciSceneBg');
+  if(bg){bg.innerHTML=c.art||'';const svg=bg.querySelector('svg');if(svg){svg.style.width='100%';svg.style.height='100%'}}
+  const go=function(){close();base('scene',i)};
+  const a=document.getElementById('ciStart'),b=document.getElementById('ciSkip');
+  a.textContent='اختيار الأدلة';b.textContent='الدخول مباشرة';a.onclick=go;b.onclick=go;
+  layer.style.display='flex';layer.classList.add('show');
  };
- const mapSvg='<svg viewBox="0 0 340 260" role="img" aria-label="خريطة موقع المقابلة"><rect width="340" height="260" fill="#1a2b3c"/><path d="M-10 48L350 18M-10 150L350 185M65 -10L112 275M255 -10L215 275" stroke="#52677a" stroke-width="18" fill="none"/><path d="M-10 48L350 18M-10 150L350 185M65 -10L112 275M255 -10L215 275" stroke="#b5a27e" stroke-width="1.5" stroke-dasharray="8 8" fill="none"/><path d="M0 220L340 65" stroke="#43596a" stroke-width="10" fill="none"/><g fill="#293e4c" stroke="#65798a"><rect x="10" y="8" width="45" height="27" rx="3"/><rect x="130" y="12" width="58" height="30" rx="3"/><rect x="270" y="40" width="55" height="34" rx="3"/><rect x="12" y="190" width="65" height="50" rx="3"/><rect x="260" y="210" width="66" height="40" rx="3"/></g><path d="M170 133Q210 116 244 96" stroke="#e4c27d" stroke-width="3" stroke-dasharray="5 5" fill="none"/><circle cx="244" cy="96" r="18" fill="#d94b42" opacity=".22"/><circle cx="244" cy="96" r="8" fill="#f05245" stroke="#fff" stroke-width="2"/><text x="244" y="70" text-anchor="middle" fill="#f4e4c2" font-size="11">نقطة المقابلة</text><text x="18" y="175" fill="#b7c3ce" font-size="10">شارع الورش</text><text x="125" y="247" fill="#b7c3ce" font-size="10">طريق المخازن</text></svg>';
- const css=document.createElement('style');css.textContent='.tdMap{border:1px solid #806b48;border-radius:14px;overflow:hidden;background:#111d2b;margin:10px 0}.tdMap svg{display:block;width:100%;height:auto}.tdMapInfo{padding:13px;line-height:1.9}.tdMapActions{display:grid;gap:9px;margin-top:12px}.tdMapActions button{border:1px solid #806b48;border-radius:12px;background:#223449;color:#f5f1e8;padding:13px;text-align:right;font:inherit;line-height:1.7}.tdMapActions b{display:block;color:#e7c47c}.tdWitness{border:1px solid #806b48;border-radius:14px;padding:14px;background:#1b2b3d;text-align:center;margin:10px 0}';document.head.appendChild(css);
+})();
+</script> 
+<style>
+/* PREMIUM CASE WORLD — keeps the original game's visual identity */
+#liveOpsTile{position:relative;border-color:#b99a61;background:linear-gradient(145deg,#283544,#172331);box-shadow:0 0 22px #d6b47722}
+#liveOpsTile:after{content:"LIVE";position:absolute;left:10px;top:9px;color:#d6b477;font:800 9px system-ui;letter-spacing:2px}
+.liveDot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#e85d58;box-shadow:0 0 10px #e85d58;margin-left:7px;animation:livePulse 1.3s infinite}
+@keyframes livePulse{50%{opacity:.35;transform:scale(.7)}}
+#premiumLayer{position:fixed;inset:0;z-index:15000;display:none;align-items:center;justify-content:center;padding:18px;background:#03070deF;backdrop-filter:blur(12px);direction:rtl}
+#premiumLayer.show{display:flex;animation:ciFade .35s ease both}
+.premCard{width:min(640px,100%);max-height:88vh;overflow:auto;border:1px solid #b99a61;border-radius:20px;background:linear-gradient(145deg,#1d2b3b,#0c1421);box-shadow:0 20px 80px #000c,0 0 35px #d6b47725;padding:20px}
+.premEyebrow{font-size:10px;letter-spacing:3px;color:#d6b477;font-weight:900}
+.premTitle{font-size:23px;margin:8px 0;color:#f4e4c2}
+.premText{line-height:2;color:#d4dce4;font-size:14px}
+.premActions{display:grid;gap:9px;margin-top:18px}
+.premActions button{border:1px solid #806b48;border-radius:12px;padding:12px;background:#202f40;color:#f4f0e8;text-align:right}
+.premActions button:active{transform:scale(.985)}
+.premActions button b{color:#e6c37d;display:block;margin-bottom:3px}
+.avatarRow{display:grid;grid-template-columns:58px minmax(0,1fr);align-items:center;gap:10px 12px;padding:14px 0;border-bottom:1px solid #ffffff14;min-width:0}.avatarRow>div:nth-child(2){min-width:0;overflow-wrap:anywhere;line-height:1.65}.avatarRow>button{grid-column:2;justify-self:stretch;width:100%;min-width:0;margin:0;white-space:normal}.avatarRow .pAvatar{grid-row:1 / span 2;grid-column:1}.avatarRow .pMeta{white-space:normal;overflow-wrap:anywhere}.avatarRow .pBar{width:100%}#premiumCard,#premiumCard *{box-sizing:border-box}@media(min-width:520px){.avatarRow{grid-template-columns:58px minmax(0,1fr) 100px}.avatarRow>button{grid-column:3;grid-row:1 / span 2}}
+.pAvatar{width:58px;height:58px;flex:0 0 58px;border-radius:18px;display:grid;place-items:center;font-size:27px;background:radial-gradient(circle at 35% 25%,#71849a,#24374a 60%,#101927);border:1px solid #b99a6177;box-shadow:inset 0 0 18px #fff1}
+.pAvatar.tense{filter:saturate(.7);box-shadow:0 0 18px #d65d5066}
+.pAvatar.calm{box-shadow:0 0 18px #72b9a455}
+.pAvatar.shaken{animation:avatarShake .35s ease 2}
+@keyframes avatarShake{25%{transform:translateX(3px)}75%{transform:translateX(-3px)}}
+.pMeta{font-size:11px;color:#aab4bc;margin-top:4px}
+.pBar{height:5px;border-radius:5px;background:#ffffff18;overflow:hidden;margin-top:7px}.pBar i{display:block;height:100%;background:linear-gradient(90deg,#8b6b42,#e5c37e)}
+.pLog{padding:10px;border:1px solid #ffffff15;border-radius:11px;margin:8px 0;background:#ffffff08;font-size:12px;line-height:1.8}
+.pTag{font-size:10px;color:#e4c27d;border:1px solid #806b48;border-radius:20px;padding:4px 8px}
+.premClose{background:transparent!important;text-align:center!important;color:#aab4bc!important;border:0!important}
+</style>
+<div id="premiumLayer" role="dialog" aria-modal="true"><div class="premCard" id="premiumCard"></div></div>
+<script>
+(()=>{
+ const layer=document.getElementById('premiumLayer'),card=document.getElementById('premiumCard');
+ const icons=['🕵️','👩🏻‍💼','👨🏻‍💼','👮🏻','🧑🏻‍🔬','📞'];
+ const names=()=>typeof suspects!=='undefined'?suspects:[];
+ const st=()=>{S.live=S.live||{branch:'',trust:50,threat:0,events:[],seen:{},witnessSafe:false};return S.live};
+ const log=t=>{let x=st();x.events.unshift({t,at:new Date().toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})});x.events=x.events.slice(0,12);save()};
+ function show(title,body,actions,tag='تطور ميداني'){
+  card.innerHTML='<div class="premEyebrow">THE DETECTIVE · '+tag+'</div><h2 class="premTitle">'+title+'</h2><div class="premText">'+body+'</div><div class="premActions">'+actions+'</div>';
+  layer.classList.add('show');
+ }
+ function close(){layer.classList.remove('show')}
+ window.premClose=close;
+ window.premBackToInvestigation=function(){close();if(typeof window.openTool==='function'){window.openTool('scene')}else{console.error('Investigation scene is unavailable')}};
+ window.premChoice=function(kind){
+  const x=st();close();
+  if(kind==='protect'){x.branch='protected';x.witnessSafe=true;x.trust=Math.min(100,x.trust+20);log('أمّنت الشاهد قبل وصول التهديد إليه.');addEvidence('live_witness','إفادة شاهد تحت الحماية','الشاهد أكد أنه رأى شخصاً يغادر المكان، ووافق على الإدلاء بأقواله بعد توفير الحماية.');cine('🚔','الشاهد تحت الحماية','وصلت دورية إلى العنوان قبل المهاجم بدقائق. الشاهد أصبح مستعداً للكلام، لكن المشتبه به عرف أن الشرطة تتحرك.');}
+  if(kind==='ignore'){x.branch='ignored';x.threat+=2;x.trust=Math.max(10,x.trust-15);log('تجاهلت التحذير؛ الشاهد اختفى من عنوانه.');addEvidence('live_trace','أثر اختفاء الشاهد','الشقة خالية، وعلى الأرض هاتف مكسور وبطاقة مواصلات حديثة. الشاهد اختفى قبل وصول الدورية.');cine('🚪','الشقة فارغة','وصلت متأخراً. الشاهد اختفى، لكن المكان ترك وراءه أثراً قد يقودك إليه.');}
+  if(kind==='reply'){x.branch='replied';x.mapUnlocked=true;x.meetingDone=x.meetingDone||false;x.meetingResult=x.meetingResult||'';x.threat+=1;log('رددت على الرسالة وطلبت تحديد مكان المقابلة.');addEvidence('live_location','موقع المقابلة السرية','إحداثيات مخزن السكة القديم — نقطة مقابلة أرسلها الرقم المجهول.');cine('📍','تم تحديد موقع المقابلة','وصلتك إحداثيات مخزن السكة القديم. افتح تطبيق الخريطة في موبايل المحقق لتشوف المكان وتقرر إذا كنت هتقابل المجهول.');}
+  save();refreshTile();
+ };
+ function addEvidence(id,title,desc){if(!clues.some(c=>c.id===id)){clues.push({id,area:'phone',title,desc});}if(!S.c.includes(id))S.c.push(id);save();try{cnt()}catch(e){}}
+ function triggerThreat(){
+  const x=st();if(x.seen.threat||S.c.length<2)return;x.seen.threat=1;save();
+  setTimeout(()=>{if(!S||S.won||S.lost)return;show('📩 رسالة تهديد عاجلة','<div class="pLog">رقم مجهول · الآن<br>«ابعد عن الشاهد. دي آخر مرة هحذّرك. لو كملت، مش هتلاقي حد يشهد.»</div><p>وصلتك معلومة أن شاهداً أساسياً أصبح في خطر. أمامك ثوانٍ لاتخاذ قرار قد يغيّر مسار القضية.</p>',[
+  '<button onclick="premChoice(\'protect\')"><b>🚔 اطلب حماية الشاهد</b><small>تأمين الشاهد وفتح مسار شهادة جديد، مع تنبيه المشتبه به.</small></button>',
+  '<button onclick="premChoice(\'reply\')"><b>📱 رد على الرقم المجهول</b><small>حاول استدراج المرسل للحصول على موقع مقابلة.</small></button>',
+  '<button onclick="premChoice(\'ignore\')"><b>⏳ تجاهل الرسالة</b><small>استمر في جمع الأدلة، لكن الشاهد قد يختفي.</small></button>'
+  ],'اتصال مشفّر')},900);
+ }
+ function avatarFor(s,i){let g=typeof speakerGender==='function'?speakerGender(s):'male';return g==='female'?'👩🏻‍🦱':(i%3===0?'👨🏻‍💼':i%3===1?'🧔🏻':'👮🏻')}
+ function controlCenter(){
+  const x=st(),ss=names();
+  const roster=ss.map((s,i)=>{let mood=(x.trust<35&&i===0?'shaken':(x.threat>1&&i===ss.length-1?'tense':'calm'));return '<div class="avatarRow"><div class="pAvatar '+mood+'">'+avatarFor(s,i)+'</div><div style="flex:1;min-width:0"><b>'+s.name+'</b><div class="pMeta">'+s.role+' · '+(mood==='shaken'?'مرتبك':mood==='tense'?'متوتر':'متاح للاستجواب')+'</div><div class="pBar"><i style="width:'+Math.max(8,Math.min(100,x.trust+(i%2?8:-6)))+'%"></i></div></div><button class="btn secondary" onclick="window.premOpenSuspect('+i+')">الملف</button></div>'}).join('');
+  const events=x.events.length?x.events.map(e=>'<div class="pLog"><span class="pTag">'+e.at+'</span> '+e.t+'</div>').join(''):'<p class="pMeta">لا توجد تطورات مسجلة بعد. اجمع الأدلة لتبدأ الأحداث الديناميكية.</p>';
+  show('مركز العمليات الحية','<div class="stats"><span class="pTag"><i class="liveDot"></i> اتصال مباشر</span><span class="pTag">ثقة الشهود '+x.trust+'%</span><span class="pTag">مستوى التهديد '+x.threat+'</span></div><h3 style="margin:18px 0 6px">الشخصيات المرتبطة بالقضية</h3>'+roster+'<h3 style="margin:20px 0 6px">سجل التطورات</h3>'+events,['<button onclick="window.premBackToInvestigation()">العودة للتحقيق</button>'],'غرفة العمليات');
+ }
+ window.premOpenSuspect=function(i){try{layer.classList.remove('show');openTool('suspects');requestAnimationFrame(function(){suspectDetail(Number(i));});}catch(err){console.error('Profile open failed',err);alert('تعذر فتح الملف. ارجع لقائمة المشتبه بهم وجرب مرة أخرى.');}};window.openLiveOps=controlCenter;
+ function refreshTile(){let b=document.getElementById('liveOpsTile');if(b){let x=st();b.querySelector('small').textContent=x.events.length+' تطورات · ثقة الشهود '+x.trust+'%'}}
+ const oldHome=window.goHome;
+ window.goHome=function(){oldHome();const grid=document.querySelector('#home .grid');if(grid&&!document.getElementById('liveOpsTile')){let b=document.createElement('button');b.id='liveOpsTile';b.className='tile';b.innerHTML='<span class="ico">🎛️</span><b>مركز العمليات الحية</b><small>الشخصيات · التهديدات · تطورات القضية</small>';b.onclick=controlCenter;grid.appendChild(b)}refreshTile()};
+ const oldCollect=window.collect;
+ window.collect=function(id){const before=S.c.length;oldCollect(id);if(S.c.length>before){log('تم تأمين دليل جديد: '+(cl(id)?.title||id));triggerThreat();refreshTile()}};
+ const oldChatTalk=window.chatTalk;
+ window.chatTalk=function(i,me,rep,tn){let old=S.t&&S.t[i]||0;oldChatTalk(i,me,rep,tn);let x=st();x.trust=Math.max(0,Math.min(100,x.trust+(tn?4:-1)));if((S.t&&S.t[i]||0)>old)log('تقدّم الحوار مع '+suspects[i].name+'.');save();refreshTile()};
+ const oldLoad=window.loadCase;
+ window.loadCase=function(i){const r=oldLoad(i);S.live=S.live||{branch:'',trust:50,threat:0,events:[],seen:{},witnessSafe:false};save();return r};
+ layer.addEventListener('click',e=>{if(e.target===layer)close()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+})();
+</script></body></html>
+
+<!-- V4: embedded investigator notebook; preserves the existing case flow -->
+<style>
+#v4Notebook{margin-top:16px;border:1px solid #806b48;border-radius:16px;background:linear-gradient(145deg,#171d35,#101728);padding:14px}
+#v4Notebook h3{color:#e7c981;margin:0 0 6px;font-size:16px}
+#v4Notebook .v4sub{font-size:12px;color:#aab4bc;line-height:1.8;margin:0 0 12px}
+#v4Notebook textarea,#v4Notebook select{width:100%;background:#0c1422;color:#f4f0e8;border:1px solid #45516a;border-radius:10px;padding:10px;margin:6px 0 10px}
+#v4Notebook textarea{min-height:84px}
+.v4meter{height:7px;background:#ffffff18;border-radius:8px;overflow:hidden;margin:8px 0}
+.v4meter i{display:block;height:100%;background:linear-gradient(90deg,#8b6b42,#e5c37e)}
+.v4chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.v4chip{font-size:11px;border:1px solid #806b48;color:#e7c981;border-radius:20px;padding:5px 8px;background:#d6b47712}
+.v4saved{font-size:11px;color:#8ed0aa;min-height:18px}
+</style>
+<script>
+(()=>{
+ const key=()=> 'td-v4-notes-'+cn;
+ const read=()=>{try{return JSON.parse(localStorage.getItem(key())||'{}')}catch(e){return {}}};
+ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ function notebook(){
+   const old=document.getElementById('v4Notebook');if(old)old.remove();
+   const picker=document.getElementById('evidencePicker');if(!picker)return;
+   const data=read(),collected=(S.c||[]).map(id=>cl(id)).filter(Boolean);
+   const total=clues.length,percent=Math.round(collected.length/Math.max(total,1)*100);
+   const links=(S.l||[]).map(l=>{let c=cl(l[0]);return c?'<div class="v4chip">'+esc(c.title)+' ← '+esc(l[1])+'</div>':''}).join('');
+   const box=document.createElement('section');box.id='v4Notebook';
+   box.innerHTML='<div class="sceneHead"><div><h3>📓 دفتر المحقق — داخل ملف القضية</h3><p class="v4sub">احتفظ بفرضيتك واربط الأدلة بالمشتبه بهم من غير ما تخرج من مسرح الجريمة.</p></div><span class="sceneBadge">V4</span></div>'+
+   '<div style="display:flex;justify-content:space-between;font-size:12px"><b>تقدم جمع الأدلة</b><span>'+collected.length+' / '+total+'</span></div><div class="v4meter"><i style="width:'+percent+'%"></i></div>'+
+   '<div class="v4chips">'+(collected.length?collected.map(c=>'<span class="v4chip">✓ '+esc(c.title)+'</span>').join(''):'<span class="v4sub">لسه ماجمعتش أدلة. افحص العناصر الموجودة فوق.</span>')+'</div>'+
+   '<label class="tag">اربط دليلًا بمشتبه به</label><select id="v4Clue"><option value="">اختار دليل من اللي جمعته</option>'+collected.map(c=>'<option value="'+esc(c.id)+'">'+esc(c.title)+'</option>').join('')+'</select>'+
+   '<select id="v4Suspect"><option value="">اختار المشتبه به</option>'+suspects.map(s=>'<option>'+esc(s.name)+'</option>').join('')+'</select>'+
+   '<button class="btn secondary" onclick="v4AddLink()">حفظ الربط في لوحة القضية</button>'+
+   '<div id="v4Links">'+links+'</div><label class="tag" style="margin-top:14px">فرضيتك الحالية</label>'+
+   '<textarea id="v4Theory" placeholder="اكتب مين بتشك فيه وليه، وإيه الدليل اللي لسه محتاجه...">'+esc(data.theory||'')+'</textarea>'+
+   '<button class="btn" onclick="v4SaveTheory()">💾 حفظ ملاحظات التحقيق</button><div id="v4Saved" class="v4saved"></div>';
+   picker.parentNode.insertBefore(box,picker.nextSibling);
+ }
+ window.v4AddLink=function(){
+   const id=document.getElementById('v4Clue')?.value,who=document.getElementById('v4Suspect')?.value;
+   if(!id||!who){toast('اختار دليل ومشتبه به الأول');return}
+   S.l=S.l||[];if(!S.l.some(x=>x[0]===id&&x[1]===who))S.l.push([id,who]);save();notebook();toast('تم حفظ الربط في ملف القضية');
+ };
+ window.v4SaveTheory=function(){
+   const d=read();d.theory=document.getElementById('v4Theory')?.value||'';
+   try{localStorage.setItem(key(),JSON.stringify(d));document.getElementById('v4Saved').textContent='✓ ملاحظاتك اتحفظت على الجهاز ده.'}catch(e){toast('تعذر حفظ الملاحظات')}
+ };
+ const original=window.showScene;
+ window.showScene=function(){original();notebook()};
+ const oldExamine=window.examine;
+ window.examine=function(id){oldExamine(id);notebook()};
+ const oldCollect=window.collect;
+ window.collect=function(id){oldCollect(id);notebook()};
+ const oldLoad=window.loadCase;
+ window.loadCase=function(i){const r=oldLoad(i);return r};
+})();
+</script>
+
+
+
+<!-- V4.1: interactive anonymous informant map + meeting -->
+<style>
+.v4mapWrap{border:1px solid #7f6b4c;border-radius:16px;overflow:hidden;background:#101a29;margin:8px 0}
+.v4mapHead{padding:12px;background:#1d2b3b;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.v4mapCanvas{position:relative;background:#172536;padding:8px}
+.v4mapCanvas svg{display:block;width:100%;height:auto;border-radius:10px}
+.v4mapInfo{padding:12px;line-height:1.9;font-size:13px}
+.v4mapPin{font-size:25px;filter:drop-shadow(0 3px 5px #000)}
+.v4mapChoices{display:grid;gap:9px;margin-top:12px}
+.v4mapChoices button{width:100%;text-align:right;border:1px solid #806b48;border-radius:12px;background:#202f40;color:#f4f0e8;padding:13px;line-height:1.7}
+.v4mapChoices b{color:#e6c37d;display:block}
+.v4mapNote{font-size:11px;color:#aab4bc}
+.v4informant{border:1px solid #806b48;border-radius:14px;padding:14px;background:linear-gradient(145deg,#26364a,#111a28);text-align:center;margin:10px 0}
+.v4informant .sil{font-size:44px}
+</style>
+<script>
+(()=>{
+ const live=()=>{S.live=S.live||{branch:'',trust:50,threat:0,events:[],seen:{},witnessSafe:false};return S.live};
+ const unlocked=()=>!!(live().mapUnlocked||live().branch==='replied');
+ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ const basePhone=window.showPhone;
  window.showPhone=function(t){
-   if(t===3){tdOpenMap();return}
-   baseShowPhone(t);
+   basePhone(t);
    if(t===undefined||t<0){
      const apps=document.querySelector('.apps');
-     if(apps&&!document.getElementById('tdMapApp')){
-       const b=document.createElement('button');b.className='app';b.id='tdMapApp';
-       b.innerHTML='<span class="ai">🗺️</span><small>الخريطة</small>'+(live().mapUnlocked?'<i class="nb">1</i>':'');
-       b.onclick=()=>tdOpenMap();apps.appendChild(b);
+     if(apps&&!document.getElementById('v4MapApp')){
+       const b=document.createElement('button');b.className='app';b.id='v4MapApp';
+       b.innerHTML='<span class="ai">🗺️</span><small>الخريطة</small>'+(unlocked()?'<i class="nb">1</i>':'');
+       b.onclick=()=>window.v4OpenMap();apps.appendChild(b);
      }
    }
  };
- window.openThr=function(k){
-   baseOpenThr(k);
-   const h=S.th&&S.th[k];
-   if(!h||(!h.read&&!h.ans))return;
-   const body=document.querySelector('#toolContent .pscr');
-   if(!body||document.getElementById('tdThreatActions'))return;
-   const box=document.createElement('div');box.id='tdThreatActions';box.className='tdMapInfo';
-   box.innerHTML='<p><b>قدامك 3 اختيارات:</b></p><div class="tdMapActions"><button onclick="tdThreatDecision('+k+',\'protect\')"><b>🚔 اطلب حماية الشاهد</b>أمّن الشاهد وافتح مسار شهادة جديد.</button><button onclick="tdThreatDecision('+k+',\'reply\')"><b>📱 رد على الرقم المجهول</b>اطلب تحديد مكان المقابلة.</button><button onclick="tdThreatDecision('+k+',\'ignore\')"><b>⏳ تجاهل الرسالة</b>كمل التحقيق مع احتمال اختفاء الشاهد.</button></div>';
-   body.appendChild(box);
+ function mapSVG(){
+   return '<svg viewBox="0 0 340 270" role="img" aria-label="خريطة توضيحية لموقع المقابلة"><rect width="340" height="270" fill="#1a2b3c"/>'+
+   '<path d="M-10 52 L350 20 M-10 155 L350 190 M70 -10 L115 280 M255 -10 L215 280" stroke="#506174" stroke-width="18" fill="none"/>'+
+   '<path d="M-10 52 L350 20 M-10 155 L350 190 M70 -10 L115 280 M255 -10 L215 280" stroke="#b4a17b" stroke-width="1.5" stroke-dasharray="8 8" fill="none"/>'+
+   '<path d="M0 225 L340 70" stroke="#43596a" stroke-width="10" fill="none"/>'+
+   '<g fill="#293e4c" stroke="#65798a" stroke-width="1"><rect x="10" y="8" width="45" height="27" rx="3"/><rect x="130" y="12" width="58" height="30" rx="3"/><rect x="270" y="40" width="55" height="34" rx="3"/><rect x="12" y="190" width="65" height="50" rx="3"/><rect x="260" y="210" width="66" height="40" rx="3"/></g>'+
+   '<path d="M170 133 Q210 116 244 96" stroke="#e4c27d" stroke-width="3" stroke-dasharray="5 5" fill="none"/>'+
+   '<circle cx="244" cy="96" r="18" fill="#d94b42" opacity=".22"/><circle cx="244" cy="96" r="8" fill="#f05245" stroke="#fff" stroke-width="2"/>'+
+   '<text x="244" y="70" text-anchor="middle" fill="#f4e4c2" font-size="11">نقطة المقابلة</text><text x="18" y="178" fill="#b7c3ce" font-size="10">شارع الورش</text><text x="125" y="252" fill="#b7c3ce" font-size="10">طريق المخازن</text><text x="18" y="20" fill="#b7c3ce" font-size="9">شمال</text></svg>';
+ }
+ window.v4OpenMap=function(){
+   const ready=unlocked();
+   $('toolContent').innerHTML=PF('🗺️ خريطة المحقق',ready?
+   '<div class="v4mapWrap"><div class="v4mapHead"><b>📍 موقع المقابلة السرية</b><span class="pTag">تم استلام الإحداثيات</span></div><div class="v4mapCanvas">'+mapSVG()+'</div><div class="v4mapInfo"><b>مخزن السكة القديم</b><br>منطقة المخازن — مدخل جانبي بجوار شارع الورش.<br><span class="v4mapNote">الخريطة تخطيطية داخل اللعبة وليست خريطة ملاحة حقيقية.</span><div class="v4mapChoices"><button onclick="v4StartMeeting()"><b>🚶 الذهاب لمقابلة المجهول</b>تتحرك إلى الموقع وتبدأ المواجهة.</button><button onclick="v4CheckSurroundings()"><b>🔎 افحص المكان من بعيد</b>عاين المدخل قبل ما تقرر تدخل.</button></div></div></div>':
+   '<div class="panel"><h3>🗺️ تطبيق الخريطة</h3><p>مفيش موقع متاح لحد دلوقتي. لازم ترد على رسالة الرقم المجهول وتطلب منه يحدد مكان المقابلة.</p><button class="btn secondary" onclick="showPhone(2)">الرجوع للرسالة المجهولة</button></div>','showPhone(-1)');
  };
- window.tdThreatDecision=function(k,choice){
-   const x=live();x.threatDecision=choice;if(S.th&&S.th[k]){S.th[k].read=1;S.th[k].choice=choice}
-   if(choice==='reply'){
-     x.mapUnlocked=true;
-     addClue('td_meeting_location','إحداثيات مخزن السكة القديم','أرسل الرقم المجهول موقع مقابلة عند مخزن السكة القديم، بجوار شارع الورش. الموقع خيط يحتاج إلى فحص.');
-     toast('📍 وصلك موقع المقابلة — افتح الخريطة في الموبايل');
-     save();showPhone(-1);
-   }else if(choice==='protect'){
-     x.witnessSafe=true;
-     addClue('td_witness_protected','محضر تأمين الشاهد','تم تأمين الشاهد ونقله إلى مكان آمن. وافق على الإدلاء بشهادته بعد مراجعة تفاصيل الواقعة.');
-     toast('🚔 تم تأمين الشاهد — راجع الأدلة');
-     showPhone(-1);
-   }else{
-     x.witnessSafe=false;
-     addClue('td_witness_missing','أثر اختفاء الشاهد','بعد تجاهل التحذير، اختفى الشاهد قبل وصول الدورية. عُثر على هاتف مكسور وبطاقة مواصلات حديثة.');
-     toast('⚠️ الشاهد اختفى — ظهر دليل جديد');
-     showPhone(-1);
-   }
-   save();cnt();
+ window.v4CheckSurroundings=function(){
+   const x=live();x.scouted=true;save();
+   $('toolContent').innerHTML=PF('🔎 معاينة الموقع','<div class="v4mapWrap"><div class="v4mapCanvas">'+mapSVG()+'</div><div class="v4mapInfo"><b>ملاحظاتك من بعيد</b><p>باب المخزن الرئيسي مقفول. فيه نور خافت من مكتب جانبي، وآثار إطارات حديثة قرب المدخل الخلفي. مفيش حركة واضحة في الشارع.</p><p class="v4mapNote">المعاينة لا تكشف هوية الشخص الموجود بالداخل.</p><button class="btn" onclick="v4StartMeeting()">دخول الموقع ومقابلة المجهول</button><button class="btn secondary" onclick="v4OpenMap()">العودة للخريطة</button></div></div>','v4OpenMap()');
  };
- window.tdOpenMap=function(){
-   if(!live().mapUnlocked){
-     $('toolContent').innerHTML=PF('🗺️ خريطة المحقق','<div class="panel"><h3>لا توجد إحداثيات متاحة</h3><p>افتح رسالة الرقم المجهول واختار «رد على الرقم المجهول» عشان يحدد مكان المقابلة.</p></div>','showPhone(-1)');return;
-   }
-   $('toolContent').innerHTML=PF('🗺️ خريطة المحقق','<div class="tdMap"><div class="tdMapInfo"><b>📍 مخزن السكة القديم</b><br>منطقة المخازن — مدخل جانبي بجوار شارع الورش.</div>'+mapSvg+'<div class="tdMapInfo"><small class="muted">خريطة تخطيطية داخل اللعبة وليست خرائط ملاحة حقيقية.</small><div class="tdMapActions"><button onclick="tdScoutMap()"><b>🔎 افحص المكان من بعيد</b>عاين المدخل قبل الدخول.</button><button onclick="tdStartMeeting()"><b>🚶 الذهاب لمقابلة المجهول</b>ابدأ المواجهة.</button></div></div></div>','showPhone(-1)');
+ window.v4StartMeeting=function(){
+   const x=live();
+   if(x.meetingDone){window.v4MeetingResult();return}
+   $('toolContent').innerHTML=PF('🤝 مقابلة الرقم المجهول','<div class="v4informant"><div class="sil">🧥</div><b>شخص مجهول — وجهه غير واضح</b><p>«كويس إنك جيت. معنديش وقت كتير. أنا شوفت حاجة ليلة الحادث، بس مش ضامن إنك هتصدقني.»</p></div><p>الشخص بيبص حواليه باستمرار. طريقته مش مطمّنة، لكنه ممكن يكون شاهد مهم.</p><div class="v4mapChoices"><button onclick="v4AskInformant()"><b>🗣️ اسأله: إيه اللي شوفته؟</b>خليه يحكي روايته الأول.</button><button onclick="v4PressureInformant()"><b>🕵️ اسأله عن هويته وسبب مساعدته</b>اختبر دوافعه قبل ما تسمع المعلومة.</button><button onclick="v4LeaveMeeting()"><b>🚪 انسحب من المقابلة</b>ترجع للتحقيق من غير ما تكشف له كل أوراقك.</button></div>','v4OpenMap()');
  };
- window.tdScoutMap=function(){
-   $('toolContent').innerHTML=PF('🔎 معاينة الموقع','<div class="panel"><p>باب المخزن الرئيسي مقفول. فيه نور خافت من مكتب جانبي، وآثار إطارات حديثة قرب المدخل الخلفي. مفيش حركة واضحة في الشارع.</p><button class="btn" onclick="tdStartMeeting()">دخول الموقع ومقابلة المجهول</button><button class="back" onclick="tdOpenMap()">العودة للخريطة</button></div>','tdOpenMap()');
+ window.v4AskInformant=function(){
+   const x=live();x.meetingAsked=true;save();
+   $('toolContent').innerHTML=PF('🗣️ رواية المجهول','<div class="v4informant"><div class="sil">🧥</div><b>المجهول</b><p>«أنا شفت عربية غامقة خرجت من ناحية المخزن بعد وقت الحادث. السواق كان مستعجل، ونزل منه ظرف صغير قبل ما يمشي.»</p></div><p>هو بيقدم معلومة محددة، لكن لسه ماعندكش دليل يثبت إنه صادق.</p><div class="v4mapChoices"><button onclick="v4TrustInformant()"><b>✅ أصدّق كلامه وأسجل المعلومة</b>تتعامل مع الرواية كخيط أولي.</button><button onclick="v4ChallengeInformant()"><b>⚠️ أشكك في كلامه وأطلب إثبات</b>اختبر التفاصيل قبل ما تعتمد عليها.</button><button onclick="v4AskInformantMore()"><b>❓ اسأله عن الظرف الصغير</b>حاول تستخرج تفاصيل إضافية.</button></div>','v4StartMeeting()');
  };
- window.tdStartMeeting=function(){
-   if(live().meetingDone){tdMeetingResult();return}
-   $('toolContent').innerHTML=PF('🤝 مقابلة الرقم المجهول','<div class="panel"><div class="tdWitness"><div style="font-size:44px">🧥</div><b>شخص مجهول — وجهه غير واضح</b><p>«كويس إنك جيت. معنديش وقت كتير. أنا شوفت حاجة ليلة الحادث، بس مش ضامن إنك هتصدقني.»</p></div><div class="tdMapActions"><button onclick="tdAskInformant()"><b>🗣️ اسأله: إيه اللي شوفته؟</b>خليه يحكي روايته الأول.</button><button onclick="tdPressureInformant()"><b>🕵️ اسأله عن هويته</b>اختبر دوافعه قبل ما تسمع المعلومة.</button><button onclick="tdLeaveMeeting()">🚪 انسحب من المقابلة</button></div></div>','tdOpenMap()');
+ window.v4PressureInformant=function(){
+   $('toolContent').innerHTML=PF('🕵️ اختبار المجهول','<div class="v4informant"><div class="sil">🧥</div><b>المجهول يتردد</b><p>«اسمي مش مهم. أنا كنت شغال قريب من المكان، وعندي سبب إني ما أظهرش. لو عرفت اسمي، ناس تانية هتتأذي.»</p></div><div class="v4mapChoices"><button onclick="v4AskInformant()">اسمع روايته الأول</button><button onclick="v4ChallengeInformant()">اطلب دليل يثبت إنه كان موجود</button><button onclick="v4LeaveMeeting()">أنهي المقابلة</button></div>','v4StartMeeting()');
  };
- window.tdAskInformant=function(){
-   $('toolContent').innerHTML=PF('🗣️ رواية المجهول','<div class="panel"><div class="tdWitness"><div style="font-size:42px">🧥</div><b>المجهول</b><p>«أنا شفت عربية غامقة خرجت من ناحية المخزن بعد وقت الحادث. السواق كان مستعجل، ونزل منه ظرف صغير قبل ما يمشي.»</p></div><p>المعلومة محددة، لكن لسه ماعندكش دليل يثبت إنه صادق.</p><div class="tdMapActions"><button onclick="tdFinishMeeting(\'trust\')"><b>✅ أصدّق كلامه وأسجل المعلومة</b>اعتبرها خيط أولي.</button><button onclick="tdFinishMeeting(\'challenge\')"><b>⚠️ أشكك في كلامه وأطلب إثبات</b>اختبر التفاصيل قبل ما تعتمد عليها.</button><button onclick="tdAskMore()">❓ اسأله عن الظرف الصغير</button></div></div>','tdStartMeeting()');
+ window.v4AskInformantMore=function(){
+   $('toolContent').innerHTML=PF('❓ تفاصيل إضافية','<div class="msg">«الظرف كان لونه بني، وعليه علامة زرقا. أنا ماعرفش كان جواه إيه، بس شفت الشخص وهو بيخبيه قبل ما العربية تتحرك.»</div><p>التفاصيل دي ممكن تساعدك تراجع كلامه مع الأدلة اللي عندك.</p><div class="v4mapChoices"><button onclick="v4ChallengeInformant()">واجهه بالتناقضات</button><button onclick="v4TrustInformant()">سجل كلامه كخيط مبدئي</button></div>','v4AskInformant()');
  };
- window.tdPressureInformant=function(){
-   $('toolContent').innerHTML=PF('🕵️ اختبار المجهول','<div class="panel"><p>«اسمي مش مهم. أنا كنت شغال قريب من المكان، وعندي سبب إني ما أظهرش. لو عرفت اسمي، ناس تانية هتتأذي.»</p><div class="tdMapActions"><button onclick="tdAskInformant()">اسمع روايته الأول</button><button onclick="tdFinishMeeting(\'challenge\')">اطلب دليل يثبت إنه كان موجود</button><button onclick="tdLeaveMeeting()">أنهي المقابلة</button></div></div>','tdStartMeeting()');
+ window.v4TrustInformant=function(){
+   const x=live(),truth=(Number(cn)%2===0);
+   x.meetingDone=true;x.meetingResult=truth?'lead':'falselead';x.informantTruth=truth;
+   x.trust=Math.max(0,Math.min(100,(x.trust||50)+(truth?8:-12)));
+   x.threat=(x.threat||0)+(truth?0:1);
+   if(truth){v4AddClue('live_informant_true','إفادة المجهول — خيط قابل للتحقق','أفاد شاهد مجهول برؤية سيارة داكنة تغادر محيط المخزن، وذكر ظرفاً بنياً بعلامة زرقاء. الإفادة خيط أولي يحتاج إلى مطابقة مع الأدلة الأخرى.');log('سجلت إفادة المجهول كخيط أولي.');}
+   else{v4AddClue('live_informant_false','إفادة مشكوك فيها — رواية المجهول','ادعى شاهد مجهول رؤية سيارة داكنة وظرف بني بعلامة زرقاء. ظهرت لاحقاً ثغرات في توقيت الرواية، لذلك لا تعتمد عليها وحدها.');log('اعتمدت مؤقتاً على رواية المجهول رغم عدم التحقق منها.');}
+   save();window.v4MeetingResult();
  };
- window.tdAskMore=function(){
-   $('toolContent').innerHTML=PF('❓ تفاصيل إضافية','<div class="panel"><p>«الظرف كان لونه بني، وعليه علامة زرقا. أنا ماعرفش كان جواه إيه، بس شفت الشخص وهو بيخبيه قبل ما العربية تتحرك.»</p><div class="tdMapActions"><button onclick="tdFinishMeeting(\'challenge\')">واجهه بالتناقضات</button><button onclick="tdFinishMeeting(\'trust\')">سجل كلامه كخيط مبدئي</button></div></div>','tdAskInformant()');
+ window.v4ChallengeInformant=function(){
+   const x=live(),truth=(Number(cn)%2===0);
+   x.meetingDone=true;x.meetingResult=truth?'verified':'exposed';x.informantTruth=truth;
+   if(truth){x.trust=Math.min(100,(x.trust||50)+5);v4AddClue('live_informant_checked','تفاصيل شهادة تم التحقق منها','بعد سؤاله عن التفاصيل، قدم المجهول وصفاً متسقاً للمدخل الجانبي والظرف ذي العلامة الزرقاء. تظل الإفادة بحاجة إلى مطابقة مستقلة.');log('تحققت من بعض تفاصيل شهادة المجهول.');}
+   else{x.trust=Math.max(0,(x.trust||50)-8);x.threat=(x.threat||0)+1;v4AddClue('live_informant_lie','تناقض في رواية المجهول','غيّر المجهول وصف مكان وقوف السيارة وتوقيت خروجها. روايته غير موثوقة، ويبدو أنه يحاول توجيه التحقيق بعيداً عن الحقيقة.');log('كشفت تناقضاً في رواية المجهول.');}
+   save();window.v4MeetingResult();
  };
- window.tdFinishMeeting=function(mode){
-   const x=live();if(x.meetingDone){tdMeetingResult();return}
-   if(typeof x.informantTruth!=='boolean')x.informantTruth=Math.random()>.5;
-   x.meetingDone=true;x.meetingMode=mode;
-   const truth=x.informantTruth;
-   if(mode==='trust'){
-     addClue(truth?'td_informant_true':'td_informant_false',truth?'إفادة المجهول — خيط قابل للتحقق':'إفادة مشكوك فيها — رواية المجهول',truth?'أفاد شاهد مجهول برؤية سيارة داكنة تغادر محيط المخزن، وذكر ظرفاً بنياً بعلامة زرقاء. الإفادة خيط أولي يحتاج إلى مطابقة.':'ادعى شاهد مجهول رؤية سيارة داكنة وظرف بني بعلامة زرقاء. ظهرت ثغرات في توقيت الرواية؛ لا تعتمد عليها وحدها.');
-   }else{
-     addClue(truth?'td_informant_checked':'td_informant_lie',truth?'تفاصيل شهادة تم التحقق منها':'تناقض في رواية المجهول',truth?'قدم المجهول وصفاً متسقاً للمدخل الجانبي والظرف ذي العلامة الزرقاء. تظل الإفادة بحاجة إلى مطابقة مستقلة.':'غيّر المجهول وصف مكان وقوف السيارة وتوقيت خروجها. روايته غير موثوقة، ويبدو أنه يحاول توجيه التحقيق بعيداً عن الحقيقة.');
-   }
-   save();tdMeetingResult();
+ window.v4MeetingResult=function(){
+   const x=live(),truth=!!x.informantTruth;
+   let msg=truth?'تفاصيله متماسكة حتى الآن. حصلت على خيط جديد، لكن لازم تطابقه مع الأدلة قبل ما تعتبره حقيقة.':'المجهول غيّر كلامه في نقطتين. واضح إنه بيخبي حاجة أو بيحاول يضللك. سجلت التناقض في ملف القضية.';
+   $('toolContent').innerHTML=PF('📁 نتيجة المقابلة','<div class="v4informant"><div class="sil">'+(truth?'🗣️':'⚠️')+'</div><b>'+(truth?'إفادة قابلة للتحقق':'رواية مضللة')+'</b><p>'+msg+'</p></div><p>تم تسجيل نتيجة المقابلة في ملف القضية. تقدر تراجع الدليل من تطبيق الأدلة.</p><div class="v4mapChoices"><button onclick="openTool(\'board\')"><b>🧩 مراجعة الأدلة</b>قارن الإفادة بباقي الخيوط.</button><button onclick="openTool(\'scene\')"><b>🔎 العودة للتحقيق</b>كمل فحص مسرح الجريمة.</button><button onclick="showPhone(-1)"><b>📱 الرجوع للموبايل</b>افتح الخريطة أو الرسائل.</button></div>','showPhone(-1)');
  };
- window.tdMeetingResult=function(){
-   const truth=!!live().informantTruth;
-   $('toolContent').innerHTML=PF('📁 نتيجة المقابلة','<div class="panel"><div class="tdWitness"><div style="font-size:42px">'+(truth?'🗣️':'⚠️')+'</div><b>'+(truth?'إفادة قابلة للتحقق':'رواية مضللة')+'</b><p>'+(truth?'تفاصيله متماسكة حتى الآن. حصلت على خيط جديد، لكن لازم تطابقه مع الأدلة قبل ما تعتبره حقيقة.':'المجهول غيّر كلامه في نقطتين. واضح إنه بيخبي حاجة أو بيحاول يضللك. سجلت التناقض في ملف القضية.')+'</p></div><div class="tdMapActions"><button onclick="openTool(\'board\')"><b>🧩 مراجعة الأدلة</b>قارن الإفادة بباقي الخيوط.</button><button onclick="openTool(\'scene\')"><b>🔎 العودة للتحقيق</b>كمل فحص مسرح الجريمة.</button><button onclick="openTool(\'phone\')"><b>📱 الرجوع للموبايل</b>افتح الخريطة والرسائل.</button></div></div>','showPhone(-1)');
- };
- window.tdLeaveMeeting=function(){live().meetingLeft=true;save();tdOpenMap()};
+ window.v4LeaveMeeting=function(){log('انسحبت من مقابلة المجهول قبل الحصول على إفادة.');save();window.v4OpenMap()};
+ function v4AddClue(id,title,desc){
+   if(!clues.some(c=>c.id===id))clues.push({id,area:'phone',title,desc});
+   if(!S.c.includes(id))S.c.push(id);save();try{cnt()}catch(e){}
+ }
+ window.v4AddClue=v4AddClue;
 })();
-
-</script><div id="clk"></div><div id="toast" class="toast hidden"></div></body></html>
+</script>
