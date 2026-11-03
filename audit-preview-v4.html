@@ -567,6 +567,7 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
  }
  function close(){layer.classList.remove('show')}
  window.premClose=close;
+ window.premBackToInvestigation=function(){close();if(typeof window.openTool==='function'){window.openTool('scene')}else{console.error('Investigation scene is unavailable')}};
  window.premChoice=function(kind){
   const x=st();close();
   if(kind==='protect'){x.branch='protected';x.witnessSafe=true;x.trust=Math.min(100,x.trust+20);log('أمّنت الشاهد قبل وصول التهديد إليه.');addEvidence('live_witness','إفادة شاهد تحت الحماية','الشاهد أكد أنه رأى شخصاً يغادر المكان، ووافق على الإدلاء بأقواله بعد توفير الحماية.');cine('🚔','الشاهد تحت الحماية','وصلت دورية إلى العنوان قبل المهاجم بدقائق. الشاهد أصبح مستعداً للكلام، لكن المشتبه به عرف أن الشرطة تتحرك.');}
@@ -588,7 +589,7 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
   const x=st(),ss=names();
   const roster=ss.map((s,i)=>{let mood=(x.trust<35&&i===0?'shaken':(x.threat>1&&i===ss.length-1?'tense':'calm'));return '<div class="avatarRow"><div class="pAvatar '+mood+'">'+avatarFor(s,i)+'</div><div style="flex:1;min-width:0"><b>'+s.name+'</b><div class="pMeta">'+s.role+' · '+(mood==='shaken'?'مرتبك':mood==='tense'?'متوتر':'متاح للاستجواب')+'</div><div class="pBar"><i style="width:'+Math.max(8,Math.min(100,x.trust+(i%2?8:-6)))+'%"></i></div></div><button class="btn secondary" onclick="window.premOpenSuspect('+i+')">الملف</button></div>'}).join('');
   const events=x.events.length?x.events.map(e=>'<div class="pLog"><span class="pTag">'+e.at+'</span> '+e.t+'</div>').join(''):'<p class="pMeta">لا توجد تطورات مسجلة بعد. اجمع الأدلة لتبدأ الأحداث الديناميكية.</p>';
-  show('مركز العمليات الحية','<div class="stats"><span class="pTag"><i class="liveDot"></i> اتصال مباشر</span><span class="pTag">ثقة الشهود '+x.trust+'%</span><span class="pTag">مستوى التهديد '+x.threat+'</span></div><h3 style="margin:18px 0 6px">الشخصيات المرتبطة بالقضية</h3>'+roster+'<h3 style="margin:20px 0 6px">سجل التطورات</h3>'+events,['<button onclick="close()">العودة للتحقيق</button>'],'غرفة العمليات');
+  show('مركز العمليات الحية','<div class="stats"><span class="pTag"><i class="liveDot"></i> اتصال مباشر</span><span class="pTag">ثقة الشهود '+x.trust+'%</span><span class="pTag">مستوى التهديد '+x.threat+'</span></div><h3 style="margin:18px 0 6px">الشخصيات المرتبطة بالقضية</h3>'+roster+'<h3 style="margin:20px 0 6px">سجل التطورات</h3>'+events,['<button onclick="window.premBackToInvestigation()">العودة للتحقيق</button>'],'غرفة العمليات');
  }
  window.premOpenSuspect=function(i){try{layer.classList.remove('show');openTool('suspects');requestAnimationFrame(function(){suspectDetail(Number(i));});}catch(err){console.error('Profile open failed',err);alert('تعذر فتح الملف. ارجع لقائمة المشتبه بهم وجرب مرة أخرى.');}};window.openLiveOps=controlCenter;
  function refreshTile(){let b=document.getElementById('liveOpsTile');if(b){let x=st();b.querySelector('small').textContent=x.events.length+' تطورات · ثقة الشهود '+x.trust+'%'}}
