@@ -50,6 +50,13 @@ body{background-color:#070a18;background-image:radial-gradient(ellipse at 15% 0,
 <style>
 .scenePanel{padding:14px}.sceneHead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.sceneBadge{white-space:nowrap;color:#e7c981;border:1px solid #806c45;border-radius:20px;padding:6px 9px;font-size:11px}.sceneHelp{font-size:13px;line-height:1.9;color:#d2d9e2;background:#111c29;border:1px solid #35465a;padding:11px 13px;border-radius:12px;margin:12px 0}.evidenceTitle{display:flex;justify-content:space-between;align-items:center;margin:16px 2px 9px;color:#e7c981}.evidenceTitle span{font-size:12px;color:#aab4bc}.evidencePicker{display:grid;grid-template-columns:1fr;gap:9px}.evidencePick{display:flex;align-items:center;gap:12px;width:100%;min-height:76px;padding:12px;text-align:right;background:linear-gradient(120deg,#1b2b39,#121d2a);border:1px solid #45566a;border-radius:15px;color:#f4f0e8;touch-action:manipulation}.evidencePick:active{transform:scale(.99);background:#26394a}.evidencePick.examined{border-color:#a88a52}.evidencePick.collected{border-color:#3c9b72;background:linear-gradient(120deg,#17372f,#142a28)}.epIcon{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:#d6b47720;border:1px solid #d6b47766;font-size:23px}.collected .epIcon{background:#3c9b7230;border-color:#3c9b72}.epText{flex:1;min-width:0}.epText b{display:block;font-size:14px;line-height:1.6}.epText small{display:block;color:#aab4bc;font-size:11px;margin-top:4px}.epArrow{flex:none;color:#e7c981;font-weight:800;font-size:12px}.spot{width:52px;height:52px;font-size:22px;border-width:3px;touch-action:manipulation;z-index:5}.stage{min-height:190px}@media(min-width:560px){.evidencePicker{grid-template-columns:repeat(2,minmax(0,1fr))}.spot{width:56px;height:56px}}
 </style>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="description" content="THE DETECTIVE — لعبة تحقيق جنائي تفاعلية تعمل دون اتصال بالإنترنت.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="THE DETECTIVE">
+<meta name="application-name" content="THE DETECTIVE">
 </head>
 <body>
 <header id="hd" class="hidden"><div class="top"><div class="brand">THE DETECTIVE</div></div><h1 id="headTitle">غرفة التحقيق</h1><p id="headSub">كل دليل يقرّبك من الحقيقة</p></header>
@@ -620,7 +627,15 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
  layer.addEventListener('click',e=>{if(e.target===layer)close()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 })();
-</script></body></html>
+</script><script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js', {scope:'./'})
+      .catch(function (err) { console.warn('Offline installation unavailable:', err); });
+  });
+}
+</script>
+</body></html>
 
 <!-- V4: embedded investigator notebook; preserves the existing case flow -->
 <style>
