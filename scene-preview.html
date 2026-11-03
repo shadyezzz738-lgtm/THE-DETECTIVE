@@ -457,7 +457,7 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
 .ciBtn{border:1px solid #d6b477;background:#d6b477;color:#151515;padding:13px 30px;border-radius:9px;font-weight:900;font-size:15px}
 .ciSkip{display:block;margin:15px auto 0;background:transparent;border:0;color:#aaa;padding:9px}
 @keyframes ciFade{from{opacity:0}to{opacity:1}}@keyframes ciRise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}@keyframes rainMove{to{transform:translateY(30px)}}@keyframes spotPulse{50%{transform:scale(1.15);opacity:.55}}
-#musicToggle{position:fixed;left:12px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:90;border:1px solid #b99b61;background:#171c25ed;color:#f5e8c9;border-radius:30px;padding:10px 13px;font:700 12px system-ui;box-shadow:0 5px 20px #0008}
+
 .stage{overflow:hidden;position:relative}.stage:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 30%,#ffffff0b 48%,transparent 62%);transform:translateX(-100%);animation:stageSweep 8s ease-in-out infinite}
 @keyframes stageSweep{55%,100%{transform:translateX(100%)}}
 .spot{animation:spotGlow 2.2s ease-in-out infinite;z-index:3;box-shadow:0 0 0 4px #d6b47720,0 0 18px #d6b47788}
@@ -468,19 +468,25 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
 <script>
 (()=>{
  let audioCtx=null,master=null,musicOn=false,osc=[];
-
  function startMusic(){
    const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
-   if(!audioCtx){audioCtx=new AC();master=audioCtx.createGain();master.gain.value=0;master.connect(audioCtx.destination);
+   if(!audioCtx){
+     audioCtx=new AC();master=audioCtx.createGain();master.gain.value=0;master.connect(audioCtx.destination);
      const notes=[110,164.81,220,261.63];
      notes.forEach((hz,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain(),lp=audioCtx.createBiquadFilter();o.type=i===0?'sine':'triangle';o.frequency.value=hz;lp.type='lowpass';lp.frequency.value=520;g.gain.value=[.15,.055,.045,.025][i];o.connect(lp);lp.connect(g);g.connect(master);o.start();osc.push(o)});
      const lfo=audioCtx.createOscillator(),lg=audioCtx.createGain();lfo.frequency.value=.07;lg.gain.value=7;lfo.connect(lg);lg.connect(osc[1].frequency);lfo.start();osc.push(lfo);
    }
    audioCtx.resume();musicOn=true;
  }
- function stopMusic(){if(master&&audioCtx){master.gain.setTargetAtTime(0,audioCtx.currentTime,.5)}musicOn=false;btn.textContent='♫ تشغيل الموسيقى الهادئة'}
- btn.addEventListener('click',()=>musicOn?stopMusic():startMusic());
- function closeIntro(){document.getElementById('cinematicIntro').classList.remove('show');document.getElementById('cinematicIntro').style.display='none';}
+ function setLevel(v){
+   v=Math.max(0,Math.min(100,Number(v)||0));
+   try{localStorage.setItem('td-music-level',String(v))}catch(e){}
+   if(v>0){startMusic();if(master&&audioCtx){master.gain.cancelScheduledValues(audioCtx.currentTime);master.gain.setTargetAtTime(.22*v/100,audioCtx.currentTime,.25)}}
+   else{if(master&&audioCtx)master.gain.setTargetAtTime(0,audioCtx.currentTime,.25);musicOn=false}
+   const label=document.getElementById('musicLevelLabel');if(label)label.textContent=v===0?'إيقاف':v+'%';
+ }
+ window.setDetectiveMusic=setLevel;
+ function closeIntro(){document.getElementById('cinematicIntro').classList.remove('show');document.getElementById('cinematicIntro').style.display='none'}
  function showIntro(){
    if(typeof S!=='undefined'){S.intro=1;try{save()}catch(e){}}
    const c=CASES[cn],el=document.getElementById('cinematicIntro');
@@ -488,11 +494,11 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
    document.getElementById('ciTitle').textContent='CASE '+String(cn+1).padStart(3,'0')+' — '+c.t;
    document.getElementById('ciText').textContent=c.cf+' قدامك 90 دقيقة تجمع الأدلة وتكشف الحقيقة. كل قرار ممكن يغيّر مصير التحقيق.';
    el.style.display='flex';el.classList.add('show');
-   document.getElementById('ciStart').onclick=()=>{closeIntro();if(!musicOn&&Number(localStorage.getItem('td-music-level')??35)>0)setLevel(Number(localStorage.getItem('td-music-level')??35));if(typeof openTool==='function')openTool('scene')};
+   document.getElementById('ciStart').onclick=()=>{closeIntro();const v=Number(localStorage.getItem('td-music-level')??35);if(v>0&&!musicOn)setLevel(v);if(typeof openTool==='function')openTool('scene')};
    document.getElementById('ciSkip').onclick=closeIntro;
  }
  window.intro=showIntro;
- window.playDetectiveMusic=()=>musicOn?stopMusic():startMusic();
+ window.playDetectiveMusic=()=>{const v=Number(localStorage.getItem('td-music-level')??35);setLevel(v>0?0:35)};
 })();
 </script>
 
