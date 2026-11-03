@@ -439,4 +439,57 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
 })();
 </script>
 
+
+<style>
+#cinematicIntro{position:fixed;inset:0;z-index:12000;background:radial-gradient(ellipse at 50% 42%,#26313d 0%,#101720 42%,#05080d 100%);display:none;align-items:center;justify-content:center;overflow:hidden;color:#f5efe4;text-align:center;padding:28px;direction:rtl}
+#cinematicIntro.show{display:flex;animation:ciFade .9s ease both}
+#cinematicIntro:before{content:"";position:absolute;inset:-30%;background:repeating-linear-gradient(110deg,transparent 0 9px,#ffffff08 10px 11px);animation:rainMove 1.3s linear infinite}
+#cinematicIntro:after{content:"";position:absolute;width:70vw;height:70vw;border-radius:50%;background:radial-gradient(circle,#d7b97820 0%,transparent 68%);animation:spotPulse 4s ease-in-out infinite}
+.ciContent{position:relative;z-index:2;max-width:620px;width:100%;animation:ciRise 1.2s ease both}
+.ciEyebrow{letter-spacing:4px;color:#d6b477;font:700 11px system-ui}
+.ciTitle{font:900 clamp(28px,7vw,54px) system-ui;margin:18px 0 10px;text-shadow:0 8px 35px #000}
+.ciLine{height:1px;width:90px;background:#d6b477;margin:20px auto}
+.ciText{color:#d5d1ca;line-height:2;font-size:15px;max-width:480px;margin:0 auto 28px}
+.ciBtn{border:1px solid #d6b477;background:#d6b477;color:#151515;padding:13px 30px;border-radius:9px;font-weight:900;font-size:15px}
+.ciSkip{display:block;margin:15px auto 0;background:transparent;border:0;color:#aaa;padding:9px}
+@keyframes ciFade{from{opacity:0}to{opacity:1}}@keyframes ciRise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}@keyframes rainMove{to{transform:translateY(30px)}}@keyframes spotPulse{50%{transform:scale(1.15);opacity:.55}}
+#musicToggle{position:fixed;left:12px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:90;border:1px solid #b99b61;background:#171c25ed;color:#f5e8c9;border-radius:30px;padding:10px 13px;font:700 12px system-ui;box-shadow:0 5px 20px #0008}
+.stage{overflow:hidden;position:relative}.stage:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 30%,#ffffff0b 48%,transparent 62%);transform:translateX(-100%);animation:stageSweep 8s ease-in-out infinite}
+@keyframes stageSweep{55%,100%{transform:translateX(100%)}}
+.spot{animation:spotGlow 2.2s ease-in-out infinite;z-index:3;box-shadow:0 0 0 4px #d6b47720,0 0 18px #d6b47788}
+@keyframes spotGlow{50%{filter:brightness(1.5);transform:scale(1.12)}}
+</style>
+<div id="cinematicIntro"><div class="ciContent"><div class="ciEyebrow">THE DETECTIVE · CASE FILE</div><div id="ciIcon" style="font-size:48px">🕵️</div><div class="ciTitle" id="ciTitle">ملف التحقيق</div><div class="ciLine"></div><div class="ciText" id="ciText"></div><button class="ciBtn" id="ciStart">ابدأ التحقيق</button><button class="ciSkip" id="ciSkip">تخطي المشهد</button></div></div>
+<button id="musicToggle" type="button">♫ تشغيل الموسيقى الهادئة</button>
+<script>
+(()=>{
+ let audioCtx=null,master=null,musicOn=false,osc=[];
+ const btn=document.getElementById('musicToggle');
+ function startMusic(){
+   const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+   if(!audioCtx){audioCtx=new AC();master=audioCtx.createGain();master.gain.value=0;master.connect(audioCtx.destination);
+     const notes=[110,164.81,220,261.63];
+     notes.forEach((hz,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain(),lp=audioCtx.createBiquadFilter();o.type=i===0?'sine':'triangle';o.frequency.value=hz;lp.type='lowpass';lp.frequency.value=520;g.gain.value=[.15,.055,.045,.025][i];o.connect(lp);lp.connect(g);g.connect(master);o.start();osc.push(o)});
+     const lfo=audioCtx.createOscillator(),lg=audioCtx.createGain();lfo.frequency.value=.07;lg.gain.value=7;lfo.connect(lg);lg.connect(osc[1].frequency);lfo.start();osc.push(lfo);
+   }
+   audioCtx.resume();master.gain.cancelScheduledValues(audioCtx.currentTime);master.gain.setTargetAtTime(.22,audioCtx.currentTime,.8);musicOn=true;btn.textContent='♫ إيقاف الموسيقى';
+ }
+ function stopMusic(){if(master&&audioCtx){master.gain.setTargetAtTime(0,audioCtx.currentTime,.5)}musicOn=false;btn.textContent='♫ تشغيل الموسيقى الهادئة'}
+ btn.addEventListener('click',()=>musicOn?stopMusic():startMusic());
+ function closeIntro(){document.getElementById('cinematicIntro').classList.remove('show');document.getElementById('cinematicIntro').style.display='none';}
+ function showIntro(){
+   if(typeof S!=='undefined'){S.intro=1;try{save()}catch(e){}}
+   const c=CASES[cn],el=document.getElementById('cinematicIntro');
+   document.getElementById('ciIcon').textContent=c.ico||'🕵️';
+   document.getElementById('ciTitle').textContent='CASE '+String(cn+1).padStart(3,'0')+' — '+c.t;
+   document.getElementById('ciText').textContent=c.cf+' قدامك 90 دقيقة تجمع الأدلة وتكشف الحقيقة. كل قرار ممكن يغيّر مصير التحقيق.';
+   el.style.display='flex';el.classList.add('show');
+   document.getElementById('ciStart').onclick=()=>{closeIntro();if(!musicOn)startMusic();if(typeof openTool==='function')openTool('scene')};
+   document.getElementById('ciSkip').onclick=closeIntro;
+ }
+ window.intro=showIntro;
+ window.playDetectiveMusic=()=>musicOn?stopMusic():startMusic();
+})();
+</script>
+
 </body></html>
