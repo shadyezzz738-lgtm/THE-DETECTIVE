@@ -1,10 +1,12 @@
 /* THE DETECTIVE — offline-first service worker */
-const CACHE_NAME = 'the-detective-offline-v1';
+const CACHE_NAME = 'the-detective-offline-v2';
 const CORE_ASSETS = [
   './',
   './index.html',
   './manifest.webmanifest',
   './icon.svg',
+  './icon-192.png',
+  './icon-512.png',
   './assets/case-003-office.svg',
   './assets/case-004-tomb.svg',
   './assets/case-005-train.svg'
@@ -21,7 +23,10 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))))
+      .then(keys => Promise.all(
+        keys.filter(key => key.startsWith('the-detective-offline-') && key !== CACHE_NAME)
+            .map(key => caches.delete(key))
+      ))
       .then(() => self.clients.claim())
   );
 });
@@ -34,15 +39,15 @@ self.addEventListener('fetch', event => {
 
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
-        .then(response => {
-          if (response && response.ok) {
-            const copy = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put('./index.html', copy));
-          }
-          return response;
-        })
-        .catch(async () => (await caches.match(request)) || (await caches.match('./index.html')))
+      fetch(request).then(response => {
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put('./index.html', copy));
+        }
+        return response;
+      }).catch(async () =>
+        (await caches.match(request)) || (await caches.match('./index.html'))
+      )
     );
     return;
   }
