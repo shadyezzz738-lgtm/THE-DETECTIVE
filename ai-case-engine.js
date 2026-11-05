@@ -49,7 +49,7 @@
   function offlineReply(question, d){
     const s = suspects[sel], qWords = words(question);
     let best = null, bestScore = 0;
-    (s.qs || []).forEach(pair => {
+    [...(s.qs || []), ...(s.pqs || [])].forEach(pair => {
       const set = new Set(words(pair[0]));
       const score = qWords.filter(w=>set.has(w)).length;
       if(score > bestScore){bestScore=score;best=pair[1];}
