@@ -19,7 +19,7 @@ A small Cloudflare Worker proxy for the game's case-aware Gemini interrogation.
 6. Deploy: `npx wrangler deploy`.
 7. Test: open `https://YOUR-WORKER.workers.dev/health`. It should report `gemini-configured`.
 
-The default model is `gemini-3.5-flash-lite`; change `GEMINI_MODEL` in `wrangler.jsonc` only after checking the model is available to your AI Studio project and its free-tier limits.
+The default model is `gemini-3.8-flash`; change `GEMINI_MODEL` in `wrangler.jsonc` only after checking the model is available to your AI Studio project and its free-tier limits.
 
 ## Connect the game
 Set `window.TD_AI_CONFIG.endpoint` to `https://YOUR-WORKER.workers.dev/ask` in the game configuration. The game will keep its local fallback when the Worker is unavailable or Gemini's free quota is exhausted.
