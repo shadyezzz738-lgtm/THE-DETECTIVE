@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "the-detective-ai",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-05",
+  "workers_dev": true,
+  "vars": {
+    "GEMINI_MODEL": "gemini-3.5-flash-lite",
+    "ALLOWED_ORIGIN": "*"
+  },
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "741205",
+      "simple": {
+        "limit": 20,
+        "period": 60
+      }
+    }
+  ]
+}
