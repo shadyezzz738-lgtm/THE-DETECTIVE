@@ -35,7 +35,9 @@ function cleanDossier(input) {
     evidenceKnownToInvestigator:Array.isArray(d.evidenceKnownToInvestigator)
       ? d.evidenceKnownToInvestigator.slice(0,30).map(x=>({
         title:safeText(x && x.title,160),description:safeText(x && x.description,800)
-      })) : []
+      })) : [],
+    knownConfrontationResponses:d.knownConfrontationResponses && typeof d.knownConfrontationResponses==="object"
+      ? Object.fromEntries(Object.entries(d.knownConfrontationResponses).slice(0,20).map(([k,v])=>[safeText(k,160),safeText(v,700)])) : {}
   };
 }
 function systemInstruction(d) {
