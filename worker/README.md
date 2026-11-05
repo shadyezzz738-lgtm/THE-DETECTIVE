@@ -10,6 +10,29 @@ A small Cloudflare Worker proxy for the game's case-aware Gemini interrogation.
 - Approximate Cloudflare edge rate limit: 30 requests per minute per IP. Mobile networks may share IP addresses; the limit is a basic abuse barrier, not strict global accounting.
 - Provider errors, including free-tier quota exhaustion (HTTP 429), are passed back so the game falls back to local responses.
 
+## Deploy from an Android phone (Cloudflare Dashboard)
+
+You do not need a laptop or terminal. The easiest phone-only route is to connect this GitHub repository to Cloudflare Workers Builds:
+
+1. Sign in to the Cloudflare dashboard and open **Workers & Pages**.
+2. Choose **Create application** / **Create Worker**, then choose the Git repository import option.
+3. Connect GitHub and select `shadyezzz738-lgtm/THE-DETECTIVE`.
+4. Select branch `feature/case-aware-ai` (do not select `main` for this test).
+5. Set the project root directory to `worker`. Use the existing `worker/wrangler.jsonc` configuration; the Worker entry point is `src/index.js`.
+6. Deploy the Worker. If the dashboard asks for build settings, use the defaults for a Wrangler project and make sure the root directory remains `worker`.
+7. After deployment, open the Worker > **Settings** > **Variables and Secrets** > **Add**. Add:
+   - Type **Secret**, name `GEMINI_API_KEY`, value your private Google AI Studio key.
+   - Type **Text**, name `GEMINI_MODEL`, value `gemini-3.8-flash`.
+   - Type **Text**, name `ALLOWED_ORIGIN`, value `*` for the first Android WebView test. Tighten this later when the app's exact origin is known.
+8. Select **Deploy** to publish the secret and variables.
+9. Open `https://YOUR-WORKER.workers.dev/health`. A configured Worker should return `"mode":"gemini-configured"`.
+10. Copy the Worker address ending in `/ask`; place it in `ai-config.js` on the same feature branch. Never put the Gemini key in GitHub or in the APK.
+
+Cloudflare's official dashboard instructions: https://developers.cloudflare.com/workers/get-started/dashboard/
+Cloudflare's official secret setup instructions: https://developers.cloudflare.com/workers/configuration/secrets/
+
+**Important:** Choose the feature branch for this prototype. Do not merge PR #4 or change the game's main branch until the AI has been tested.
+
 ## Deploy (free-tier starting setup)
 1. Create a Cloudflare account and install Wrangler 4.36.0 or newer.
 2. In this folder run `npm install -D wrangler`.
