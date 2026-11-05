@@ -28,7 +28,8 @@
         knownQuestionAnswerPairs:suspect.qs || []
       },
       otherSuspects: otherPeople,
-      evidenceKnownToInvestigator: knownClues
+      evidenceKnownToInvestigator: knownClues,
+      knownConfrontationResponses: Object.fromEntries(knownClues.map(x=>{ const id=(S.c||[]).find(k=>{const z=clues.find(v=>v.id===k);return z&&z.title===x.title;}); return [x.title, suspect.conf && suspect.conf[id] ? suspect.conf[id] : ""]; }).filter(x=>x[1]))
     };
   }
 
