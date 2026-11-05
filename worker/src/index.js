@@ -95,7 +95,7 @@ export default {
       return rows;
     }) : [];
     const contents=[...history,{role:"user",parts:[{text:question}]}];
-    const model = env.GEMINI_MODEL || "gemini-3.5-flash-lite";
+    const model = env.GEMINI_MODEL || "gemini-3.8-flash";
     const endpoint = "https://generativelanguage.googleapis.com/v1beta/models/"+encodeURIComponent(model)+":generateContent";
     let upstream;
     try {
