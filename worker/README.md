@@ -7,7 +7,7 @@ A small Cloudflare Worker proxy for the game's case-aware Gemini interrogation.
 - The Worker builds its own system instruction. It does **not** trust a system prompt supplied by the game client.
 - The client sends only the currently loaded case/suspect dossier, collected evidence, short dialogue history, and the player's question.
 - The dossier deliberately excludes the hidden solution object (for example, `c.v.end`).
-- Approximate Cloudflare edge rate limit: 20 requests per minute per IP. Mobile networks may share IP addresses; the limit is a basic abuse barrier, not strict global accounting.
+- Approximate Cloudflare edge rate limit: 30 requests per minute per IP. Mobile networks may share IP addresses; the limit is a basic abuse barrier, not strict global accounting.
 - Provider errors, including free-tier quota exhaustion (HTTP 429), are passed back so the game falls back to local responses.
 
 ## Deploy (free-tier starting setup)
