@@ -73,7 +73,7 @@
         const history = ((S.aiChat || {})[sel] || []).slice(-12);
         const response = await fetch(cfg.endpoint, {
           method:'POST', headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({caseId:d.caseId,suspectId:sel,system:systemPrompt(d),question,history})
+          body:JSON.stringify({dossier:d,question,history})
         });
         if(!response.ok) throw new Error('AI endpoint unavailable');
         const payload = await response.json();
@@ -89,7 +89,7 @@
     const wrap = document.createElement('div');
     wrap.id='tdAiComposer'; wrap.className='panel';
     wrap.style.marginTop='14px';
-    wrap.innerHTML='<p class="tag">اسأل سؤال من عندك</p><textarea id="tdAiQuestion" rows="3" maxlength="500" placeholder="اكتب سؤالك للمشتبه به..."></textarea><button class="btn" id="tdAiSend" style="margin-top:8px;width:100%">إرسال السؤال</button><p class="muted" id="tdAiMode" style="margin-top:7px">الاستجواب الذكي · الردود الاحتياطية متاحة</p><div id="tdAiAnswer"></div>';
+    wrap.innerHTML='<p class="tag">اسأل سؤال من عندك</p><div id="tdAiAnswer"></div><textarea id="tdAiQuestion" rows="3" maxlength="500" placeholder="اكتب سؤالك للمشتبه به..."></textarea><button class="btn" id="tdAiSend" style="margin-top:8px;width:100%">إرسال السؤال</button><p class="muted" id="tdAiMode" style="margin-top:7px">الاستجواب الذكي · الردود الاحتياطية متاحة</p>';
     host.appendChild(wrap);
     document.getElementById('tdAiSend').addEventListener('click',sendQuestion);
   }
