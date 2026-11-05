@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101820"><title>THE DETECTIVE — AI Interrogation Demo</title>
+<style>
+:root{--bg:#101820;--gold:#d6b477;--text:#f4f0e8;--muted:#aab4bc;--line:#394956}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0,#1b2358 0,transparent 55%),radial-gradient(ellipse at 95% 35%,#2b1a55 0,transparent 50%),#070a18;color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+header{max-width:760px;margin:auto;padding:18px 16px 12px;border-bottom:1px solid #ffffff18}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:900;letter-spacing:2px;color:#fff}.brand b{color:var(--gold)}.sub{font-size:11px;color:#9aa3c7;letter-spacing:1.5px;margin-top:3px}.status{border:1px solid #3c9b72;color:#9ce2bd;background:#15352c;padding:6px 10px;border-radius:20px;font-size:11px;white-space:nowrap}
+main{max-width:760px;margin:auto;padding:18px 14px 40px}.case{border:1px solid #d6b47788;border-radius:22px;padding:17px;background:linear-gradient(135deg,#10162e,#1c1440);box-shadow:0 0 22px -8px #d6b47755}.kicker{font-size:11px;color:var(--gold);font-weight:800}.case h1{font:24px Georgia,serif;color:var(--gold);margin:8px 0}.case p{font-size:13px;line-height:1.9;color:#cfd5ea;margin:0}.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.pill{font-size:11px;color:var(--gold);border:1px solid #746247;padding:5px 9px;border-radius:30px}
+.panel{margin-top:14px;padding:15px;border:1px solid #ffffff20;border-radius:18px;background:linear-gradient(145deg,#1a2148dd,#0b0f26dd)}.person{display:flex;align-items:center;gap:13px}.avatar{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;font-size:29px;background:linear-gradient(145deg,#3a6590,#1a2c44);border:1px solid #d6b47777}.person h2{margin:0;font-size:17px}.person small{color:var(--muted)}.tag{margin-right:auto;border:1px solid #a66d3d;color:#f0c18a;padding:5px 9px;border-radius:18px;font-size:11px}
+.chat{min-height:230px;max-height:48vh;overflow:auto;padding:5px 2px 12px}.msg{max-width:88%;padding:11px 13px;border-radius:14px;margin:9px 0;font-size:14px;line-height:1.9;white-space:pre-wrap;animation:in .22s}.msg.karim{background:#202e3b;border:1px solid #3b4c5b;border-top-right-radius:3px}.msg.detective{background:#174332;border:1px solid #326c54;margin-right:auto;border-top-left-radius:3px}.who{display:block;font-size:10px;color:var(--gold);font-weight:800;margin-bottom:3px}.typing{color:var(--muted);font-size:12px;padding:8px}.composer{display:flex;gap:8px;align-items:flex-end}.composer textarea{flex:1;min-width:0;min-height:52px;max-height:130px;resize:vertical;background:#101b23;color:var(--text);border:1px solid #46566a;border-radius:13px;padding:12px;font:inherit}.btn{border:1px solid var(--gold);background:var(--gold);color:#18232b;border-radius:12px;padding:12px 15px;font-weight:900;min-height:48px;cursor:pointer}.btn:disabled{opacity:.5}.suggest{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0}.chip{border:1px solid #536078;background:#101b2d;color:#dce3f3;border-radius:20px;padding:7px 10px;font-size:11px;cursor:pointer}.notice{margin-top:13px;padding:11px 13px;border-radius:12px;background:#302b1d;border:1px solid #76643c;color:#e7d6a9;font-size:11px;line-height:1.8}.notice b{color:var(--gold)}.foot{color:#7e89a9;text-align:center;font-size:10px;padding:18px 0}
+@keyframes in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(max-width:430px){.status{font-size:10px;padding:5px 7px}.case h1{font-size:21px}.composer{align-items:stretch}.btn{padding:10px}}
+</style>
+</head>
+<body>
+<header><div class="top"><div><div class="brand">THE <b>DETECTIVE</b></div><div class="sub">AI INTERROGATION SYSTEM · PROTOTYPE</div></div><div class="status">● DEMO MODE</div></div></header>
+<main>
+<section class="case"><div class="kicker">CASE FILE 001 · ملف قضية تجريبي</div><h1>جريمة الشقة 17</h1><p>غرفة استجواب رقم 02 — اختبر طريقة تفاعل المشتبه به مع أسئلة المحقق. كل رد لازم يفضل جوه أحداث القضية، ومن غير اختراع أدلة أو كشف الحقيقة النهائية.</p><div class="meta"><span class="pill">المشتبه به: كريم</span><span class="pill">اللهجة: مصرية</span><span class="pill">الوقت محل السؤال: 10:15 مساءً</span></div></section>
+<section class="panel">
+<div class="person"><div class="avatar">👤</div><div><h2>كريم</h2><small>مشتبه به · شريك الضحية</small></div><span class="tag">متوتر</span></div>
+<div class="chat" id="chat" aria-live="polite">
+<div class="msg detective"><span class="who">المحقق</span>كنت فين الساعة 10:15 ليلة الجريمة؟</div>
+<div class="msg karim"><span class="who">كريم</span>أنا قلت لحضرتك، كنت في مكتبي لحد حوالي الساعة عشرة، وبعدها روحت البيت. الساعة 10:15 كنت في الطريق غالبًا... هو أنا لازم أفتكر كل دقيقة يعني؟<br><br><i>يبص ناحية الباب ويرجع يبص للمحقق.</i><br>وبعدين إيه أهمية الساعة دي بالذات؟</div>
+</div>
+<div class="suggest">
+<button class="chip" data-q="إزاي بتقول إنك روحت البيت ومش متأكد كنت فين 10:15؟">واجهه بالتناقض</button>
+<button class="chip" data-q="هل عندك دليل إنك غادرت الشركة؟">اطلب دليل الخروج</button>
+<button class="chip" data-q="ليه بتقول اسأل الأمن؟">اضغط عليه بخصوص الأمن</button>
+</div>
+<div class="composer"><textarea id="question" placeholder="اكتب سؤال المحقق لكريم..." rows="2"></textarea><button class="btn" id="send">استجواب</button></div>
+<div class="notice"><b>ملاحظة تقنية:</b> دي نسخة واجهة تجريبية تعمل محليًا بردود سيناريو محدودة. مش متصلة بموديل AI خارجي لسه. تم تجهيز نقطة ربط اختيارية في الكود عبر <code>AI_ENDPOINT</code>؛ لازم Backend آمن قبل وضع أي API key، وممنوع وضع المفتاح داخل اللعبة أو APK.</div>
+</section>
+<div class="foot">THE DETECTIVE · CASE 001 · EXPERIMENTAL BUILD</div>
+</main>
+<script>
+// اتركه فارغًا في وضع العرض المحلي. اربطه بعنوان Backend آمن عند تجهيز خدمة AI.
+// لا تضع API key هنا أو داخل ملفات الواجهة.
+const AI_ENDPOINT = "";
+const chat=document.getElementById("chat"),input=document.getElementById("question"),send=document.getElementById("send");
+const knownReplies=[
+{keys:["دليل","اثبات","إثبات","غادرت","خرجت","الشركة","كاميرا","كاميرات","الأمن"],text:"دليل؟! بص، أنا مش مطالب أصوّر نفسي وأنا خارج من الشركة! بس ممكن يكون فيه كاميرات عند المدخل، اسأل الأمن.\n\nبس خلي بالك، وجودي في الشركة مش معناه إني كنت عند أحمد في الشقة. متخلطش بين الاتنين.\n\nهو أنت عندك حاجة بتقول إني كدبت بخصوص وقت خروجي؟",mood:"متوتر"},
+{keys:["10:15","عشرة وربع","الساعة دي","الوقت","الطريق","البيت","روحت"],text:"أنا قلتلك، حوالي الساعة عشرة كنت ماشي من المكتب. 10:15؟ غالبًا كنت في الطريق للبيت. مش فاكر الدقيقة بالظبط، وده مش معناه إني بخبي حاجة.",mood:"دفاعي"},
+{keys:["أحمد","الشقة","17","الشقة 17"],text:"أنا عارف أحمد، بس ما تخلطش بين معرفتي بيه وبين وجودي في الشقة. إنت بتسألني عن اللي حصل الساعة 10:15، وأنا قلتلك اللي فاكره.",mood:"حذر"},
+{keys:["ليه","بتوتر","خايف","متوتر"],text:"طبيعي أتوتر! أنا قاعد في تحقيق جريمة، وكل سؤال بتسأله كأني متهم وخلاص. اسأل عن حاجة تخص الليلة دي وأنا هرد على قد اللي أعرفه.",mood:"منفعل"}
+];
+function add(text,kind){const el=document.createElement("div");el.className="msg "+kind;const who=document.createElement("span");who.className="who";who.textContent=kind==="detective"?"المحقق":"كريم";el.append(who,document.createTextNode(text));chat.append(el);chat.scrollTop=chat.scrollHeight}
+function localReply(q){const norm=q.toLowerCase();const hit=knownReplies.find(r=>r.keys.some(k=>norm.includes(k)));if(hit)return hit.text;return "خلّينا في الليلة دي يا حضرة المحقق. أنا جاوبت على سؤالك بخصوص وقت خروجي، ولو عندك دليل أو سؤال محدد عن أحداث القضية ورّيهولي."}
+async function ask(){const q=input.value.trim();if(!q)return;add(q,"detective");input.value="";send.disabled=true;const typing=document.createElement("div");typing.className="typing";typing.textContent="كريم بيفكر في إجابته...";chat.append(typing);chat.scrollTop=chat.scrollHeight;
+try{let answer;if(AI_ENDPOINT){const res=await fetch(AI_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({caseId:"001",suspectId:"karim",question:q,history:[...chat.querySelectorAll(".msg")].slice(-8).map(x=>({text:x.innerText}))})});if(!res.ok)throw new Error("Backend error");const data=await res.json();answer=data.answer;if(typeof answer!=="string"||!answer.trim())throw new Error("Invalid response");}else{await new Promise(r=>setTimeout(r,500));answer=localReply(q)}typing.remove();add(answer,"karim")}catch(e){typing.remove();add("حصلت مشكلة في الاتصال بنظام الاستجواب. جرّب تاني، أو راجع اتصال خدمة التحقيق.","karim")}finally{send.disabled=false;input.focus()}}
+send.addEventListener("click",ask);input.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();ask()}});document.querySelectorAll("[data-q]").forEach(b=>b.addEventListener("click",()=>{input.value=b.dataset.q;ask()}));
+</script>
+</body></html>
