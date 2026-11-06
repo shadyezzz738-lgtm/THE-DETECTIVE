@@ -114,11 +114,14 @@ function restart(){location.reload()}
 
 /* Shared in-game clock: one game minute per five real seconds */
 const gameClock={minutes:23*60+58,day:1,month:11,year:2026,lastTick:Date.now()};
-function getGameAbsoluteMinutes(){return Math.floor(Date.UTC(gameClock.year,gameClock.month-1,gameClock.day)/60000)+gameClock.minutes}\nfunction processSummonArrivals(){const now=getGameAbsoluteMinutes();Object.entries(state.summons).forEach(([id,s])=>{if(s&&s.status==='تم إرسال الاستدعاء'&&s.dueAt<=now){s.status='وصل إلى المقر';const p=people.find(x=>x.id===id);const time=formatGameTime(gameClock.minutes);state.messages.push({type:'in',text:'إشعار وصول: '+p.name+' وصل إلى مقر التحقيق. يمكنك بدء الجلسة من المكتب.',time});refreshDashboard();if(state.tab==='messages'&&document.getElementById('phone').classList.contains('active'))renderPhone();toast('وصل '+p.name+' إلى مقر التحقيق')}})}\nfunction formatGameTime(total){const mins=total%1440,h24=Math.floor(mins/60),m=mins%60,ampm=h24>=12?'PM':'AM',h12=h24%12||12;return String(h12).padStart(2,'0')+':'+String(m).padStart(2,'0')+' '+ampm}
+function getGameAbsoluteMinutes(){return Math.floor(Date.UTC(gameClock.year,gameClock.month-1,gameClock.day)/60000)+gameClock.minutes}
+function processSummonArrivals(){const now=getGameAbsoluteMinutes();Object.entries(state.summons).forEach(([id,s])=>{if(s&&s.status==='تم إرسال الاستدعاء'&&s.dueAt<=now){s.status='وصل إلى المقر';const p=people.find(x=>x.id===id);const time=formatGameTime(gameClock.minutes);state.messages.push({type:'in',text:'إشعار وصول: '+p.name+' وصل إلى مقر التحقيق. يمكنك بدء الجلسة من المكتب.',time});refreshDashboard();if(state.tab==='messages'&&document.getElementById('phone').classList.contains('active'))renderPhone();toast('وصل '+p.name+' إلى مقر التحقيق')}})}
+function formatGameTime(total){const mins=total%1440,h24=Math.floor(mins/60),m=mins%60,ampm=h24>=12?'PM':'AM',h12=h24%12||12;return String(h12).padStart(2,'0')+':'+String(m).padStart(2,'0')+' '+ampm}
 function updateGameClock(){
  const now=Date.now(),elapsed=Math.max(0,now-gameClock.lastTick),ticks=Math.floor(elapsed/5000);
  if(ticks>0){gameClock.minutes+=ticks;gameClock.lastTick+=ticks*5000;while(gameClock.minutes>=1440){gameClock.minutes-=1440;gameClock.day++;const monthDays=new Date(gameClock.year,gameClock.month,0).getDate();if(gameClock.day>monthDays){gameClock.day=1;gameClock.month++;if(gameClock.month>12){gameClock.month=1;gameClock.year++}}}}
- processSummonArrivals();\n const time=formatGameTime(gameClock.minutes);
+ processSummonArrivals();
+ const time=formatGameTime(gameClock.minutes);
  const dash=document.getElementById('dashboardGameClock');if(dash)dash.textContent=time;
  const phone=document.getElementById('phoneGameClock');if(phone)phone.textContent=time;
  const date=document.getElementById('dashboardGameDate');if(date){const d=new Date(gameClock.year,gameClock.month-1,gameClock.day);const days=['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];const months=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];date.textContent=days[d.getDay()]+'، '+gameClock.day+' '+months[gameClock.month-1]+' '+gameClock.year}
