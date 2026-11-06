@@ -135,19 +135,53 @@ function portraitMoodFor(id,n){
 }
 function portraitSVG(id,mood){
  const cfg={
- ragab:{female:false,age:'older',skin:'#b87955',hair:'#35302d',shirt:'#536574',label:'رجل مسن'},
- salma:{female:true,age:'young',skin:'#d99b78',hair:'#241a1b',shirt:'#7e3444',label:'فتاة شابة'},
- hisham:{female:false,age:'adult',skin:'#c88c6c',hair:'#211b19',shirt:'#293b4b',label:'رجل بالغ'},
- mariam:{female:true,age:'adult',skin:'#c98c70',hair:'#30201d',shirt:'#45536b',label:'سيدة بالغة'},
- karim:{female:false,age:'young',skin:'#d19a79',hair:'#211c1b',shirt:'#344f5b',label:'شاب'}
- }[id]||{female:false,age:'adult',skin:'#c98c70',hair:'#28201e',shirt:'#34495a'};
- const female=cfg.female, older=cfg.age==='older', young=cfg.age==='young';
- const brows=mood==='غاضب'?'M105 116 Q124 103 143 116 M178 116 Q197 103 215 116':mood==='متوتر'||mood==='قلق'||mood==='مرتبك'?'M105 112 Q124 101 143 115 M178 115 Q197 101 215 112':'M105 118 Q124 112 143 118 M178 118 Q197 112 215 118';
- const mouth=mood==='غاضب'?'M145 190 Q160 178 175 190':mood==='حزين'?'M143 194 Q160 181 177 194':mood==='متوتر'||mood==='قلق'||mood==='مرتبك'?'M146 190 Q160 184 174 190':'M145 185 Q160 194 175 185';
- const hairShape=female?'M83 174 Q64 90 104 48 Q157 5 207 48 Q249 83 235 175 L218 220 L202 130 Q171 105 145 113 Q117 111 99 143 L98 226 Z':older?'M91 105 Q91 38 157 35 Q224 33 231 105 L218 88 Q164 65 105 94 Z':'M91 108 Q90 37 159 34 Q224 34 229 108 L211 86 Q160 61 108 90 Z';
- const wrinkles=older?'<path d="M112 139h20 M188 139h20 M119 205q10 5 20 0 M181 205q10 5 20 0" stroke="#8f5e49" stroke-width="1.5" opacity=".7" fill="none"/>':'';
- const earrings=female?'<circle cx="91" cy="165" r="4" fill="#d6b36c"/><circle cx="225" cy="165" r="4" fill="#d6b36c"/>':'';
- return '<svg viewBox="0 0 320 330" role="img" aria-label="'+cfg.label+' بتعبير '+mood+'" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="skinGrad" x2="0" y2="1"><stop stop-color="'+cfg.skin+'"/><stop offset="1" stop-color="#8e5948"/></linearGradient><linearGradient id="shirtGrad" x2="0" y2="1"><stop stop-color="'+cfg.shirt+'"/><stop offset="1" stop-color="#111c26"/></linearGradient><radialGradient id="backGlow"><stop stop-color="#657b8b" stop-opacity=".42"/><stop offset="1" stop-color="#17232e" stop-opacity="0"/></radialGradient></defs><ellipse cx="160" cy="170" rx="145" ry="160" fill="url(#backGlow)"/><path d="M35 330 Q42 255 103 235 L217 235 Q280 258 286 330Z" fill="url(#shirtGrad)"/><path d="M125 224h70v48q-34 30-70 0Z" fill="url(#skinGrad)"/><path d="M83 130 Q79 57 160 49 Q241 57 237 130 L225 191 Q208 235 160 239 Q112 235 95 191Z" fill="url(#skinGrad)" stroke="#734a3d" stroke-width="2"/><path d="'+hairShape+'" fill="'+cfg.hair+'"/><path d="M92 152 Q81 144 83 168 Q87 184 99 183 M228 152 Q239 144 237 168 Q233 184 221 183" fill="url(#skinGrad)"/>'+earrings+'<path d="'+brows+'" stroke="'+cfg.hair+'" stroke-width="'+(older?6:7)+'" stroke-linecap="round" fill="none"/><ellipse class="portraitEye" cx="125" cy="137" rx="8" ry="5" fill="#f2e9df"/><ellipse class="portraitEye" cx="195" cy="137" rx="8" ry="5" fill="#f2e9df"/><circle cx="126" cy="137" r="3.4" fill="#34251f"/><circle cx="194" cy="137" r="3.4" fill="#34251f"/><path d="M160 143 Q151 169 158 174 Q165 179 171 173" stroke="#925e4a" stroke-width="3" fill="none" stroke-linecap="round"/><path d="'+mouth+'" stroke="#713e3b" stroke-width="4" stroke-linecap="round" fill="none"/>'+wrinkles+(female?'<path d="M103 182 Q110 225 160 235 Q210 225 217 182" fill="none" stroke="#4a2527" stroke-width="5" opacity=".35"/>':'<path d="M115 205 Q160 221 205 205" stroke="#6f473b" stroke-width="2" opacity=".35" fill="none"/>')+'<path d="M110 152q-8 5-12 0 M210 152q8 5 12 0" stroke="#a76b56" stroke-width="2" opacity=".4" fill="none"/></svg>';
+  ragab:{female:false,age:'older',skin:'#c98f70',hair:'#77706a',shirt:'#68798a',label:'رجب عبدالسلام',style:'short'},
+  salma:{female:true,age:'young',skin:'#edbea3',hair:'#51352c',shirt:'#a95e78',label:'سلمى عادل',style:'long'},
+  hisham:{female:false,age:'adult',skin:'#d8a184',hair:'#302724',shirt:'#344d66',label:'هشام فاروق',style:'neat'},
+  mariam:{female:true,age:'adult',skin:'#dca98e',hair:'#392821',shirt:'#65748b',label:'مريم نبيل',style:'long'},
+  karim:{female:false,age:'young',skin:'#e3b092',hair:'#342820',shirt:'#4f7477',label:'كريم فوزي',style:'messy'}
+ }[id]||{female:false,age:'adult',skin:'#d8a184',hair:'#302724',shirt:'#496071',label:'شخص قيد التحقيق',style:'neat'};
+ const female=cfg.female, older=cfg.age==='older';
+ const worried=['قلق','متوتر','مرتبك'].includes(mood), angry=mood==='غاضب', sad=mood==='حزين', happy=mood==='متعاون';
+ const browLeft=angry?'M111 137 Q126 126 143 137':worried?'M110 132 Q126 123 143 136':'M111 137 Q126 132 143 137';
+ const browRight=angry?'M177 137 Q194 126 209 137':worried?'M177 136 Q194 123 210 132':'M177 137 Q194 132 209 137';
+ const mouth=angry?'M145 205 Q160 198 175 205':sad?'M145 207 Q160 194 175 207':worried?'M148 203 Q160 199 172 203':happy?'M144 197 Q160 212 176 197':'M146 201 Q160 205 174 201';
+ const hairBack=female
+  ?'M75 183 Q58 83 112 39 Q160 2 211 39 Q266 82 245 191 L232 273 Q215 246 216 196 L204 111 Q174 77 143 91 Q105 98 91 151 L91 268 Q69 234 75 183Z'
+  :'M87 144 Q77 71 128 43 Q181 16 221 65 Q244 93 232 151 L218 183 L99 183Z';
+ const hairFront=female
+  ?'M88 131 Q102 54 161 53 Q209 53 231 112 Q206 96 185 111 Q158 87 131 105 Q107 114 91 153Z'
+  :cfg.style==='messy'
+   ?'M91 119 Q93 57 139 50 L132 73 L157 43 L164 72 L187 47 L190 79 Q216 74 228 111 Q195 89 174 98 Q132 82 101 126Z'
+   :'M91 123 Q94 62 145 51 Q199 38 226 94 Q195 77 173 88 Q132 77 101 125Z';
+ const ageLines=older?'<path d="M112 158q13 5 25 0 M183 158q13 5 25 0 M119 211q9 4 17 0 M184 211q9 4 17 0" stroke="#a8755e" stroke-width="1.7" opacity=".48" fill="none"/>':'';
+ const beard=!female&&older?'<path d="M113 197 Q118 229 160 234 Q202 229 207 197 Q195 224 160 224 Q125 224 113 197Z" fill="#77706a" opacity=".55"/>':'';
+ const earrings=female?'<circle cx="91" cy="183" r="4" fill="#e8c77d"/><circle cx="229" cy="183" r="4" fill="#e8c77d"/>':'';
+ return `<svg viewBox="0 0 320 350" role="img" aria-label="${cfg.label} بتعبير ${mood}" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="toonSkin" x2="0" y2="1"><stop stop-color="${cfg.skin}"/><stop offset="1" stop-color="#d3977c"/></linearGradient>
+  <linearGradient id="toonHair" x2=".2" y2="1"><stop stop-color="${cfg.hair}"/><stop offset="1" stop-color="#241d1b"/></linearGradient>
+  <linearGradient id="toonShirt" x2="0" y2="1"><stop stop-color="${cfg.shirt}"/><stop offset="1" stop-color="#1b2a38"/></linearGradient>
+  <radialGradient id="toonGlow"><stop stop-color="#8298a8" stop-opacity=".35"/><stop offset="1" stop-color="#1b2b39" stop-opacity="0"/></radialGradient>
+ </defs>
+ <ellipse cx="160" cy="180" rx="150" ry="166" fill="url(#toonGlow)"/>
+ <path d="M24 350 Q35 272 94 249 Q126 235 160 239 Q198 235 226 249 Q285 273 296 350Z" fill="url(#toonShirt)"/>
+ <path d="M130 225 L130 266 Q160 286 190 266 L190 225Z" fill="url(#toonSkin)"/>
+ <path d="${hairBack}" fill="url(#toonHair)"/>
+ <ellipse cx="91" cy="180" rx="13" ry="19" fill="url(#toonSkin)"/><ellipse cx="229" cy="180" rx="13" ry="19" fill="url(#toonSkin)"/>
+ <path d="M99 119 Q99 75 160 70 Q221 75 221 119 L216 188 Q207 231 160 237 Q113 231 104 188Z" fill="url(#toonSkin)" stroke="#a66f59" stroke-width="2"/>
+ <ellipse cx="126" cy="164" rx="13" ry="9" fill="#fff8ef"/><ellipse cx="194" cy="164" rx="13" ry="9" fill="#fff8ef"/>
+ <ellipse class="portraitEye" cx="127" cy="164" rx="5.2" ry="6.2" fill="#49342d"/><ellipse class="portraitEye" cx="193" cy="164" rx="5.2" ry="6.2" fill="#49342d"/>
+ <circle cx="129" cy="161" r="2" fill="#fff"/><circle cx="195" cy="161" r="2" fill="#fff"/>
+ <path d="${browLeft}" stroke="${cfg.hair}" stroke-width="5.5" stroke-linecap="round" fill="none"/><path d="${browRight}" stroke="${cfg.hair}" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+ <path d="M160 169 Q151 188 158 191 Q164 194 169 190" stroke="#b87962" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+ <ellipse cx="132" cy="190" rx="12" ry="6" fill="#e78f83" opacity="${worried?'.2':'.13'}"/><ellipse cx="188" cy="190" rx="12" ry="6" fill="#e78f83" opacity="${worried?'.2':'.13'}"/>
+ <path d="${mouth}" stroke="#98544f" stroke-width="4" stroke-linecap="round" fill="none"/>
+ ${ageLines}${beard}${earrings}
+ <path d="${hairFront}" fill="url(#toonHair)"/>
+ ${female?'<path d="M99 194 Q105 244 160 251 Q215 244 221 194" stroke="#38251f" stroke-width="8" opacity=".32" fill="none"/>':''}
+ <path d="M118 277 Q160 299 202 277" stroke="#ffffff" stroke-opacity=".12" stroke-width="3" fill="none"/>
+ </svg>`;
 }
 function setPortraitMood(mood){
  const p=people.find(x=>x.id===state.current);if(!p)return;
