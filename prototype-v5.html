@@ -866,8 +866,8 @@ if ('serviceWorker' in navigator) {
  try{data=Object.assign(fresh(),JSON.parse(localStorage.getItem(stateKey())||'{}'))}catch(e){}
  const persist=()=>{try{localStorage.setItem(stateKey(),JSON.stringify(data))}catch(e){};stats()};
  const addLog=t=>{data.log.unshift({t,at:new Date().toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})});data.log=data.log.slice(0,25);persist()};
- const collected=()=>((window.S&&Array.isArray(S.c))?S.c:[]).map(id=>cl(id)).filter(Boolean);
- const people=()=>Array.isArray(window.suspects)?suspects:[];
+ const collected=()=>((typeof S!=='undefined'&&Array.isArray(S.c))?S.c:[]).map(id=>cl(id)).filter(Boolean);
+ const people=()=>(typeof suspects!=='undefined'&&Array.isArray(suspects))?suspects:[];
  const stats=()=>{
   $v('v5Collected').textContent='الأدلة: '+collected().length;
   $v('v5Pressure').textContent='ضغط التحقيق: '+data.pressure+'/5';
