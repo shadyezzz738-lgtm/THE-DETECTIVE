@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#151321"><title>THE DETECTIVE — Dashboard Demo</title>
+<style>
+:root{--bg:#11121b;--panel:#191827;--panel2:#211d31;--line:#51415f;--purple:#9b63bf;--purple2:#6f3e91;--gold:#d5b477;--text:#f3edf7;--muted:#aaa2b6;--green:#70d4a6;--red:#e58b98}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0,#30213d 0,#171622 48%,#10121a 100%);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.topbar{height:62px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #40334d;background:#11111bcc;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.brand{font-weight:900;letter-spacing:3px;color:#d8c4e7}.brand span{color:var(--purple)}.topmeta{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:12px}.pill{border:1px solid var(--line);border-radius:30px;padding:7px 12px}
+.layout{max-width:1450px;margin:24px auto;padding:0 22px;display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:20px;align-items:start}
+.left{min-width:0}.sectionHead{display:flex;justify-content:space-between;align-items:center;margin:0 4px 12px}.sectionHead h1{font-size:22px;margin:0}.sectionHead p{color:var(--muted);font-size:12px;margin:4px 0}
+.btn{border:1px solid #765a8b;background:linear-gradient(135deg,#9d62bf,#694087);padding:11px 16px;border-radius:13px;font-weight:800;box-shadow:0 8px 24px #0004}.btn.ghost{background:#211c2c;border-color:#51415f;box-shadow:none}.btn:disabled{opacity:.45;cursor:not-allowed}
+.scene{border:1px solid #554360;border-radius:24px;overflow:hidden;background:#171522;min-height:520px;position:relative;box-shadow:0 24px 60px #0005}
+.sceneArt{height:340px;position:relative;overflow:hidden;background:linear-gradient(180deg,#161729,#29203a 60%,#17141f)}
+.window{position:absolute;inset:34px 18% 20px;border:8px solid #282335;box-shadow:0 0 0 2px #675078,0 0 70px #9c69bb55;background:linear-gradient(180deg,#28233b,#4b3560 65%,#171827)}
+.moon{position:absolute;width:54px;height:54px;border-radius:50%;background:#e3d5e9;box-shadow:0 0 45px #d5b4f5;top:46px;left:24%}
+.city{position:absolute;bottom:0;left:0;right:0;height:48%;background:linear-gradient(0deg,#15141e 0 28%,transparent 29%);clip-path:polygon(0 48%,9% 48%,9% 25%,17% 25%,17% 52%,25% 52%,25% 5%,34% 5%,34% 52%,48% 52%,48% 22%,56% 22%,56% 52%,70% 52%,70% 13%,80% 13%,80% 52%,100% 52%,100% 100%,0 100%)}
+.desk{position:absolute;bottom:0;left:0;right:0;height:75px;background:linear-gradient(#4b3448,#201923);border-top:5px solid #6e5471}
+.cup{position:absolute;bottom:76px;left:33%;width:42px;height:32px;border:2px solid #bca4c7;border-radius:5px 5px 12px 12px;background:#302538}.cup:after{content:"";position:absolute;right:-14px;top:5px;width:13px;height:16px;border:3px solid #bca4c7;border-left:0;border-radius:0 12px 12px 0}
+.folder{position:absolute;bottom:76px;right:20%;width:76px;height:48px;background:#b58e45;border:2px solid #e2c17b;transform:rotate(-5deg);border-radius:4px;box-shadow:0 0 25px #0008}
+.sceneOverlay{position:absolute;inset:auto 0 0;padding:28px 30px 22px;background:linear-gradient(transparent,#11111beF);display:flex;align-items:end;justify-content:space-between;gap:20px}
+.sceneOverlay h2{font-size:25px;margin:0 0 8px}.sceneOverlay p{margin:0;color:#d4cbdc;max-width:650px;line-height:1.8;font-size:13px}
+.sceneFoot{padding:17px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#171522}.progress{height:6px;background:#3a3343;border-radius:20px;overflow:hidden;margin-top:10px}.progress i{display:block;height:100%;width:25%;background:linear-gradient(90deg,#74449a,#c28cdb)}
+.workflow{margin-top:14px;border:1px solid #3e354a;border-radius:16px;padding:14px 18px;background:#191724;display:flex;justify-content:space-between;gap:10px;align-items:center}.steps{display:flex;gap:8px;flex-wrap:wrap}.step{border:1px solid #51415f;color:#aaa0b7;border-radius:20px;padding:6px 10px;font-size:11px}.step.active{color:#f3d9ff;border-color:var(--purple);background:#6e458733}
+.phoneWrap{position:sticky;top:82px}.phone{border:7px solid #40384a;border-radius:38px;background:#0f1018;min-height:700px;max-height:calc(100vh - 100px);overflow:hidden;box-shadow:0 24px 60px #0009;display:flex;flex-direction:column;position:relative}
+.phoneTop{height:38px;padding:9px 16px 4px;display:flex;justify-content:space-between;font-size:11px;color:#d8d1df}.phoneHeader{padding:12px 16px;border-bottom:1px solid #342d40;display:flex;justify-content:space-between;align-items:center}.phoneHeader b{font-size:14px}.phoneHeader small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+.phoneBody{padding:13px;overflow:auto;flex:1}.phoneNav{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #342d40;background:#171622;padding:8px 3px 10px;gap:2px}.navBtn{background:transparent;border:0;color:#93899f;font-size:10px;padding:8px 1px;border-radius:11px;display:grid;gap:4px;justify-items:center}.navBtn span{font-size:17px}.navBtn.active{background:#65418155;color:#f1d9ff}
+.mobileCard{background:linear-gradient(145deg,#211e30,#171723);border:1px solid #42364e;border-radius:16px;padding:13px;margin-bottom:10px}.mobileCard h3{font-size:13px;margin:0 0 7px}.mobileCard p{font-size:11px;color:#c1b8cb;line-height:1.8;margin:4px 0}.miniLabel{font-size:10px;color:#bba3cc}.action{width:100%;border:1px solid #644a78;background:#2c2239;border-radius:11px;padding:10px;margin-top:8px;text-align:right;font-size:12px}.action.primary{background:#77469a;border-color:#a276bf;text-align:center;font-weight:800}.action:disabled{opacity:.45}.tag{display:inline-block;border-radius:20px;padding:4px 8px;font-size:10px;background:#392d46;color:#e4c8f4}.tag.good{background:#193d35;color:#9be0c0}.tag.warn{background:#49313a;color:#f0a8b1}
+.msg{padding:10px;border-radius:13px;margin:9px 0;font-size:12px;line-height:1.8;max-width:90%}.msg.in{background:#2b2538;border:1px solid #4c3c5c;margin-left:auto}.msg.out{background:#53346b;margin-right:auto}.choice{width:100%;border:1px solid #59446b;background:#211d2d;border-radius:10px;padding:9px;margin-top:7px;text-align:right;font-size:11px}.choice:hover,.action:hover{border-color:#ba8bd3}
+.empty{padding:25px 12px;text-align:center;color:var(--muted);font-size:12px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#292237;border:1px solid #8d65a7;padding:11px 18px;border-radius:12px;z-index:20;box-shadow:0 10px 35px #0009;font-size:13px;opacity:0;pointer-events:none;transition:.25s}.toast.show{opacity:1}
+.modal{position:fixed;inset:0;background:#080810c9;display:none;place-items:center;padding:20px;z-index:30}.modal.show{display:grid}.modalBox{width:min(460px,100%);background:#201c2d;border:1px solid #705387;border-radius:20px;padding:20px}.modalBox h2{margin-top:0}.modalBox p{color:#c4b9cf;line-height:1.8;font-size:13px}
+@media(max-width:900px){.layout{grid-template-columns:1fr;max-width:650px}.phoneWrap{position:static;order:2}.phone{min-height:690px;max-height:none}.scene{min-height:440px}.sceneArt{height:290px}.topbar{padding:0 14px}.topmeta .pill:nth-child(2){display:none}}
+@media(max-width:520px){.layout{padding:0 10px;margin:14px auto;gap:14px}.sectionHead h1{font-size:17px}.scene{min-height:390px;border-radius:18px}.sceneArt{height:250px}.window{inset:26px 12% 18px}.sceneOverlay{padding:18px;display:block}.sceneOverlay h2{font-size:20px}.sceneOverlay p{font-size:11px}.sceneOverlay .btn{margin-top:14px}.sceneFoot{align-items:start;flex-direction:column}.workflow{align-items:start;flex-direction:column}.phone{border-radius:28px;border-width:5px}.topmeta{font-size:10px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="brand">THE <span>DETECTIVE</span></div><div class="topmeta"><span class="pill">نسخة تجريبية مستقلة</span><span class="pill">● حفظ تلقائي محلي</span><span class="pill" id="clock">--:--</span></div></header>
+<main class="layout">
+<section class="left">
+<div class="sectionHead"><div><h1>مكتب المحقق</h1><p>قضية 001 · آخر فنجان قهوة · غرفة عمليات تفاعلية</p></div><button class="btn ghost" onclick="resetDemo()">إعادة التجربة</button></div>
+<div class="scene">
+<div class="sceneArt"><div class="window"></div><div class="moon"></div><div class="city"></div><div class="desk"></div><div class="cup"></div><div class="folder"></div>
+<div class="sceneOverlay"><div><span class="tag" id="sceneTag">مسرح الجريمة</span><h2 id="sceneTitle">المكتب هادئ… والبلاغ وصل للتو</h2><p id="sceneText">رجل أعمال وُجد ميتًا داخل مكتبه. كل شيء يبدو مرتبًا أكثر من اللازم. ابدأ من هاتفك، افحص الأدلة، ولا تثق بأول رواية تسمعها.</p></div><button class="btn" onclick="startCase()">ابدأ القضية</button></div></div>
+<div class="sceneFoot"><div style="flex:1"><b id="caseStatus">القضية لم تبدأ بعد</b><div class="progress"><i id="mainProgress"></i></div></div><span class="tag" id="evidenceCount">0 / 4 أدلة</span></div>
+</div>
+<div class="workflow"><div><b>تدفق التحقيق</b><div class="steps"><span class="step active" id="st1">١ المكتب</span><span class="step" id="st2">٢ البلاغ</span><span class="step" id="st3">٣ الأدلة</span><span class="step" id="st4">٤ الاستجواب</span></div></div><small style="color:var(--muted)" id="workflowHint">ابدأ من المكتب ثم افتح هاتف المحقق.</small></div>
+</section>
+<aside class="phoneWrap">
+<div class="phone">
+<div class="phoneTop"><span>◉ ▮ ▮ ▴</span><span id="phoneTime">١٠:٤٨ م</span></div>
+<div class="phoneHeader"><div><b>مكتب المحقق</b><small id="phoneSubtitle">البلاغ جاهز</small></div><span class="tag good" id="syncTag">متصل</span></div>
+<div class="phoneBody" id="phoneBody"></div>
+<nav class="phoneNav">
+<button class="navBtn active" data-tab="home" onclick="tab('home')"><span>⌂</span>الرئيسية</button>
+<button class="navBtn" data-tab="evidence" onclick="tab('evidence')"><span>▤</span>الأدلة</button>
+<button class="navBtn" data-tab="contacts" onclick="tab('contacts')"><span>♙</span>جهات الاتصال</button>
+<button class="navBtn" data-tab="messages" onclick="tab('messages')"><span>✉</span>الرسائل</button>
+<button class="navBtn" data-tab="notes" onclick="tab('notes')"><span>▧</span>الملاحظات</button>
+</nav>
+</div>
+</aside>
+</main>
+<div class="modal" id="modal"><div class="modalBox"><h2 id="modalTitle"></h2><p id="modalText"></p><button class="btn" onclick="closeModal()">متابعة</button></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const $=id=>document.getElementById(id);
+const defaultState=()=>({started:false,tab:'home',evidence:[],messages:[],replies:[],notes:[],route:'غير محدد',threat:0,trust:0,events:[],visited:[]});
+let state=defaultState();
+try{const saved=localStorage.getItem('td-dashboard-demo');if(saved)state={...state,...JSON.parse(saved)}}catch(e){}
+const evidence=[
+{id:'cup',name:'فنجان القهوة',icon:'☕',desc:'بقايا قهوة باردة على المكتب. رائحة اللوز مُرّة بشكل غير مألوف.',detail:'أثر غير معتاد في قاع الفنجان. يحتاج إلى تحليل معملي قبل ربطه بسبب الوفاة.',unlock:'تم تسجيل الفنجان كدليل مادي. لا توجد نتيجة معملية مؤكدة بعد.'},
+{id:'clock',name:'الساعة المتوقفة',icon:'◷',desc:'ساعة الحائط متوقفة عند 10:12 مساءً.',detail:'الزجاج سليم تقريبًا، لكن عقارب الساعة قد تكون عُدّلت يدويًا.',unlock:'توقيت الساعة لا يُعتمد عليه منفردًا؛ سجّل احتمال العبث.'},
+{id:'camera',name:'تسجيل كاميرا الممر',icon:'▣',desc:'انقطاع في التسجيل لعدة دقائق قبل البلاغ.',detail:'الفجوة بين 10:10 و10:18 مساءً. نحتاج نسخة أصلية للتحقق من سبب الانقطاع.',unlock:'تم تحديد فجوة زمنية تستحق المقارنة مع تحركات المشتبه بهم.'},
+{id:'ledger',name:'دفتر الحسابات',icon:'▤',desc:'صفحة ممزقة من دفتر حسابات الشركة.',detail:'تحويلات مالية متكررة إلى حساب وسيط. اسم المستفيد غير ظاهر في النسخة المصورة.',unlock:'ظهر خيط مالي محتمل. لا يثبت وحده الدافع أو هوية الجاني.'}
+];
+const contacts=[
+{name:'سلمى فاروق',role:'زوجة المجني عليه',line:'كنت في المنزل طوال الليل. لم أعد إلى المكتب بعد الثامنة.',hint:'تبدو متماسكة، لكنها تتجنب الحديث عن آخر مكالمة.'},
+{name:'هشام مراد',role:'مدير الحسابات',line:'غادرت قبل العاشرة. لم أرَ الأستاذ نبيل بعدها.',hint:'روايته عن وقت المغادرة تحتاج إلى مقارنة بالكاميرات.'},
+{name:'طارق عبد السلام',role:'حارس المبنى',line:'لم يدخل أحد من البوابة الرئيسية بعد العاشرة.',hint:'قد لا تشمل روايته الباب الجانبي.'},
+{name:'مريم عادل',role:'المساعدة الشخصية',line:'رتبت المكتب وغادرت قبل وصول أي شخص.',hint:'تعرف تفاصيل روتين المجني عليه.'}
+];
+function persist(){try{localStorage.setItem('td-dashboard-demo',JSON.stringify(state))}catch(e){}}
+function toast(s){$('toast').textContent=s;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2200)}
+function modal(t,p){$('modalTitle').textContent=t;$('modalText').textContent=p;$('modal').classList.add('show')}
+function closeModal(){$('modal').classList.remove('show')}
+function startCase(){if(!state.started){state.started=true;state.events.push('تم استلام البلاغ وفتح القضية 001');persist()}$('sceneTag').textContent='القضية نشطة';$('sceneTitle').textContent='وصلت إلى مسرح الجريمة';$('sceneText').textContent='المكتب مغلق من الداخل. أمامك أربع قرائن أولية، لكن لا واحدة منها تكفي وحدها. افتح الهاتف وابدأ توثيق الأدلة.';$('caseStatus').textContent='القضية نشطة · اجمع الأدلة';$('workflowHint').textContent='افتح تبويب الأدلة في الهاتف لفحص مسرح الجريمة.';tab('home');updateProgress();toast('تم فتح القضية 001')}
+function tab(name){state.tab=name;document.querySelectorAll('.navBtn').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));renderPhone();persist()}
+function renderPhone(){
+const body=$('phoneBody');$('phoneSubtitle').textContent=state.started?'القضية 001 · نشطة':'البلاغ جاهز';
+if(state.tab==='home'){body.innerHTML='<div class="mobileCard"><span class="miniLabel">بلاغ جديد · قضية 001</span><h3>آخر فنجان قهوة</h3><p>رجل أعمال وُجد ميتًا داخل مكتبه. المطلوب تحديد ما حدث دون افتراض أن مسرح الجريمة يحكي الحقيقة كاملة.</p><span class="tag '+(state.started?'good':'warn')+'">'+(state.started?'التحقيق مفتوح':'بانتظار بدء القضية')+'</span><button class="action primary" onclick="startCase()">'+(state.started?'متابعة التحقيق':'ابدأ القضية')+'</button></div><div class="mobileCard"><h3>ملخص سريع</h3><p>الأدلة الموثقة: '+state.evidence.length+' من 4</p><p>الرسائل المجهولة: '+state.replies.length+' ردود مرسلة</p><p>مسار التحقيق: '+state.route+'</p><button class="action" onclick="tab(\'evidence\')">افتح الأدلة</button></div><div class="mobileCard"><h3>تنبيه المحقق</h3><p>لا تتعامل مع التلميحات باعتبارها حقائق. قارن كل معلومة بمصدر مستقل.</p></div>'}
+if(state.tab==='evidence'){body.innerHTML='<div class="mobileCard"><h3>الأدلة الجنائية</h3><p>افحص كل عنصر لتسجيله في ملف القضية.</p><span class="tag">'+state.evidence.length+' / 4 موثقة</span></div>'+evidence.map(e=>'<div class="mobileCard"><h3>'+e.icon+' '+e.name+'</h3><p>'+e.desc+'</p><button class="action '+(state.evidence.includes(e.id)?'':'primary')+'" onclick="inspectEvidence(\''+e.id+'\')">'+(state.evidence.includes(e.id)?'عرض تفاصيل الدليل':'فحص وتوثيق')+'</button>'+(state.evidence.includes(e.id)?'<p class="miniLabel">'+e.detail+'</p>':'')+'</div>').join('')}
+if(state.tab==='contacts'){body.innerHTML='<div class="mobileCard"><h3>جهات الاتصال</h3><p>استدعِ الأشخاص أو راجع أقوالهم الأولية. الاستجواب الكامل سيأتي لاحقًا.</p></div>'+contacts.map((c,i)=>'<div class="mobileCard"><h3>'+c.name+'</h3><p>'+c.role+'</p><p>«'+c.line+'»</p><button class="action" onclick="contactDetail('+i+')">فتح ملف الشخصية</button></div>').join('')}
+if(state.tab==='messages'){body.innerHTML='<div class="mobileCard"><h3>✉ الرسائل المجهولة</h3><p>رسالة واردة من رقم غير معروف. ردك قد يغيّر اتجاه التحقيق.</p></div><div class="msg in">إياك تتهم الشخص الغلط. أنت مش شايف الصورة كاملة.</div>'+(state.replies.length?state.replies.map(m=>'<div class="msg out">أنت: '+m.text+'</div><div class="msg in">'+m.response+'</div>').join(''):'')+(state.replies.length===0?'<p class="miniLabel">اختار ردك بحذر:</p>'+['مين أنت؟ أثبت إنك تعرف حاجة.','ابعت الدليل اللي عندك.','مش هتراجع بسبب تهديدك.','هتجاهلك وأتتبع الرقم.'].map((v,i)=>'<button class="choice" onclick="replyMessage('+i+')">'+v+'</button>').join(''):'<button class="action" onclick="nextMessage()">انتظار رسالة متابعة</button>')}
+if(state.tab==='notes'){body.innerHTML='<div class="mobileCard"><h3>دفتر ملاحظات القضية</h3><p>ملاحظاتك وتقاريرك محفوظة على هذا المتصفح.</p><textarea id="noteInput" rows="5" style="width:100%;background:#12121c;color:#eee;border:1px solid #554363;border-radius:10px;padding:10px" placeholder="اكتب ملاحظتك هنا...">'+state.notes.join('\n')+'</textarea><button class="action primary" onclick="saveNote()">حفظ الملاحظة</button></div><div class="mobileCard"><h3>سجل الأحداث</h3><p>'+(state.events.length?state.events.slice().reverse().map(x=>'• '+x).join('<br>'):'لا توجد أحداث مسجلة بعد.')+'</p></div>'}
+}
+function inspectEvidence(id){if(!state.started){toast('ابدأ القضية أولًا');return}const e=evidence.find(x=>x.id===id);if(!state.evidence.includes(id)){state.evidence.push(id);state.events.push('تم توثيق دليل: '+e.name);state.notes.push('دليل '+e.name+': '+e.unlock);persist();updateProgress();toast('تم تسجيل الدليل في ملف القضية')}renderPhone()}
+function contactDetail(i){const c=contacts[i];modal(c.name+' · '+c.role,c.line+'\n\nملاحظة المحقق: '+c.hint+'\n\nهذه إفادة أولية وليست اعترافًا أو دليل إدانة.');state.visited.push(i);if(!state.events.includes('تم فتح ملف '+c.name))state.events.push('تم فتح ملف '+c.name);persist()}
+function replyMessage(i){if(!state.started){toast('ابدأ القضية أولًا');return}const texts=['مين أنت؟ أثبت إنك تعرف حاجة.','ابعت الدليل اللي عندك.','مش هتراجع بسبب تهديدك.','هتجاهلك وأتتبع الرقم.'];const outcomes=[
+{response:'الاسم مش مهم. راجع توقيت المكالمة اللي سبقت البلاغ بسبع دقائق.',route:'تتبع هوية المرسل',threat:5},
+{response:'في صورة من كاميرا جانبية. بس وارد تكون متعدلة… متصدقهاش قبل ما تفحص الأصل.',route:'فحص الدليل المجهول',threat:12},
+{response:'اعتبرها آخر نصيحة. من اللحظة دي خطواتك محسوبة عليك.',route:'المواجهة والضغط',threat:25},
+{response:'… تم إيقاف استقبال الرسائل مؤقتًا.',route:'التتبع الصامت',threat:0}
+];const o=outcomes[i];state.replies.push({text:texts[i],response:o.response});state.route=o.route;state.threat+=o.threat;state.events.push('اخترت الرد: '+o.route);state.notes.push('مسار الرسالة المجهولة: '+o.route);persist();renderPhone();updateProgress();toast('تم إرسال الرد. ستظهر عواقبه لاحقًا')}
+function nextMessage(){const texts=['لقيت إن الساعة اتعدلت بعد انقطاع الكاميرا.','الصورة اللي قلتلك عليها مش كاملة. دور على النسخة الأصلية.','أنا حذرتك. في حد بيراقب مكتبك.','الرقم اللي بعتلك منه الرسالة اتسجل قرب البوابة الجانبية.'];const index=Math.min(state.replies.length-1,3);const t=texts[index];state.events.push('رسالة متابعة: '+t);state.notes.push('رسالة متابعة مجهولة: '+t);persist();renderPhone();toast('وصلت رسالة متابعة جديدة')}
+function saveNote(){const v=$('noteInput').value.trim();if(!v){toast('اكتب ملاحظة الأول');return}state.notes.push(v);persist();renderPhone();toast('تم حفظ الملاحظة')}
+function updateProgress(){const n=state.evidence.length;$('mainProgress').style.width=(n*25)+'%';$('evidenceCount').textContent=n+' / 4 أدلة';$('caseStatus').textContent=state.started?'القضية نشطة · '+n+' أدلة موثقة':'القضية لم تبدأ بعد';['st1','st2','st3','st4'].forEach((id,i)=>$(id).classList.toggle('active',i<Math.max(1,Math.ceil(n/2))));if(n>=2)$('workflowHint').textContent='لديك أدلة أولية. افتح جهات الاتصال وقارن أقوالهم.'}
+function resetDemo(){if(!confirm('هل تريد إعادة التجربة ومسح تقدم النسخة التجريبية فقط؟'))return;state=defaultState();persist();$('sceneTag').textContent='مسرح الجريمة';$('sceneTitle').textContent='المكتب هادئ… والبلاغ وصل للتو';$('sceneText').textContent='رجل أعمال وُجد ميتًا داخل مكتبه. كل شيء يبدو مرتبًا أكثر من اللازم. ابدأ من هاتفك، افحص الأدلة، ولا تثق بأول رواية تسمعها.';tab('home');updateProgress();toast('تمت إعادة التجربة')}
+function tick(){const d=new Date();$('clock').textContent=d.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'});$('phoneTime').textContent=d.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}
+tick();setInterval(tick,30000);renderPhone();updateProgress();
+</script>
+</body></html>
