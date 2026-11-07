@@ -66,7 +66,7 @@ button{font:inherit;cursor:pointer;color:inherit}button:focus-visible{outline:2p
 <div class="modal" id="modal"><div class="modalBox"><h2 id="modalTitle"></h2><p id="modalText"></p><button class="btn" onclick="closeModal()">متابعة</button></div></div>
 <div class="toast" id="toast"></div>
 <script>
-const $=id=>document.getElementById(id);\nconst esc=s=>String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
 const defaultState=()=>({started:false,tab:'home',evidence:[],messages:[],replies:[],notes:[],route:'غير محدد',threat:0,trust:0,events:[],visited:[]});
 let state=defaultState();
 try{const saved=localStorage.getItem('td-dashboard-demo');if(saved)state={...state,...JSON.parse(saved)}}catch(e){}
@@ -109,6 +109,6 @@ function saveNote(){const v=$('noteInput').value.trim();if(!v){toast('اكتب �
 function updateProgress(){const n=state.evidence.length;$('mainProgress').style.width=(n*25)+'%';$('evidenceCount').textContent=n+' / 4 أدلة';$('caseStatus').textContent=state.started?'القضية نشطة · '+n+' أدلة موثقة':'القضية لم تبدأ بعد';['st1','st2','st3','st4'].forEach((id,i)=>$(id).classList.toggle('active',i<Math.max(1,Math.ceil(n/2))));if(n>=2)$('workflowHint').textContent='لديك أدلة أولية. افتح جهات الاتصال وقارن أقوالهم.'}
 function resetDemo(){if(!confirm('هل تريد إعادة التجربة ومسح تقدم النسخة التجريبية فقط؟'))return;state=defaultState();persist();$('sceneTag').textContent='مسرح الجريمة';$('sceneTitle').textContent='المكتب هادئ… والبلاغ وصل للتو';$('sceneText').textContent='رجل أعمال وُجد ميتًا داخل مكتبه. كل شيء يبدو مرتبًا أكثر من اللازم. ابدأ من هاتفك، افحص الأدلة، ولا تثق بأول رواية تسمعها.';tab('home');updateProgress();toast('تمت إعادة التجربة')}
 function tick(){const d=new Date();$('clock').textContent=d.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'});$('phoneTime').textContent=d.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}
-if(state.started){$('sceneTag').textContent='القضية نشطة';$('sceneTitle').textContent='وصلت إلى مسرح الجريمة';$('sceneText').textContent='المكتب مغلق من الداخل. أمامك أربع قرائن أولية، لكن لا واحدة منها تكفي وحدها. افتح الهاتف وابدأ توثيق الأدلة.'}\ntick();setInterval(tick,30000);renderPhone();updateProgress();
+tick();setInterval(tick,30000);renderPhone();updateProgress();
 </script>
 </body></html>
