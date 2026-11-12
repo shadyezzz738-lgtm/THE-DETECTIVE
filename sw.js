@@ -1,6 +1,6 @@
 /* THE DETECTIVE — offline-first service worker */
-const CACHE_NAME = 'the-detective-offline-v3';
-const CORE_ASSETS = ['./','./index.html','./manifest.webmanifest','./icon.svg','./assets/case-003-office.svg','./assets/case-004-tomb.svg','./assets/case-005-train.svg'];
+const CACHE_NAME = 'the-detective-offline-v4';
+const CORE_ASSETS = ['./','./index.html','./manifest.webmanifest','./ai-dialogue.js','./icon.svg','./assets/case-003-office.svg','./assets/case-004-tomb.svg','./assets/case-005-train.svg'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_ASSETS)).then(() => self.skipWaiting()));
 });
