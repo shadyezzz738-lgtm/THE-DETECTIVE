@@ -613,6 +613,7 @@ function toast(t){let e=$('toast');e.textContent=t;e.classList.remove('hidden');
  const names=()=>typeof suspects!=='undefined'?suspects:[];
  const st=()=>{S.live=S.live||{branch:'',trust:50,threat:0,events:[],seen:{},witnessSafe:false};return S.live};
  const log=t=>{let x=st();x.events.unshift({t,at:new Date().toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})});x.events=x.events.slice(0,12);save()};
+  window.log=log;
  function show(title,body,actions,tag='تطور ميداني'){
   card.innerHTML='<div class="premEyebrow">THE DETECTIVE · '+tag+'</div><h2 class="premTitle">'+title+'</h2><div class="premText">'+body+'</div><div class="premActions">'+actions+'</div>';
   layer.classList.add('show');
