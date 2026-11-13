@@ -61,67 +61,79 @@ button{font:inherit;color:inherit;cursor:pointer;border:0}
 </div>
 <div class="modal" id="modal"><div class="dialog"><div class="eyebrow" id="modalEyebrow">INVESTIGATION</div><h2 id="modalTitle"></h2><div id="modalBody"></div><div class="dialog-actions" id="modalActions"><button onclick="closeModal()">إغلاق</button></div></div></div>
 <script>
-const evidence=[];
-const scenes=[
-{title:"شقة كريم ناصر",sub:"المعادي، القاهرة — 11:48 مساءً",shot:"SCENE 01 · ESTABLISHING SHOT",caption:"وصلت إلى الشقة بعد بلاغ الجيران. لا توجد آثار اقتحام واضحة، لكن ترتيب المكان لا يبدو طبيعيًا.",objective:"افحص المكان قبل لمس أي شيء. ابحث عن <b>تفصيلة لا تتفق مع رواية الحارس</b>.",hotspots:[{x:65,y:63,label:"فنجان القهوة",name:"فنجان قهوة بارد",desc:"الفنجان بارد تمامًا، لكن آثار القهوة على حافته لا تزال رطبة. توجد بصمة جزئية لشخص آخر غير الضحية.",icon:"☕"},{x:29,y:38,label:"النافذة",name:"نافذة غرفة المعيشة",desc:"النافذة مغلقة من الداخل. الغبار على الحافة متصل بلا انقطاع؛ لا أحد دخل أو خرج من هنا.",icon:"▣"},{x:54,y:76,label:"ملف على الأرض",name:"ملف الحسابات",desc:"ملف مفتوح على تحويلات مالية متكررة لشركة غير معروفة. صفحة واحدة ممزقة بعناية.",icon:"▤"},{x:85,y:44,label:"باب الشقة",name:"قفل باب الشقة",desc:"لا توجد خدوش حول القفل. الباب فُتح بمفتاح صحيح، أو أن القاتل كان يملك نسخة.",icon:"⌑"}]},
-{title:"ممر العقار",sub:"الطابق الرابع — 12:06 بعد منتصف الليل",shot:"SCENE 02 · SLOW TRACKING SHOT",caption:"الممر هادئ بصورة مريبة. كاميرا المراقبة موجهة ناحية المصعد، لكن ضوءها مطفأ.",objective:"راجع سجل الحارس وافهم لماذا توقفت الكاميرا قبل البلاغ بدقائق.",hotspots:[{x:72,y:39,label:"كاميرا المراقبة",name:"وحدة كاميرا المراقبة",desc:"الكاميرا لم تتعطل تلقائيًا. تم فصل كابل الطاقة يدويًا، ولا يزال الكابل دافئًا قليلًا.",icon:"◉"},{x:25,y:70,label:"دفتر الحارس",name:"دفتر نوبات الحراسة",desc:"الحارس كتب أن كريم عاد الساعة 10:15، لكن توقيت المصعد في لوحة الصيانة يسجل حركة عند 10:42.",icon:"▤"},{x:51,y:46,label:"باب السلم",name:"باب السلم الخلفي",desc:"آثار تراب حديثة على الأرض أمام الباب، كأن شخصًا صعد من السلم بدل المصعد.",icon:"▣"}]},
-{title:"غرفة التحقيق",sub:"قسم شرطة المعادي — 01:20 صباحًا",shot:"SCENE 03 · INTERROGATION CLOSE-UP",caption:"جلس الحارس صبري أمامك. يكرر نفس الجملة: لم يغادر مكانه طوال الليل. نبرة صوته ثابتة، لكن عينيه تتابعان ملف الأدلة.",objective:"اسأل صبري عن توقيت الكاميرا، ثم واجهه بالتناقض في سجل الحراسة.",hotspots:[{x:51,y:63,label:"صبري — الحارس",name:"استجواب صبري",desc:"صبري كان مسؤولًا عن مدخل العقار ليلة الحادث. يقول إنه لم يرَ أحدًا يدخل أو يخرج.",icon:"♟"},{x:75,y:72,label:"ملف التحقيق",name:"ملف القضية",desc:"الأدلة المسجلة حتى الآن يمكن استخدامها لمواجهة أقوال صبري.",icon:"▤"}]}
+const scenes = [
+ {title:"شقة كريم ناصر",sub:"المعادي، القاهرة — 11:48 مساءً",shot:"SCENE 01 · ESTABLISHING SHOT",caption:"وصلت إلى الشقة بعد بلاغ الجيران. لا توجد آثار اقتحام واضحة، لكن ترتيب المكان لا يبدو طبيعيًا.",objective:"افحص المكان قبل لمس أي شيء. ابحث عن تفصيلة لا تتفق مع رواية الحارس.",items:[["فنجان القهوة","الفنجان بارد تمامًا، وعلى حافته بصمة جزئية لشخص آخر غير الضحية.","☕",65,63],["النافذة","النافذة مغلقة من الداخل والغبار على الحافة متصل بلا انقطاع.","▣",29,38],["ملف الحسابات","ملف مفتوح على تحويلات مالية متكررة. صفحة واحدة ممزقة بعناية.","▤",54,76],["قفل الباب","لا توجد خدوش حول القفل. الباب فُتح بمفتاح صحيح.","⌑",85,44]]},
+ {title:"ممر العقار",sub:"الطابق الرابع — 12:06 بعد منتصف الليل",shot:"SCENE 02 · SLOW TRACKING SHOT",caption:"الممر هادئ بصورة مريبة. كاميرا المراقبة موجهة ناحية المصعد، لكن ضوءها مطفأ.",objective:"راجع سجل الحارس وافهم لماذا توقفت الكاميرا قبل البلاغ بدقائق.",items:[["كاميرا المراقبة","تم فصل كابل الطاقة يدويًا، ولا يزال الكابل دافئًا قليلًا.","◉",72,39],["دفتر الحراسة","الحارس كتب أن كريم عاد 10:15، لكن لوحة الصيانة تسجل حركة عند 10:42.","▤",25,70],["باب السلم","آثار تراب حديثة أمام الباب، كأن شخصًا صعد من السلم بدل المصعد.","▣",51,46]]},
+ {title:"غرفة التحقيق",sub:"قسم شرطة المعادي — 01:20 صباحًا",shot:"SCENE 03 · INTERROGATION CLOSE-UP",caption:"جلس الحارس صبري أمامك. يكرر أنه لم يغادر مكانه طوال الليل. عينيه تتابعان ملف الأدلة.",objective:"اسأل صبري عن توقيت الكاميرا، ثم واجهه بالتناقض في سجل الحراسة.",items:[["استجواب صبري","صبري كان مسؤولًا عن مدخل العقار ليلة الحادث، وينكر رؤية أي شخص.","♟",51,63],["ملف القضية","الأدلة المسجلة يمكن استخدامها لمواجهة أقوال صبري.","▤",75,72]]}
 ];
-let current=0,beat=0;
-function renderScene(){
- const s=scenes[current];document.getElementById('sceneTitle').textContent=s.title;document.getElementById('sceneSub').textContent=s.sub;document.getElementById('shot').textContent=s.shot;document.getElementById('caption').textContent=s.caption;document.getElementById('objective').innerHTML=s.objective;
- const root=document.getElementById('hotspots');root.innerHTML='';
- s.hotspots.forEach((h,i)=>{const b=document.createElement('button');b.className='hotspot';b.style.left=h.x+'%';b.style.top=h.y+'%';b.innerHTML='<span>'+h.label+'</span>';b.setAttribute('aria-label',h.label);b.onclick=()=>inspect(h);root.appendChild(b)});
- document.getElementById('progress').style.width=(25+current*25+evidence.length*5)+'%';
- document.querySelectorAll('.nav button').forEach((b,i)=>b.classList.toggle('active',i===current));
+let sceneIndex=0;
+const collected=[];
+function render(){
+ const s=scenes[sceneIndex];
+ document.getElementById("sceneTitle").textContent=s.title;
+ document.getElementById("sceneSub").textContent=s.sub;
+ document.getElementById("shot").textContent=s.shot;
+ document.getElementById("caption").textContent=s.caption;
+ document.getElementById("objective").textContent=s.objective;
+ const root=document.getElementById("hotspots");root.innerHTML="";
+ s.items.forEach((item)=>{
+  const b=document.createElement("button");b.className="hotspot";b.style.left=item[3]+"%";b.style.top=item[4]+"%";b.innerHTML="<span>"+item[0]+"</span>";b.onclick=()=>inspect(item);root.appendChild(b);
+ });
+ document.querySelectorAll(".nav button").forEach((b,i)=>b.classList.toggle("active",i===sceneIndex));
+ document.getElementById("progress").style.width=(25+sceneIndex*25+collected.length*4)+"%";
 }
-function inspect(h){
- const known=evidence.some(x=>x.name===h.name);
- openModal('CLOSE INSPECTION',h.name,'<p>'+h.desc+'</p><p style="color:#d9b77d">اختر الإجراء المناسب:</p>',[
- {label:known?'تم تسجيله بالفعل':'تسجيل كدليل',gold:true,fn:()=>{if(!known){evidence.push(h);updateEvidence()}closeModal();}},
- {label:'فحص عن قرب',fn:()=>{document.getElementById('modalBody').innerHTML='<p>'+h.desc+'</p><p>تلاحظ تفاصيل صغيرة لم تكن واضحة من النظرة الأولى. تم حفظ ملاحظات الفحص في سجل المشهد.</p>';}},
- {label:'رجوع',fn:closeModal}
+function inspect(item){
+ const exists=collected.some(x=>x[0]===item[0]);
+ showModal("CLOSE INSPECTION",item[0],"<p>"+item[1]+"</p><p style='color:#d9b77d'>افحص التفصيلة وسجلها في دفتر القضية.</p>",[
+  {label:exists?"تم تسجيل الدليل":"تسجيل كدليل",gold:true,fn:()=>{if(!exists){collected.push(item);updateEvidence();}closeModal();}},
+  {label:"فحص عن قرب",fn:()=>showModal("DETAIL VIEW",item[0],"<p>"+item[1]+"</p><p>تلاحظ علامات دقيقة لم تكن واضحة من النظرة الأولى. تم حفظ ملاحظتك في سجل المشهد.</p>",[{label:"رجوع",gold:true,fn:()=>inspect(item)}])}
  ]);
 }
 function updateEvidence(){
- document.getElementById('evCount').textContent=evidence.length+' / 5';
- document.getElementById('evidenceList').innerHTML=evidence.map(e=>'<div class="evidence"><span class="ev-icon">'+e.icon+'</span><span>'+e.name+'</span></div>').join('');
- document.getElementById('tabContent').textContent='تم تسجيل '+evidence.length+' دليل. استخدمها لمقارنة أقوال الشهود.';
+ document.getElementById("evCount").textContent=collected.length+" / 5";
+ document.getElementById("evidenceList").innerHTML=collected.map(x=>"<div class='evidence'><span class='ev-icon'>"+x[2]+"</span><span>"+x[0]+"</span></div>").join("");
+ document.getElementById("tabContent").textContent="تم تسجيل "+collected.length+" دليل في ملف القضية.";
 }
-function showTab(tab,el){
- document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');
- const c=document.getElementById('tabContent');
- if(tab==='clues')c.innerHTML=evidence.length?evidence.map(e=>'• '+e.name).join('<br>'):'لا توجد أدلة مسجلة بعد.';
- if(tab==='people')c.innerHTML='كريم ناصر — الضحية<br>صبري — حارس العقار<br>سارة — شقيقة الضحية<br>فادي — شريك العمل';
- if(tab==='timeline')c.innerHTML='10:15 م — عودة كريم حسب سجل الحارس<br>10:42 م — حركة غير مسجلة بالمصعد<br>11:20 م — توقف كاميرا المراقبة<br>11:48 م — وصول الشرطة';
+function goScene(n,btn){
+ sceneIndex=n;render();if(btn){document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));btn.classList.add("active");}
 }
-function goScene(n,btn){current=n;beat=0;renderScene();document.getElementById('caption').textContent=scenes[n].caption;document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 function nextBeat(){
- if(current===0){if(evidence.length<2){openModal('FIELD NOTE','لسه بدري على مغادرة المكان','<p>قبل ما تنتقل، حاول تفحص دليلين على الأقل. كل تفصيلة ممكن تغيّر اتجاه التحقيق.</p>',[{label:'حاضر',gold:true,fn:closeModal}]);return}goScene(1,document.querySelectorAll('.nav button')[1]);return}
- if(current===1){goScene(2,document.querySelectorAll('.nav button')[2]);return}
- openModal('INTERROGATION','مواجهة صبري','<p>صبري: "أنا قلت لحضرتك، محدش دخل العمارة بعد الساعة عشرة."</p><p>تقدر تواجهه بتوقف الكاميرا أو بسجل النوبة. اختار الدليل اللي هتبدأ بيه.</p>',[
- {label:'مواجهته بالكاميرا',gold:true,fn:()=>confront('camera')},
- {label:'مواجهته بسجل الحراسة',fn:()=>confront('log')},
- {label:'اسأله عن كريم',fn:()=>{openModal('DIALOGUE','صبري يتردد','<p>صبري: "الأستاذ كريم كان متوتر الفترة الأخيرة... بس أنا ماليش دعوة بمشاكله."</p><p>تلاحظ أنه تجنب النظر إليك عند ذكر آخر ليلة.</p>',[{label:'استمرار',gold:true,fn:closeModal}])}}
+ if(sceneIndex===0&&collected.length<2){showModal("FIELD NOTE","لسه بدري على مغادرة المكان","<p>افحص دليلين على الأقل قبل الانتقال. كل تفصيلة ممكن تغيّر اتجاه التحقيق.</p>",[{label:"حاضر",gold:true,fn:closeModal}]);return;}
+ if(sceneIndex<2){goScene(sceneIndex+1);return;}
+ showModal("INTERROGATION","مواجهة صبري","<p>صبري: أنا قلت لحضرتك، محدش دخل العمارة بعد الساعة عشرة.</p><p>اختار طريقة المواجهة:</p>",[
+ {label:"الكاميرا",gold:true,fn:()=>confront("كاميرا")},
+ {label:"دفتر الحراسة",fn:()=>confront("دفتر")},
+ {label:"اسأله عن كريم",fn:()=>showModal("DIALOGUE","صبري يتردد","<p>صبري: كريم كان متوتر الفترة الأخيرة، بس أنا ماليش دعوة بمشاكله.</p><p>تلاحظ أنه تجنب النظر إليك عند ذكر آخر ليلة.</p>",[{label:"استمرار",gold:true,fn:closeModal}])}
  ]);
 }
-function confront(type){
- const has=evidence.some(e=>type==='camera'?e.name.includes('كاميرا'):e.name.includes('دفتر'));
- openModal('EVIDENCE CONFRONTATION',has?'تغيّر في رواية صبري':'الدليل غير متوفر',has?'<p>صبري ينظر إلى الطاولة للحظات.</p><p>"أنا... فصلت الكاميرا دقيقتين بس. كان فيه عطل، وخفت أتحاسب عليه. بس محدش دخل من عندي."</p><p style="color:#d9b77d">تم فتح تناقض جديد: صبري أخفى سبب فصل الكاميرا.</p>':'<p>لا تملك هذا الدليل في دفتر القضية بعد. ارجع للمشهد وافحصه أولًا.</p>',[{label:'إغلاق',gold:true,fn:closeModal}]);
+function confront(word){
+ const has=collected.some(x=>x[0].includes(word));
+ showModal("EVIDENCE CONFRONTATION",has?"تغيّر في رواية صبري":"الدليل غير متوفر",has?"<p>صبري ينظر إلى الطاولة للحظات.</p><p>أنا فصلت الكاميرا دقيقتين بس. كان فيه عطل وخفت أتحاسب عليه. بس محدش دخل من عندي.</p><p style='color:#d9b77d'>تم فتح تناقض جديد: صبري أخفى سبب فصل الكاميرا.</p>":"<p>لا تملك هذا الدليل بعد. ارجع للمشهد وافحصه أولًا.</p>",[{label:"إغلاق",gold:true,fn:closeModal}]);
 }
 function openPhone(){
- openModal('SECURE LINE','هاتف المحقق','<p>اختر جهة الاتصال. المكالمات تفتح معلومات جديدة حسب ما اكتشفته في مسرح الجريمة.</p><div class="phone-ui"><button onclick="callPerson(\'سارة ناصر\')">سارة ناصر<small>شقيقة الضحية · آخر مكالمة</small></button><button onclick="callPerson(\'فادي منصور\')">فادي منصور<small>شريك العمل · التحويلات</small></button><button onclick="callPerson(\'المعمل الجنائي\')">المعمل الجنائي<small>طلب فحص البصمة</small></button><button onclick="callPerson(\'الرئيس المباشر\')">رئيس المباحث<small>تحديث التحقيق</small></button></div>',[{label:'إغلاق الهاتف',gold:true,fn:closeModal}]);
+ showModal("SECURE LINE","هاتف المحقق","<p>اختر جهة الاتصال:</p><div class='phone-ui'><button data-call='سارة ناصر'>سارة ناصر<small>شقيقة الضحية · آخر مكالمة</small></button><button data-call='فادي منصور'>فادي منصور<small>شريك العمل · التحويلات</small></button><button data-call='المعمل الجنائي'>المعمل الجنائي<small>طلب فحص البصمة</small></button><button data-call='رئيس المباحث'>رئيس المباحث<small>تحديث التحقيق</small></button></div>",[{label:"إغلاق الهاتف",gold:true,fn:closeModal}]);
+ document.querySelectorAll("[data-call]").forEach(b=>b.onclick=()=>callPerson(b.getAttribute("data-call")));
 }
 function callPerson(name){
- let msg=name==='سارة ناصر'?'سارة: "أنا آخر مرة كلمته كانت قبل الحادث بساعتين. كان خايف من حاجة، وقال لي إنه هيقابل فادي."':name==='فادي منصور'?'فادي: "كريم كان بيبالغ في موضوع الحسابات. مفيش أي مشكلة بينا."':name==='المعمل الجنائي'?'المعمل: "ابعتوا عينة البصمة من فنجان القهوة. هنحتاج وقت للمضاهاة."':'الرئيس: "عايز تقرير أولي قبل الفجر. ركز على التوقيتات، فيه حاجة مش راكبة." ;
- openModal('INCOMING / OUTGOING CALL',name,'<p>'+msg+'</p><p style="color:#d9b77d">المكالمة مسجلة في سجل القضية.</p>',[{label:'إنهاء المكالمة',gold:true,fn:closeModal}]);
+ let msg="الرئيس: ركز على التوقيتات، فيه حاجة مش راكبة.";
+ if(name==="سارة ناصر")msg="سارة: آخر مرة كلمته كانت قبل الحادث بساعتين. كان خايف وقال لي إنه هيقابل فادي.";
+ if(name==="فادي منصور")msg="فادي: كريم كان بيبالغ في موضوع الحسابات. مفيش أي مشكلة بينا.";
+ if(name==="المعمل الجنائي")msg="المعمل: ابعتوا عينة البصمة من فنجان القهوة. هنحتاج وقت للمضاهاة.";
+ showModal("PHONE CALL",name,"<p>"+msg+"</p><p style='color:#d9b77d'>المكالمة مسجلة في سجل القضية.</p>",[{label:"إنهاء المكالمة",gold:true,fn:closeModal}]);
 }
-function openModal(k,t,b,actions){
- document.getElementById('modalEyebrow').textContent=k;document.getElementById('modalTitle').textContent=t;document.getElementById('modalBody').innerHTML=b;
- const a=document.getElementById('modalActions');a.innerHTML='';
- (actions||[{label:'إغلاق',gold:true,fn:closeModal}]).forEach(x=>{const btn=document.createElement('button');btn.textContent=x.label;if(x.gold)btn.className='gold';btn.onclick=x.fn;a.appendChild(btn)});
- document.getElementById('modal').classList.add('show');
+function showTab(tab,el){
+ document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));el.classList.add("active");
+ const c=document.getElementById("tabContent");
+ if(tab==="clues")c.innerHTML=collected.length?collected.map(x=>"• "+x[0]).join("<br>"):"لا توجد أدلة مسجلة بعد.";
+ if(tab==="people")c.innerHTML="كريم ناصر — الضحية<br>صبري — حارس العقار<br>سارة — شقيقة الضحية<br>فادي — شريك العمل";
+ if(tab==="timeline")c.innerHTML="10:15 م — عودة كريم حسب سجل الحارس<br>10:42 م — حركة غير مسجلة بالمصعد<br>11:20 م — توقف كاميرا المراقبة<br>11:48 م — وصول الشرطة";
 }
-function closeModal(){document.getElementById('modal').classList.remove('show')}
-renderScene();
+function showModal(k,t,b,actions){
+ document.getElementById("modalEyebrow").textContent=k;document.getElementById("modalTitle").textContent=t;document.getElementById("modalBody").innerHTML=b;
+ const root=document.getElementById("modalActions");root.innerHTML="";
+ actions.forEach(x=>{const btn=document.createElement("button");btn.textContent=x.label;if(x.gold)btn.className="gold";btn.onclick=x.fn;root.appendChild(btn);});
+ document.getElementById("modal").classList.add("show");
+}
+function closeModal(){document.getElementById("modal").classList.remove("show");}
+render();
 </script></body></html>
