@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#080d13"><title>THE DETECTIVE — Third Person Preview</title>
+<style>
+:root{--gold:#d6b36b;--ink:#080d13;--panel:#111b25;--muted:#a8b2bc;--line:#ffffff20}
+*{box-sizing:border-box}body{margin:0;background:#080d13;color:#f3f1eb;font-family:Tahoma,Arial,sans-serif}.game{max-width:1180px;margin:auto;min-height:100vh;background:#0a1017;overflow:hidden}.top{height:64px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#0b121a;border-bottom:1px solid var(--line)}.brand{font-weight:900;letter-spacing:2px;color:#e6c987}.sub{font-size:10px;color:#8e9aa5;margin-top:4px}.hud{display:flex;gap:12px;align-items:center;font-size:11px;color:#d4dbe1}.pill{border:1px solid #b18d4e66;border-radius:30px;padding:8px 12px;color:#e9d19d}
+.stage{position:relative;min-height:calc(100vh - 64px);background:linear-gradient(90deg,#080d13e8 0%,#080d1366 42%,#080d1320 100%),linear-gradient(0deg,#080d13 0%,transparent 48%),url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2000&q=90') center/cover;isolation:isolate}
+.stage:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#070b1277,transparent 28%,#070b12aa);z-index:-1}
+.scene-head{padding:30px 34px 0;display:flex;justify-content:space-between;align-items:flex-start}.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px}.scene-head h1{font-size:clamp(24px,4vw,43px);margin:10px 0 5px}.scene-head p{margin:0;color:#c4ccd2;font-size:13px}
+.playfield{position:relative;height:min(60vh,570px);min-height:390px;margin:0 24px;overflow:hidden;border-bottom:1px solid #ffffff22}
+.location{position:absolute;inset:0;background:linear-gradient(0deg,#080d13 0%,transparent 38%),url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=85') center/cover;filter:saturate(.65) brightness(.72)}
+.location:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#10172066,transparent 45%,#10172088)}
+.detective{position:absolute;bottom:8px;left:48%;transform:translateX(-50%);width:150px;height:290px;z-index:3;filter:drop-shadow(0 15px 18px #000b);transition:left .45s ease}
+.detective .head{position:absolute;top:9px;left:51px;width:48px;height:54px;border-radius:42% 42% 48% 48%;background:linear-gradient(90deg,#8b5c42,#c28b66 52%,#754934);border:2px solid #211b18}
+.detective .hair{position:absolute;top:5px;left:49px;width:51px;height:23px;border-radius:60% 60% 25% 20%;background:#171718;z-index:2}
+.detective .coat{position:absolute;top:58px;left:26px;width:100px;height:157px;background:linear-gradient(90deg,#101820,#293744 48%,#101820);clip-path:polygon(18% 0,82% 0,100% 100%,0 100%);border-radius:18px 18px 4px 4px}
+.detective .shirt{position:absolute;top:60px;left:61px;width:28px;height:96px;background:#c1c1b9;clip-path:polygon(0 0,100% 0,70% 100%,35% 100%)}
+.detective .arm{position:absolute;top:75px;width:25px;height:125px;background:#18232d;border-radius:20px}.detective .arm.a{left:15px;transform:rotate(7deg)}.detective .arm.b{right:13px;transform:rotate(-7deg)}
+.detective .leg{position:absolute;top:195px;width:36px;height:90px;background:linear-gradient(90deg,#15191c,#33383a);border-radius:5px}.detective .leg.l{left:43px}.detective .leg.r{right:39px}
+.hotspot{position:absolute;z-index:4;border:1px solid #e1bd70aa;background:#101821c9;color:#f5e5c1;border-radius:9px;padding:9px 12px;font-size:11px;cursor:pointer;backdrop-filter:blur(8px);box-shadow:0 8px 25px #0007}.hotspot b{display:block;font-size:12px;margin-bottom:4px}.hotspot small{color:#c4cbd0}.h1{top:35%;right:12%}.h2{top:52%;left:12%}.h3{top:20%;left:38%}
+.prompt{position:absolute;bottom:18px;right:22px;z-index:5;background:#0b1219d9;border:1px solid var(--line);padding:10px 14px;border-radius:9px;font-size:11px;color:#d8dee2}
+.bottom{display:grid;grid-template-columns:1fr 300px;gap:16px;padding:17px 24px 24px;background:#0a1017}.mission{border:1px solid var(--line);background:linear-gradient(120deg,#17212b,#0f171f);border-radius:13px;padding:15px 18px}.mission strong{font-size:13px}.mission p{font-size:12px;color:#aeb9c2;line-height:1.8;margin:7px 0 0}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.btn{border:1px solid #b38d4f;background:linear-gradient(135deg,#9b7842,#59452b);color:#fff;padding:11px 15px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:12px}.btn.secondary{background:#17232e;border-color:#52616e}.objective{border:1px solid var(--line);border-radius:13px;padding:14px;background:#101923}.objective small{color:var(--gold);font-size:10px}.objective h3{font-size:14px;margin:7px 0}.objective p{font-size:11px;color:#aeb9c2;line-height:1.8;margin:0}
+.overlay{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;z-index:10;padding:12px}.overlay.show{display:flex}.sheet{width:min(100%,620px);background:#111b25;border:1px solid #a98a53;border-radius:17px;padding:20px;box-shadow:0 20px 80px #000}.sheet h2{font-size:20px;margin:0 0 10px}.sheet p{color:#bdc6cd;font-size:13px;line-height:2}.sheet button{margin:5px 4px 0 0}
+.toast{position:fixed;top:75px;left:50%;transform:translateX(-50%);background:#24382f;border:1px solid #7eaa8c;padding:10px 15px;border-radius:9px;z-index:20;font-size:12px;display:none}
+@media(max-width:700px){.top{padding:0 13px}.hud .hide{display:none}.scene-head{padding:24px 18px 0}.playfield{height:54vh;min-height:390px;margin:0 8px}.detective{left:48%;transform:translateX(-50%) scale(.84);transform-origin:bottom center}.h1{right:3%;top:35%}.h2{left:2%;top:53%}.h3{left:28%;top:17%}.bottom{grid-template-columns:1fr;padding:12px}.objective{display:none}.prompt{right:10px;bottom:10px}.scene-head h1{font-size:27px}}
+</style></head>
+<body><main class="game">
+<header class="top"><div><div class="brand">THE DETECTIVE</div><div class="sub">THIRD PERSON STORY EXPERIENCE · PREVIEW BUILD</div></div><div class="hud"><span class="hide">القاهرة · 23:14</span><span class="pill">CASE 001 / نشطة</span><span class="pill">01:27:42</span></div></header>
+<section class="stage">
+<div class="scene-head"><div><div class="eyebrow">مسرح الجريمة · فيلا فاروق</div><h1>الليلة التي اختفى فيها الدليل</h1><p>تحكّم في المحقق. اقترب من الأشخاص والأشياء وافحص العالم بنفسك.</p></div><span class="pill">الفصل الأول · الوصول</span></div>
+<div class="playfield" id="field"><div class="location"></div>
+<div class="hotspot h1" onclick="interact('desk')"><b>◉ مكتب الضحية</b><small>فحص آثار المكتب</small></div>
+<div class="hotspot h2" onclick="interact('guard')"><b>◉ الحارس طارق</b><small>شخص موجود بالموقع</small></div>
+<div class="hotspot h3" onclick="interact('door')"><b>◉ الباب الجانبي</b><small>آثار دخول وخروج</small></div>
+<div class="detective" id="detective"><div class="hair"></div><div class="head"></div><div class="coat"></div><div class="shirt"></div><div class="arm a"></div><div class="arm b"></div><div class="leg l"></div><div class="leg r"></div></div>
+<div class="prompt">اضغط على نقاط التفاعل لاستكشاف المكان</div></div>
+<div class="bottom"><div class="mission"><strong>مهمتك الحالية: افهم آخر 20 دقيقة في حياة الضحية</strong><p id="missionText">الحارس أبلغ عن الجريمة. تحرّك داخل المشهد، افحص المكتب، واسأل الموجودين قبل ما تستنتج أي حاجة.</p><div class="actions"><button class="btn" onclick="moveDetective()">تحريك المحقق</button><button class="btn secondary" onclick="interact('guard')">تحدث مع الحارس</button><button class="btn secondary" onclick="interact('inventory')">حقيبة الأدلة</button><button class="btn secondary" onclick="interact('map')">خريطة الموقع</button></div></div><aside class="objective"><small>CASE OBJECTIVE</small><h3>ثبّت خط سير الأحداث</h3><p>اجمع دليلًا ماديًا، ثم واجه شاهدًا بتوقيت متناقض. كل تفاعل يفتح جزءًا جديدًا من القصة.</p></aside></div>
+</section></main>
+<div class="overlay" id="overlay" onclick="if(event.target===this)closePanel()"><div class="sheet"><h2 id="panelTitle"></h2><div id="panelBody"></div><button class="btn secondary" onclick="closePanel()">إغلاق</button></div></div><div class="toast" id="toast"></div>
+<script>
+const state={desk:false,guard:false,door:false,moved:false,items:[]};
+const $=id=>document.getElementById(id);
+function panel(title,body){$('panelTitle').textContent=title;$('panelBody').innerHTML=body;$('overlay').classList.add('show')}
+function closePanel(){$('overlay').classList.remove('show')}
+function notify(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2200)}
+function interact(where){
+ if(where==='desk'){state.desk=true;state.items.push('ساعة المكتب متوقفة عند 10:17');$('missionText').textContent='وجدت ساعة متوقفة عند 10:17. توقيت توقفها قد يكون مفتاحًا لفهم ما حدث.';panel('فحص مكتب الضحية','<p>تقترب من المكتب وتلاحظ ساعة مقلوبة بجوار الأوراق. الزجاج سليم، لكن عقاربها متوقفة عند 10:17.</p><p><b>ملاحظة جديدة:</b> توقيت الساعة لا يطابق بلاغ الحارس الأولي.</p><button class="btn" onclick="closePanel();notify(\'تم تسجيل الساعة كدليل مبدئي\')">تسجيل الملاحظة</button>')}
+ if(where==='guard'){state.guard=true;panel('طارق — حارس الفيلا','<p>طارق يتجنب النظر إلى المكتب. يضغط على مفاتيحه بعصبية.</p><p><b>طارق:</b> «أنا بلغت الشرطة أول ما لقيته. والله ما دخلتش المكتب طول الليل».</p><button class="btn" onclick="notify(\'طارق أكد أنه لم يدخل المكتب\');closePanel()">اسأله عن وقت البلاغ</button><button class="btn secondary" onclick="notify(\'طارق اتوتر لما سألته عن المكتب\');closePanel()">واجهه بساعة المكتب</button>')}
+ if(where==='door'){state.door=true;state.items.push('أثر حذاء قرب الباب الجانبي');panel('الباب الجانبي','<p>الباب غير مكسور. على الأرض أثر حذاء مبلل يتجه إلى الداخل، رغم أن المطر توقف قبل ساعة.</p><p><b>ملاحظة جديدة:</b> شخص دخل من هنا بعد انتهاء المطر.</p><button class="btn" onclick="closePanel();notify(\'تم تسجيل أثر الحذاء\')">تسجيل الأثر</button>')}
+ if(where==='inventory'){panel('حقيبة الأدلة','<p>'+(state.items.length?state.items.map(x=>'• '+x).join('<br>'):'لم تسجل أدلة بعد. افحص المكتب والباب الجانبي.')+'</p>')}
+ if(where==='map'){panel('خريطة الموقع','<p>الطابق الأرضي: مكتب الضحية — الصالة — الباب الجانبي.</p><p>الطابق العلوي: غرفة المراقبة — المخزن — غرفة النوم.</p><p>المناطق غير المفتوحة ستظهر بعد استجواب الحارس.</p>')}
+}
+function moveDetective(){state.moved=!state.moved;$('detective').style.left=state.moved?'67%':'39%';notify(state.moved?'تحرك المحقق ناحية المكتب':'عاد المحقق إلى منتصف المشهد')}
+</script></body></html>
