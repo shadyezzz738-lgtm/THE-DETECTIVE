@@ -85,6 +85,38 @@ body{background-color:#070a18;background-image:radial-gradient(ellipse at 15% 0,
 </style>
 </head>
 <body>
+<script>
+/* TD_BOOT_DIAGNOSTIC_V1 — recovery if the main app fails before rendering */
+(function(){
+  var errors=[];
+  window.addEventListener('error',function(e){
+    errors.push((e.message||'JavaScript error')+' — '+(e.filename||'')+':'+(e.lineno||''));
+  });
+  window.addEventListener('unhandledrejection',function(e){
+    errors.push('Promise: '+String(e.reason&&e.reason.message||e.reason||'unknown'));
+  });
+  function showFailure(message){
+    var p=document.getElementById('td-boot-diagnostic');
+    if(!p){p=document.createElement('div');p.id='td-boot-diagnostic';p.style.cssText='position:fixed;inset:12px;z-index:20000;overflow:auto;background:#101827;color:#fff;border:2px solid #d6b477;border-radius:14px;padding:20px;direction:rtl;font:15px/1.9 system-ui';document.body.appendChild(p);}
+    p.innerHTML='<h2 style="color:#e7c981">تعذر تشغيل THE DETECTIVE</h2><p>'+String(message).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})+'</p><p>تفاصيل الخطأ: '+(errors.join(' | ')||'لم يتم تسجيل خطأ JavaScript؛ فشل تحميل واجهة اللعبة أو بدء تشغيلها.')+'</p><button onclick="location.reload()" style="padding:12px 18px;border-radius:9px">إعادة تحميل اللعبة</button>';
+  }
+  window.addEventListener('load',function(){
+    setTimeout(function(){
+      var list=document.getElementById('cases');
+      if(list && (list.classList.contains('hidden') || !list.innerHTML.trim())){
+        try{
+          if(typeof window.showCases==='function') window.showCases();
+          else throw new Error('دالة عرض القضايا لم تُحمّل. غالباً يوجد خطأ مبكر في ملف JavaScript الرئيسي.');
+        }catch(e){showFailure(e&&e.message||e);}
+        setTimeout(function(){
+          if(list.classList.contains('hidden') || !list.innerHTML.trim()) showFailure('حاولت إعادة بناء شاشة القضايا تلقائياً لكنها لم تظهر.');
+        },300);
+      }
+    },1800);
+  });
+})();
+</script>
+
 <header id="hd" class="hidden"><div class="top"><div class="brand">THE DETECTIVE</div></div><h1 id="headTitle">غرفة التحقيق</h1><p id="headSub">كل دليل يقرّبك من الحقيقة</p></header>
 <main>
 <section id="cases" class="hidden"></section>
